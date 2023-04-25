@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Sales Companion</title>
+    <style>
+      body {
+        width: 400px;
+        font-family: Arial, sans-serif;
+        font-size: 14px;
+        line-height: 1.5;
+        margin: 0;
+        padding: 10px;
+      }
+      h1 {
+        margin-top: 0;
+        font-size: 18px;
+      }
+      label {
+        display: block;
+        margin-bottom: 5px;
+      }
+      input[type="text"] {
+        width: 100%;
+        padding: 5px;
+        border: 1px solid #ccc;
+        border-radius: 3px;
+        box-sizing: border-box;
+        margin-bottom: 10px;
+      }
+      textarea {
+        width: 100%;
+        padding: 5px;
+        border: 1px solid #ccc;
+        border-radius: 3px;
+        box-sizing: border-box;
+        margin-bottom: 10px;
+        height: 150px;
+      }
+      button {
+        padding: 5px 10px;
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        border-radius: 3px;
+        cursor: pointer;
+      }
+      button:disabled {
+        opacity: 0.5;
+        cursor: default;
+      }
+      button:not(:disabled):hover {
+        background-color: #0069d9;
+      }
+      #header {
+        display: flex;
+        align-items: center;
+        margin-bottom: 20px;
+      }
+      #header img {
+        width: 70px;
+        margin-right: 10px;
+      }
+      select {
+        width: 50%;
+        padding: 5px;
+        border: 1px solid #ccc;
+        border-radius: 3px;
+        box-sizing: border-box;
+        margin-bottom: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="header">
+      
+      <h1></h1>
+    </div>
+    <div>
+      <label for="stage">Stage:</label>
+      <select id="stage">
+        <option value="Qualification">Qualification</option>
+        <option value="Discovery">Discovery</option>
+        <option value="Demo">Demo</option>
+        <option value="Pricing">Pricing</option>
+        <option value="Negotiation">Negotiation</option>
+      </select>
+    </div>
+    <div>
+      <label for="pain-points">Pain Points:</label>
+      <input type="text" id="pain-points" >
+    </div>
+    <div>
+      <label for="budget">Budget:</label>
+      <input type="text" id="budget" >
+    </div>
+    <div>
+      <label for="decision-maker">Decision Maker:</label>
+      <input type="text" id="decision-maker" >
+    </div>
+    <div>
+      <label for="transcript">Transcript:</label>
+      <textarea id="transcript" disabled></textarea>
+      <label for="summary">Summary:</label>
+      <textarea id="summary" disabled></textarea>
+    </div>
+    <div>
+      <button id="generate-summary-button">Generate Summary</button>
+      <button id="populate-button" >Populate</button>
+    </div>
+    
+    
+  </body>
+</html>
