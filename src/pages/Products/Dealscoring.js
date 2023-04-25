@@ -43,7 +43,7 @@ export default function Dealscoring() {
 
     const { Configuration, OpenAIApi } = require("openai");
     const configuration = new Configuration({
-      apiKey: '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',
+      apiKey: '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',
     });
     const openai = new OpenAIApi(configuration);
     const prompt1 = `pretend that you are a software developer developing a deal scoring framework. As a usual process, first you request the user to sign in by providing the link. But you only provide the link when you get a name of the CRM from the user. You want to get the best possible answer to the questions: ${currentQuestion}. The customer said: ${message}. Ask 1 follow up question to thid questions in order till you get satisfactory answers to the questions. For the question: Which CRM do you want me to intergrate?, as soon as you get a name for the CRM, you send the user an authentication link.`;
@@ -93,7 +93,7 @@ export default function Dealscoring() {
       <div
             style={{margin: '0 auto',
                 position: 'relative',
-  width: '70%',
+  width: '50%',
   height: '350px',
   padding: '2rem',
   marginBottom: '1rem',
@@ -102,6 +102,7 @@ export default function Dealscoring() {
     flexDirection: 'column-reverse',
     backgroundColor: '#36486b',
     borderRadius: '10px',
+    overflow: 'auto', 
         }}
         id="chatcontainer"
       >
@@ -112,13 +113,13 @@ export default function Dealscoring() {
     className={`message ${message.sender === 'bot' ? 'received' : 'sent'}`} id="messages" style={{ width: '100%' }}
   >
             <div className={styles.avatar} id="avatar"></div>
-            <div className={message.sender === 'bot' ? styles.text : `${styles.text} ${styles.sentText}`} id="message received">{message.message}</div>
+            <div className={message.sender === 'bot' ? styles.text : `${styles.sentText}`} id="message received">{message.message}</div>
   </div>
   ))}
           </div>
         <form
           style={{ display: 'flex',
-          width: '70%',
+          width: '50%',
           margin: '0 auto',
           justifyContent: 'space-between',
           alignItems: 'center',
@@ -156,7 +157,7 @@ export default function Dealscoring() {
             style={{
                 padding: '8px 16px',
                 borderRadius: '5px',
-                backgroundColor: '#007bff',
+                backgroundColor: '#1e7145',
                 color: '#fff',
                 border: 'none',
                 fontSize: '14px',
@@ -180,6 +181,7 @@ export default function Dealscoring() {
                 paddingLeft: '100px',
                 paddingRight: '100px',
                 boxSizing: 'border-box',
+                borderRadius: '10px',
             }}
           >
             <iframe
@@ -190,32 +192,26 @@ export default function Dealscoring() {
               style={{
                 border: 'none',
                 overflow: 'hidden',
+                borderRadius: '5px',
               }}
             ></iframe>
           </div>
           
         
-          <footer
+          <div
             style={{
-              position: 'fixed',
-              bottom: 0,
-              width: '100%',
-              height: '70px',
-              backgroundColor: '#292929',
-              color: '#fff',
-              display: 'flex',
-              justifyContent: 'center',
-              alignItems: 'center',
+                position: 'absolute',
+                top: 0,
+                left: 0,
+                padding: '10px',
             }}
           >
-            <h2>
-              <Link href="/" passHref>
-                <span style={{ color: '#fff', cursor: 'pointer', fontFamily: 'sans-serif'}}>
-                  Back to home
-                </span>
-              </Link>
-            </h2>
-          </footer>
+            <Link href="/" passHref>
+    <span style={{ marginTop: '2rem', color: '#fff', cursor: 'pointer', fontFamily: 'sans-serif'}}>
+      Back to home
+    </span>
+  </Link>
+          </div>
         </>
       );
     }  
