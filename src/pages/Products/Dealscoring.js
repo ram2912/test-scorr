@@ -1,8 +1,11 @@
+require('dotenv').config();
 import Link from 'next/link';
 import styles from '@/styles/Home.module.css';
 import React, { useState, useEffect } from 'react';
 import { Configuration, OpenAI } from "openai";
 import DealScoringTable from './PipelineManFr';
+
+
 
 
 const questions = [
@@ -51,14 +54,14 @@ export default function Dealscoring() {
     
     const { Configuration, OpenAIApi } = require("openai");
     const configuration = new Configuration({
-      apiKey: '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',
+      apiKey: process.env.OPENAI_API,
     });
     const openai = new OpenAIApi(configuration);
     const prompt1 = `pretend that you are a software developer developing revenue intelligence tools for your client is a RevOps professional. You want to have the best possible answer, under 40 words, to the question: ${currentQuestion}. Your client's response is: ${message}. Understand what the client said and answer the questions,always end the answer by asking ${currentQuestion}. Make the last line a natural continuation of the answer, remove 'Hi' from it and create an urgency. \n\nA:`;
     const response = await openai.createCompletion({
       model:"text-davinci-003",
       prompt: prompt1,
-        max_tokens: 100,
+        max_tokens: 100,  
         temperature: 0.7,
       });
     const data = response.data;

@@ -1,6 +1,6 @@
 class Configuration {
   constructor({ apiKey }) {
-    this.apiKey = process.env.OPENAI_API_KEY;
+    this.apiKey = process.env.OPENAI_API;
   }
 }
 
