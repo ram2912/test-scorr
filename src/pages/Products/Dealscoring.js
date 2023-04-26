@@ -1,4 +1,3 @@
-require('dotenv').config();
 import Link from 'next/link';
 import styles from '@/styles/Home.module.css';
 import React, { useState, useEffect } from 'react';
