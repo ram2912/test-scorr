@@ -1,8 +1,8 @@
 import Link from 'next/link';
 import styles from '@/styles/Home.module.css';
 import React, { useState, useEffect } from 'react';
-import { Configuration, OpenAI } from "openai";
-import DealScoringTable from './PipelineManFr';
+import DealScoringTable from 'src/pages/Products/PipelineManFr.js';
+import { Configuration, OpenAIApi } from "openai";
 
 
 

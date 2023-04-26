@@ -219,7 +219,7 @@ export default function FirstPost() {
                 height: '800px',
               }}
             >
-              <iframe src="/Transcription-tool.html" width="500px" height="100%"></iframe>
+              <iframe src="/transcription-tool.html" width="500px" height="100%"></iframe>
             </div>
           </div>
         </div>

@@ -6,7 +6,7 @@ import Link from 'next/link';
 
 
 const inter = Inter({ subsets: ['latin'] })
-
+console.log(process.env.OPENAI_API);
 export default function Home() {
   return (
     <>
@@ -20,7 +20,7 @@ export default function Home() {
           <h1 className={styles.center}>Welcome to SCORR</h1>
           <p className={styles.header}>Product Catalogue</p>
           <p> <Link href="/Products/Transcription">Transcription</Link></p>
-          <p><Link href="/Products/Dealscoring">Deal Scoring</Link></p>
+          <p><Link href="/Dealscoring">Deal Scoring</Link></p>
           <p><Link href="/Products/PipelineManFr">Image classification tool</Link></p>        
         
 
