@@ -20,7 +20,7 @@ export default function Home() {
           <p className={styles.header}>Product Catalogue</p>
           <p> <Link href="/Products/Transcription">Transcription</Link></p>
           <p><Link href="/Products/Dealscoring">Deal Scoring</Link></p>
-          <p>Image classification tool</p>        
+          <p><Link href="/Products/PipelineManFr">Image classification tool</Link></p>        
         
 
         

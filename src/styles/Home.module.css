@@ -243,7 +243,7 @@
 }
 .chatcontainer {
   position: relative;
-  top: 30px;
+  top: 10px;
   left: 20px;
   width: 300px;
   height: 400px;
@@ -344,3 +344,32 @@
 .margin {
   margin: 0 20px;
 }
+.loadingAnimation {
+  position: fixed;
+  top: 450px;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 4rem;
+  color: #ffffff;
+}
+
+.loadingAnimation::after {
+  content: "...";
+  animation: loading 1s infinite;
+}
+
+@keyframes loading {
+  0% {
+    content: ".";
+  }
+  33% {
+    content: "..";
+  }
+  66% {
+    content: "...";
+  }
+}
+
