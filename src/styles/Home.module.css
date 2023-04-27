@@ -282,10 +282,11 @@
   width: 100%;
   padding: 8px 10px;
   border-radius: 5px;
-  background-color: rgb(255, 255, 255);
+  background-color: rgb(75, 116, 194);
   box-shadow: 0 2px 2px rgba(0, 0, 0, 0.1);
-  color:#000000;
-  font-family: sans-serif;
+  color:#ffffff;
+  font-family: Helvetica, sans-serif;
+  line-height: 1.5;
 }
 
 .avatar {
@@ -300,10 +301,11 @@
   width: 100%;
   padding: 8px 10px;
   border-radius: 5px;
-  background-color: #d4f8fc;
+  background-color: #484848;
   box-shadow: 0 2px 2px rgba(0, 0, 0, 0.1);
-  color:#000000;
-  font-family: sans-serif;
+  color:#ffffff;
+  font-family: Helvetica, sans-serif;
+  line-height: 1.5;
 }
 
 .text:last-child {

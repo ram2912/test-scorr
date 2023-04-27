@@ -49,7 +49,12 @@ export default function Dealscoring() {
     
     setIsLoading(true);
 
-
+    if (message.includes('yes')) {
+      // Show popup screen with pipeline management framework
+      setShowPopup(true);
+      setIsLoading(false);
+      return;
+    }
     
     const { Configuration, OpenAIApi } = require("openai");
     const configuration = new Configuration({
@@ -69,21 +74,27 @@ export default function Dealscoring() {
     receiveMessage("Sorry, I didn't understand that.");
     return;
   }
-  if (message.includes('yes')) {
-    // Show popup screen with pipeline management framework
-    setShowPopup(true);
-    setIsLoading(false);
-    return;
-    }
+  
   if (currentQuestion === questions[0]) {
-    if (message.includes('pipeline management')) {
+    const prompt2 = `pretend that you are a software developer developing revenue intelligence tools for your client is a RevOps professional. You ask the question: ${currentQuestion}. Your client's response is: ${message}. Give responce "yes" or "no" if you feel the client wants to use Deal Scoring for specifc usecase of pipeline management. \n\nA:`;
+    const response1 = await openai.createCompletion({
+      model:"text-davinci-003",
+      prompt: prompt2,
+        max_tokens: 100,  
+        temperature: 0.7,
+      });
+    const data2 = response1.data;
+    console.log(data2);
+    if (data2.choices[0].text.trim()==='Yes') {
         receiveMessage("Got it! Based on your sales process, I have identified a framework for you to create scores. Do you want me to show you?", 'bot');
         setIsLoading(false);
         setCurrentQuestion(questions[1]);
     return;
     } 
+   
   } 
   const botMessage = data.choices[0].text.trim();
+  console.log(botMessage)
   receiveMessage(botMessage, 'bot');
   setIsLoading(false);
 }
@@ -119,11 +130,11 @@ export default function Dealscoring() {
   width: '50%',
   height: '290px',
   padding: '2rem',
-  marginBottom: '1rem',
+
   boxSizing: 'border-box',
   display: 'flex',
     flexDirection: 'column-reverse',
-    backgroundColor: '#36486b',
+    backgroundColor: '#133337',
     borderRadius: '10px',
     overflow: 'auto', 
         }}
@@ -147,7 +158,7 @@ export default function Dealscoring() {
           justifyContent: 'space-between',
           alignItems: 'center',
           height: '60px',
-          borderTop: '1px solid #ddd',
+          
         }}
         id="message-form"
         onSubmit={event => {
@@ -170,7 +181,7 @@ export default function Dealscoring() {
               marginRight: '10px',
               padding: '8px 10px',
               borderRadius: '5px',
-              border: '1px solid #ddd',
+              border: '0.4px solid #ddd',
               fontSize: '14px',
             }}
           />
