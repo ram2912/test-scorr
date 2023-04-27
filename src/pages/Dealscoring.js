@@ -280,7 +280,7 @@ export default function Dealscoring() {
         margin: '0 auto',
         padding: '2rem',
         borderRadius: '5px',
-        backgroundColor: '#fff',
+        backgroundColor: '#040506',
         zIndex: 9999, // set a high value for z-index
         // other styles...
       }}
