@@ -8,7 +8,7 @@ import { Configuration, OpenAIApi } from "openai";
 
 
 const questions = [
-    'Hi! Why do you want to implement Deal Scoring? For forecasting, pipeline management, or something else? ', ,
+    'Hi! Why do you want to implement Deal Scoring? For forecasting, pipeline management, or something else? ', 
     'Do you want me add best practices and next steps to this as well? ',
   ];
 
@@ -18,8 +18,15 @@ export default function Dealscoring() {
   const [messages, setMessages] = useState([]);
     const [showPopup, setShowPopup] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
-  
-
+    
+    function handleSave() {
+      // add your save logic here
+      setCurrentQuestion(questions[1]);
+      setMessages(prevMessages => [...prevMessages, { message: questions[1], sender: 'bot' }]);
+      console.log("Save button clicked");
+      setShowPopup(false);
+    }
+console.log(currentQuestion);
   useEffect(() => {
   // Get references to the chat interface elements
   const messageForm = document.getElementById('message-form');
@@ -34,8 +41,9 @@ export default function Dealscoring() {
     const message = messageInput.value.trim();
     if (message !== '') {
         setIsLoading(true);
-      sendMessage(message);
-      messageInput.value = '';
+        setIsLoading(true);
+        sendMessage(message, currentQuestion);
+        event.target.elements.message.value = '';
     }
   });
   function receiveMessage(message) {
@@ -43,24 +51,28 @@ export default function Dealscoring() {
   }
 
   // Send user message to OpenAI API and receive response
-  async function sendMessage(message) {
+  async function sendMessage(message,currentQuestion) {
     setMessages(prevMessages => [...prevMessages, { message, sender: 'user' }]);
     console.log(message);
-    
+    console.log(currentQuestion);
     setIsLoading(true);
 
     if (message.includes('yes')) {
       // Show popup screen with pipeline management framework
-      setShowPopup(true);
-      setIsLoading(false);
+      
+      setTimeout(() => {
+        setShowPopup(true);
+        setIsLoading(false);
+      }, 2000);
       return;
     }
-    
+
     const { Configuration, OpenAIApi } = require("openai");
     const configuration = new Configuration({
       apiKey: process.env.OPENAI_API,
     });
     const openai = new OpenAIApi(configuration);
+    
     const prompt1 = `pretend that you are a software developer developing revenue intelligence tools for your client is a RevOps professional. You want to have the best possible answer, under 40 words, to the question: ${currentQuestion}. Your client's response is: ${message}. Understand what the client said and answer the questions,always end the answer by asking ${currentQuestion}. Make the last line a natural continuation of the answer, remove 'Hi' from it and create an urgency. \n\nA:`;
     const response = await openai.createCompletion({
       model:"text-davinci-003",
@@ -88,7 +100,7 @@ export default function Dealscoring() {
     if (data2.choices[0].text.trim()==='Yes') {
         receiveMessage("Got it! Based on your sales process, I have identified a framework for you to create scores. Do you want me to show you?", 'bot');
         setIsLoading(false);
-        setCurrentQuestion(questions[1]);
+        
     return;
     } 
    
@@ -212,24 +224,23 @@ export default function Dealscoring() {
       )}
           <div
             style={{
-                position: 'absolute',
-                bottom: '10px',
-                width: '100%',
-                height: '340px',
-                left: 0,
-                backgroundColor: 'linear-gradient(to top, #000066 70%, #333399 100%)',
-                boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)',
-                paddingLeft: '100px',
-                paddingRight: '100px',
-                boxSizing: 'border-box',
-                borderRadius: '10px',
+              margin: '0 auto', // center horizontally    
+              flex: 1,
+              width: '80%',
+              minHeight: '170px',
+              borderRadius: '5px',
+              overflow: 'hidden',
+              boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)',
+              backgroundColor: 'linear-gradient(to top, #000066 70%, #333399 100%)',
+              paddingTop: '6rem',
+              boxSizing: 'border-box',
             }}
           >
             <iframe
 
               src="/Scoring.html"
               width="100%"
-              height="300px"
+              height="400px"
               style={{
                 border: 'none',
                 overflow: 'hidden',
@@ -285,7 +296,7 @@ export default function Dealscoring() {
         // other styles...
       }}
     >
-      <DealScoringTable />
+      <DealScoringTable onClose={() => setShowPopup(false)} onSave={handleSave}/>
     </div>
   </>
 )}

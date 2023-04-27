@@ -1,7 +1,10 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
+import { questions } from 'src/pages/Dealscoring.js';
+import { setCurrentQuestion } from 'src/pages/Dealscoring.js';
 
-export default function DealScoringTable({ onClose }) {
+export default function DealScoringTable({ onClose, onSave }) {
+  
   const [scores, setScores] = useState({
     'Activity': {
       'Number of Meetings Scheduled': 10,
@@ -31,11 +34,7 @@ export default function DealScoringTable({ onClose }) {
       return { ...prevScores, [category]: categoryCopy };
     });
   }
-  function handleSave() {
-    // add your save logic here
-    console.log("Save button clicked");
-    setIsVisible(false); 
-  }
+  
 
   return (
 <table style={{ fontFamily: 'Helvetica, sans-serif', fontSize: '1rem', backgroundColor: '#0B0C11', borderCollapse: 'collapse', width: '100%', color: '#C4BFBD', marginTop: '2rem', position: 'relative' }}>
@@ -73,13 +72,12 @@ export default function DealScoringTable({ onClose }) {
   <tfoot>
   <tr style={{ textAlign: 'right' }}>
     <td colSpan="3">
-      <button style={{ backgroundColor: '#126122', color: 'white', padding: '8px 12px', borderRadius: '5px', border: 'none', cursor: 'pointer', marginTop: '1rem', marginRight: '1rem', transition: 'background-color 0.2s ease-in-out' }} onClick={handleSave} onMouseDown={(e) => { e.target.style.backgroundColor = '#555' }} onMouseUp={(e) => { e.target.style.backgroundColor = '#126122' }}>Save</button>
+      <button style={{ backgroundColor: '#126122', color: 'white', padding: '8px 12px', borderRadius: '5px', border: 'none', cursor: 'pointer', marginTop: '1rem', marginRight: '1rem', transition: 'background-color 0.2s ease-in-out' }} onClick={onSave} onMouseDown={(e) => { e.target.style.backgroundColor = '#555' }} onMouseUp={(e) => { e.target.style.backgroundColor = '#126122' }}>Save</button>
       <button style={{ backgroundColor: '#126122', color: 'white', padding: '8px 12px', borderRadius: '5px', border: 'none', cursor: 'pointer', marginTop: '1rem', transition: 'background-color 0.2s ease-in-out' }} onClick={onClose} onMouseDown={(e) => { e.target.style.backgroundColor = '#555' }} onMouseUp={(e) => { e.target.style.backgroundColor = '#126122' }}>Cancel</button>
     </td>
   </tr>
 </tfoot>
 </table>
-
       );
       
 
