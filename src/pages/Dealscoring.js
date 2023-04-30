@@ -3,12 +3,11 @@ import styles from '@/styles/Home.module.css';
 import React, { useState, useEffect } from 'react';
 import DealScoringTable from 'src/pages/Products/PipelineManFr.js';
 import { Configuration, OpenAIApi } from "openai";
-
-
-
+import { FaPaperPlane } from 'react-icons/fa';
+import { FaArrowLeft } from 'react-icons/fa';
 
 const questions = [
-    'Hi! Why do you want to implement Deal Scoring? For forecasting, pipeline management, or something else? ', 
+    'What do you want to build today?', 
     'Do you want me add best practices and next steps to this as well? ',
   ];
 
@@ -18,7 +17,7 @@ export default function Dealscoring() {
   const [messages, setMessages] = useState([]);
     const [showPopup, setShowPopup] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
-    
+    const [showDeals, setShowDeals] = useState(false);
     function handleSave() {
       // add your save logic here
       setCurrentQuestion(questions[1]);
@@ -33,7 +32,7 @@ console.log(currentQuestion);
   const messageInput = document.getElementById('message-input');
   
 
-  setMessages([{ message: currentQuestion, sender: 'bot' }]);
+  
 
   // Add event listener to the message form
   messageForm.addEventListener('submit', event => {
@@ -57,6 +56,15 @@ console.log(currentQuestion);
     console.log(currentQuestion);
     setIsLoading(true);
 
+    if (message.includes('Deal scoring for prioritisation of deals')) {
+      // Show popup screen with pipeline management framework
+      
+      setTimeout(() => {
+        setShowDeals(true);
+        setIsLoading(false);
+      }, 2000);
+      return;
+    }
     if (message.includes('yes')) {
       // Show popup screen with pipeline management framework
       
@@ -121,11 +129,52 @@ console.log(currentQuestion);
 
   return (
     <>
-    
+    {!showDeals && ( 
+    <div style={{display: 'flex', alignItems: 'center', justifyContent: 'center', height: '70vh'}}>
+  <img src="./White logo - no background.png" alt="Logo" style={{width: '25%', height: 'auto'}} />
+</div>
+)}
+
             
-            <div
+    {showDeals && (  
+      <>
+          <div
+            style={{
+              margin: '0 auto', // center horizontally    
+              flex: 1,
+              width: '80%',
+              minHeight: '170px',
+              borderRadius: '5px',
+              overflow: 'hidden',
+              boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)',
+              backgroundColor: 'linear-gradient(to top, #000066 70%, #333399 100%)',
+              paddingTop: '6rem',
+              boxSizing: 'border-box',
+            }}
+          >
+            <iframe
+
+              src="/Scoring.html"
+              width="100%"
+              height="400px"
               style={{
-                margin: '0 auto', // center horizontally    
+                border: 'none',
+                overflow: 'hidden',
+                borderRadius: '5px',
+              }}
+            ></iframe>
+          </div>
+          
+          </>
+)}
+          <div
+              style={{
+                position: 'fixed',
+    bottom: '5rem',
+    left: '50%',
+    transform: 'translateX(-50%)',
+    margin: '0 auto',
+    width: '80%',
     flex: 1,
     minHeight: '170px',
     borderRadius: '5px',
@@ -140,13 +189,13 @@ console.log(currentQuestion);
             style={{margin: '0 auto',
                 position: 'relative',
   width: '50%',
-  height: '290px',
+  height: '90px',
   padding: '2rem',
 
   boxSizing: 'border-box',
   display: 'flex',
     flexDirection: 'column-reverse',
-    backgroundColor: '#133337',
+    backgroundColor: '#151515',
     borderRadius: '10px',
     overflow: 'auto', 
         }}
@@ -186,31 +235,42 @@ console.log(currentQuestion);
             type="text"
             id="message-input"
             name="message"
-            placeholder="Type your message..."
+            placeholder="What do you want to build?"
             style={{
               display: 'flex',
               flex: 1,
-              marginRight: '10px',
               padding: '8px 10px',
               borderRadius: '5px',
-              border: '0.4px solid #ddd',
-              fontSize: '14px',
+              height: '37px',
+              border: 'none',
+              fontSize: '16px',
             }}
           />
-          <button
-            type="submit"
-            style={{
-                padding: '8px 16px',
-                borderRadius: '5px',
-                backgroundColor: '#1e7145',
-                color: '#fff',
-                border: 'none',
-                fontSize: '14px',
-                cursor: 'pointer',
-              }}
-            >
-              Send
-            </button>
+         <button
+  type="submit"
+  style={{
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    padding: '8px 16px',
+    borderRadius: '5px',
+    backgroundColor: 'transparent',
+    color: '#fff',
+    border: 'none',
+    fontSize: '14px',
+    cursor: 'pointer',
+  }}
+>
+  <FaPaperPlane
+    size={16}
+    style={{
+      marginRight: '8px',
+      color: '#CACACA',
+      backgroundColor: 'transparent',
+    }}
+  />
+</button>
+
             </form>
           </div>
           {isLoading && (
@@ -222,48 +282,15 @@ console.log(currentQuestion);
           </div>
         </div>
       )}
-          <div
-            style={{
-              margin: '0 auto', // center horizontally    
-              flex: 1,
-              width: '80%',
-              minHeight: '170px',
-              borderRadius: '5px',
-              overflow: 'hidden',
-              boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)',
-              backgroundColor: 'linear-gradient(to top, #000066 70%, #333399 100%)',
-              paddingTop: '6rem',
-              boxSizing: 'border-box',
-            }}
-          >
-            <iframe
-
-              src="/Scoring.html"
-              width="100%"
-              height="400px"
-              style={{
-                border: 'none',
-                overflow: 'hidden',
-                borderRadius: '5px',
-              }}
-            ></iframe>
-          </div>
           
-          
-          <div
-            style={{
-                position: 'absolute',
-                top: 0,
-                left: 0,
-                padding: '10px',
-            }}
-          >
-            <Link href="/" passHref>
+          <div style={{ position: 'absolute', top: '1rem', left: '1rem', padding: '10px' }}>
+  <Link href="/" passHref>
     <span style={{ marginTop: '2rem', color: '#fff', cursor: 'pointer', fontFamily: 'sans-serif'}}>
+      <FaArrowLeft size={16} style={{ marginRight: '8px' }} />
       Back to home
     </span>
   </Link>
-          </div>
+</div>
           {showPopup && (
   <>
     <div
