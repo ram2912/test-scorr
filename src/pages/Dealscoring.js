@@ -5,6 +5,7 @@ import DealScoringTable from 'src/pages/Products/PipelineManFr.js';
 import { Configuration, OpenAIApi } from "openai";
 import { FaPaperPlane } from 'react-icons/fa';
 import { FaArrowLeft } from 'react-icons/fa';
+import { FaCloudUploadAlt, FaSave } from 'react-icons/fa';
 
 
 
@@ -13,7 +14,7 @@ import { FaArrowLeft } from 'react-icons/fa';
 
 const questions = [
     'What do you want to build today?', 
-    'Do you want me too add the reason for the deal score?',
+    'Do you want me to add the reason for the deal score?',
   ];
 
 
@@ -66,7 +67,7 @@ console.log(showNextStep);
     console.log(currentQuestion);
     setIsLoading(true);
 
-    if (message.includes('add next steps for my deals')) {
+    if (message.includes('yes and also add the next steps column')) {
       // Show Next Step column
       setTimeout(() => {
         setShowNextStep(true);
@@ -146,10 +147,10 @@ console.log(showNextStep);
 
   return (
     <>
-    {!showDeals && ( 
-    <div style={{display: 'flex', alignItems: 'center', justifyContent: 'center', height: '70vh'}}>
-  <img src="./White logo - no background.png" alt="Logo" style={{width: '25%', height: 'auto'}} />
-</div>
+{!showDeals && (
+  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '70vh', position: 'relative' }}>
+    <img src="./White logo - no background.png" alt="Logo" style={{ width: '25%', height: 'auto', zIndex: 1 }} />
+  </div>
 )}
 
             
@@ -177,10 +178,10 @@ console.log(showNextStep);
         <th style={{textAlign: 'left', padding: '1rem', color: '#fff', fontSize: '14px', backgroundColor: '#3F3F3F'}}>Opportunity owner</th>
         <th style={{textAlign: 'left', padding: '1rem', color: '#fff', fontSize: '14px', backgroundColor: '#3F3F3F'}}>Stage</th>
         <th style={{textAlign: 'left', padding: '1rem', color: '#fff', fontSize: '14px', backgroundColor: '#3F3F3F'}}>Deal Score</th>
-        
-        <th className="reason hidden" style={{textAlign: 'left', padding: '1rem', fontSize: '14px', borderBottom: '1px solid #E5E5E5',backgroundColor: '#3F3F3F'}}>Reason</th>
         {showNextStep && (
           <>
+        <th className="reason hidden" style={{textAlign: 'left', padding: '1rem', fontSize: '14px', borderBottom: '1px solid #E5E5E5',backgroundColor: '#3F3F3F'}}>Reason</th>
+        
         <th className="next-steps hidden" style={{textAlign: 'left', padding: '1rem', fontSize: '14px', borderBottom: '1px solid #E5E5E5',backgroundColor: '#3F3F3F'}}>Next steps</th>
         </>
         )}
@@ -193,9 +194,9 @@ console.log(showNextStep);
         <td style={{padding: '1rem', fontSize: '14px', borderBottom: '1px solid #E5E5E5'}}>John Smith</td>
         <td style={{padding: '1rem', fontSize: '14px', borderBottom: '1px solid #E5E5E5'}}>Demo</td>
         <td className="deal-score" style={{padding: '1rem', fontSize: '20px', borderBottom: '1px solid #E5E5E5', color: '#22B14C', fontWeight: 'bold'}}>75</td>
-        <td className="reason hidden" style={{padding: '1rem', fontSize: '14px', borderBottom: '1px solid #E5E5E5'}}>Need for product</td>
         {showNextStep && (
           <>
+        <td className="reason hidden" style={{padding: '1rem', fontSize: '14px', borderBottom: '1px solid #E5E5E5'}}>Need for product</td>
         <td className="next-steps hidden" style={{padding: '1rem', fontSize: '14px', borderBottom: '1px solid #E5E5E5'}}>Follow up with client</td>
         </>
         )}
@@ -205,10 +206,11 @@ console.log(showNextStep);
         <td style={{padding: '1rem', fontSize: '14px', borderBottom: '1px solid #E5E5E5'}}>Jane Doe</td>
 <td style={{padding: '1rem', fontSize: '14px', borderBottom: '1px solid #E5E5E5'}}>Pricing</td>
 <td className="deal-score" style={{padding: '1rem', fontSize: '20px', borderBottom: '1px solid #E5E5E5', color: '#22B14C', fontWeight: 'bold'}}>60</td>
-<td className="reason hidden" style={{padding: '1rem', fontSize: '14px', borderBottom: '1px solid #E5E5E5'}}>Interested in product</td>
 {showNextStep && (
           <>
-<td className="next-steps hidden" style={{padding: '1rem', fontSize: '14px', borderBottom: '1px solid #E5E5E5'}}>Schedule demo</td>
+<td className="reason hidden" style={{padding: '1rem', fontSize: '14px', borderBottom: '1px solid #E5E5E5'}}>CFO not involved</td>
+
+<td className="next-steps hidden" style={{padding: '1rem', fontSize: '14px', borderBottom: '1px solid #E5E5E5'}}>Send follow-up with updated pricing</td>
 </>
         )}
 </tr>
@@ -217,10 +219,11 @@ console.log(showNextStep);
 <td style={{padding: '1rem', fontSize: '14px', borderBottom: '1px solid #E5E5E5'}}>Bob Johnson</td>
 <td style={{padding: '1rem', fontSize: '14px', borderBottom: '1px solid #E5E5E5'}}>Discovery</td>
 <td className="deal-score" style={{padding: '1rem', fontSize: '20px', borderBottom: '1px solid #E5E5E5', color: '#22B14C', fontWeight: 'bold'}}>90</td>
-<td className="reason hidden" style={{padding: '1rem', fontSize: '14px', borderBottom: '1px solid #E5E5E5'}}>Urgent need for product</td>
 {showNextStep && (
           <>
-<td className="next-steps hidden" style={{padding: '1rem', fontSize: '14px', borderBottom: '1px solid #E5E5E5'}}>Send contract for review</td>
+<td className="reason hidden" style={{padding: '1rem', fontSize: '14px', borderBottom: '1px solid #E5E5E5'}}>Urgent need for product</td>
+
+<td className="next-steps hidden" style={{padding: '1rem', fontSize: '14px', borderBottom: '1px solid #E5E5E5'}}>Schedule demo next week</td>
 </>
 )}
 </tr>
@@ -229,9 +232,10 @@ console.log(showNextStep);
 <td style={{padding: '1rem', fontSize: '14px', borderBottom: '1px solid #E5E5E5'}}>Sara Johnson</td>
 <td style={{padding: '1rem', fontSize: '14px', borderBottom: '1px solid #E5E5E5'}}>Pricing</td>
 <td className="deal-score" style={{padding: '1rem', fontSize: '20px', borderBottom: '1px solid #E5E5E5', color: '#22B14C', fontWeight: 'bold'}}>95</td>
-<td className="reason hidden" style={{padding: '1rem', fontSize: '14px', borderBottom: '1px solid #E5E5E5'}}>High budget</td>
 {showNextStep && (
           <>
+<td className="reason hidden" style={{padding: '1rem', fontSize: '14px', borderBottom: '1px solid #E5E5E5'}}>High budget</td>
+
 <td className="next-steps hidden" style={{padding: '1rem', fontSize: '14px', borderBottom: '1px solid #E5E5E5'}}>Meeting with CEO</td>
 </>
 )}
@@ -242,10 +246,11 @@ console.log(showNextStep);
 <td style={{padding:'1rem', fontSize: '14px'}}>Negotiation</td>
 
 <td className="deal-score" style={{padding: '1rem', fontSize: '20px', color: '#22B14C', fontWeight: 'bold'}}>85</td>
-<td className="reason hidden" style={{padding: '1rem', fontSize: '14px'}}>Previous customer</td>
 {showNextStep && (
           <>
-<td className="next-steps hidden" style={{padding: '1rem', fontSize: '14px'}}>Upsell product</td>
+<td className="reason hidden" style={{padding: '1rem', fontSize: '14px'}}>Previous customer</td>
+
+<td className="next-steps hidden" style={{padding: '1rem', fontSize: '14px'}}>Offer discount less than 30%</td>
 </>
 )}
 </tr>
@@ -324,6 +329,7 @@ console.log(showNextStep);
             id="message-input"
             name="message"
             placeholder="What do you want to build?"
+            autocomplete="off"
             style={{
               display: 'flex',
               flex: 1,
@@ -370,6 +376,17 @@ console.log(showNextStep);
           </div>
         </div>
       )}
+
+<div style={{ position: 'absolute', top: '1rem', right: '1rem', padding: '10px' }}>
+  <button style={{ backgroundColor: '#255690', color: 'white', fontFamily: 'sans-serif', padding: '10px', border: 'none', borderRadius: '5px', cursor: 'pointer', marginRight: '20px', transition: 'background-color 0.3s' }} class="button" onClick={() => console.log('Deploy button clicked')}>
+    <FaCloudUploadAlt style={{ marginRight: '10px' }} />
+    Deploy
+  </button>
+  <button style={{ backgroundColor: '#255690', color: 'white', fontFamily: 'sans-serif', padding: '10px', border: 'none', borderRadius: '5px', cursor: 'pointer', marginLeft: '20px', transition: 'background-color 0.3s' }} class="button" onMouseOver={(e) => e.target.style.backgroundColor = '#1C416F'} onMouseOut={(e) => e.target.style.backgroundColor = '#255690'}>
+    <FaSave style={{ marginRight: '10px' }} />
+    Save project
+  </button>
+</div>
           
           <div style={{ position: 'absolute', top: '1rem', left: '1rem', padding: '10px' }}>
   <Link href="/" passHref>

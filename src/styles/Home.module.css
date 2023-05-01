@@ -435,4 +435,20 @@
 .menuItem a:hover {
   background-color: #ccc;
 }
+.button-container {
+  position: fixed;
+  top: 0;
+  right: 0;
+  padding: 10px;
+}
 
+.button {
+  background-color: #eec7c7;
+  color: white;
+  font-family: sans-serif;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-left: 10px;
+}
