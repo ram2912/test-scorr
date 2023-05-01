@@ -1,46 +1,79 @@
-<!DOCTYPE html>
 <html>
   <head>
-    <title>Opportunities</title>
+    <meta charset="UTF-8">
+    <title>Opportunities Table</title>
     <style>
-        body {
-          font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-          background-color: #F7F9FC;
-        }
+      body {
+        font-family: sans-serif;
+        background-color: #E5E5E5;
+        margin: 0;
+        padding: 0;
+      }
       
-        table {
-          border-collapse: collapse;
-          width: 100%;
-          margin-top: 2rem;
-          margin-bottom: 2rem;
-          background-color: #FFF;
-          border: 1px solid #E2E8F0;
-          box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
+      table {
+        border-collapse: collapse;
+        width: 100%;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        background-color: #FFFFFF;
+        border-radius: 5px;
+        overflow: hidden;
+        margin: 0;
+        padding: 0;
+      }
+
+      th {
+        text-align: left;
+        padding: 1rem;
+        color: #fff;
+        font-size: 16px;
+        background-color: #3F3F3F;
+      }
+
+      td {
+        padding: 1rem;
+        font-size: 14px;
+        border-bottom: 1px solid #E5E5E5;
+      }
+
+      tbody tr:last-child td {
+        border-bottom: none;
+      }
+
+      td.deal-score {
+        color: #22B14C;
+        font-weight: bold;
+        font-size: 20px;
+      }
+
+      td.deal-score::before {
+        content: '';
+        display: inline-block;
+        height: 1em;
+        vertical-align: middle;
+      }
+
+      .hidden {
+    display: none;
+      }
+
+    </style>
+    <script>
+      const searchParams = new URLSearchParams(location.search);
+      const showNextStep = searchParams.get('showNextStep') === 'true';
       
-        th, td {
-          text-align: left;
-          padding: 1rem;
-          border-bottom: 1px solid #E2E8F0;
+      window.addEventListener('message', event => {
+        const showNextStep = event.data.showNextStep;
+        const nextStepColumn = document.getElementById('next-steps');
+        if (showNextStep) {
+          nextStepColumn.classList.remove('hidden');
+        } else {
+          nextStepColumn.classList.add('hidden');
         }
-      
-        th {
-          background-color: #E5E9F0;
-          font-weight: bold;
-          text-transform: uppercase;
-          letter-spacing: 0.1rem;
-          color: #4A5568;
-        }
-      
-        tr:hover {
-          background-color: #EDF2F7;
-        }
-      
-        td {
-          color: #4A5568;
-          font-size: 1.1rem;
-        }
-      </style>
+        
+        console.log(showNextStep);
+      });
+    </script>
+    
       
   </head>
   <body>
@@ -51,36 +84,53 @@
           <th>Opportunity owner</th>
           <th>Stage</th>
           <th>Deal Score</th>
-          <th>Reason</th>
-          <th>Next steps</th>
+          <th class="reason hidden">Reason</th>
+          <th class="next-steps hidden">Next steps</th>
         </tr>
       </thead>
       <tbody>
         <tr>
-          <td>Opportunity 1</td>
+          <td>Acme Corp.</td>
           <td>John Smith</td>
           <td>Stage 2</td>
-          <td>75</td>
-          <td>Need for product</td>
-          <td>Follow up with client</td>
+          <td class="deal-score">75</td>
+          <td class="reason hidden">Need for product</td>
+          <td class="next-steps hidden">Follow up with client</td>
         </tr>
         <tr>
-          <td>Opportunity 2</td>
+          <td>Wayne Enterprises</td>
           <td>Jane Doe</td>
           <td>Stage 1</td>
-          <td>60</td>
-          <td>Interested in product</td>
-          <td>Schedule demo</td>
+          <td class="deal-score">60</td>
+          <td class="reason hidden">Interested in product</td>
+          <td class="next-steps hidden">Schedule demo</td>
         </tr>
         <tr>
-          <td>Opportunity 3</td>
+          <td>Globex Corporation</td>
           <td>Bob Johnson</td>
           <td>Stage 3</td>
-          <td>90</td>
-          <td>Urgent need for product</td>
-          <td>Send contract for review</td>
+          <td class="deal-score">90</td>
+          <td class="reason hidden">Urgent need for product</td>
+          <td class="next-steps hidden">Send contract for review</td>
+        </tr>
+        <tr>
+          <td>Initech Inc.</td>
+          <td>Sara Johnson</td>
+          <td>Stage 4</td>
+          <td class="deal-score">95</td>
+          <td class="reason hidden">High budget</td>
+          <td class="next-steps hidden">Meeting with CEO</td>
+        </tr>
+        <tr>
+          <td>Virtucon Industries</td>
+          <td>David Lee</td>
+          <td>Stage 2</td>
+          <td class="deal-score">85</td>
+          <td class="reason hidden">Previous customer</td>
+          <td class="next-steps hidden">Upsell product</td>
         </tr>
       </tbody>
     </table>
   </body>
 </html>
+

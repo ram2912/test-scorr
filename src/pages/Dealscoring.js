@@ -6,10 +6,16 @@ import { Configuration, OpenAIApi } from "openai";
 import { FaPaperPlane } from 'react-icons/fa';
 import { FaArrowLeft } from 'react-icons/fa';
 
+
+
+
+
+
 const questions = [
     'What do you want to build today?', 
-    'Do you want me add best practices and next steps to this as well? ',
+    'Do you want me too add the reason for the deal score?',
   ];
+
 
 
 export default function Dealscoring() {
@@ -18,6 +24,10 @@ export default function Dealscoring() {
     const [showPopup, setShowPopup] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
     const [showDeals, setShowDeals] = useState(false);
+    const [showNextStep, setShowNextStep] = useState(false);
+    
+
+   
     function handleSave() {
       // add your save logic here
       setCurrentQuestion(questions[1]);
@@ -32,7 +42,7 @@ console.log(currentQuestion);
   const messageInput = document.getElementById('message-input');
   
 
-  
+  //setMessages([{ message: currentQuestion, sender: 'bot' }]);
 
   // Add event listener to the message form
   messageForm.addEventListener('submit', event => {
@@ -40,7 +50,7 @@ console.log(currentQuestion);
     const message = messageInput.value.trim();
     if (message !== '') {
         setIsLoading(true);
-        setIsLoading(true);
+       
         sendMessage(message, currentQuestion);
         event.target.elements.message.value = '';
     }
@@ -48,7 +58,7 @@ console.log(currentQuestion);
   function receiveMessage(message) {
     setMessages(prevMessages => [...prevMessages, { message, sender: 'bot' }]);
   }
-
+console.log(showNextStep);
   // Send user message to OpenAI API and receive response
   async function sendMessage(message,currentQuestion) {
     setMessages(prevMessages => [...prevMessages, { message, sender: 'user' }]);
@@ -56,15 +66,16 @@ console.log(currentQuestion);
     console.log(currentQuestion);
     setIsLoading(true);
 
-    if (message.includes('Deal scoring for prioritisation of deals')) {
-      // Show popup screen with pipeline management framework
-      
+    if (message.includes('Steps')) {
+      // Show Next Step column
       setTimeout(() => {
-        setShowDeals(true);
+        setShowNextStep(true);
         setIsLoading(false);
+        window.postMessage({ showNextStep: true }, '*');
       }, 2000);
       return;
     }
+    console.log(showNextStep);
     if (message.includes('yes')) {
       // Show popup screen with pipeline management framework
       
@@ -81,7 +92,7 @@ console.log(currentQuestion);
     });
     const openai = new OpenAIApi(configuration);
     
-    const prompt1 = `pretend that you are a software developer developing revenue intelligence tools for your client is a RevOps professional. You want to have the best possible answer, under 40 words, to the question: ${currentQuestion}. Your client's response is: ${message}. Understand what the client said and answer the questions,always end the answer by asking ${currentQuestion}. Make the last line a natural continuation of the answer, remove 'Hi' from it and create an urgency. \n\nA:`;
+    const prompt1 = `pretend that you are a software developer developing revenue intelligence tools for your client is a RevOps professional. Your client's wants to build: ${message}. Give response "yes" or "no" if you feel the client wants to build a deal scoring tool for pipeline management(deal prioritisation, deal prediction etc.). \n\nA:`;
     const response = await openai.createCompletion({
       model:"text-davinci-003",
       prompt: prompt1,
@@ -90,10 +101,16 @@ console.log(currentQuestion);
       });
     const data = response.data;
     console.log(data)
-  if (data.choices.length === 0) {
-    receiveMessage("Sorry, I didn't understand that.");
-    return;
-  }
+    if (data.choices[0].text.trim()==='Yes') {
+      // Show popup screen with pipeline management framework
+      
+      setTimeout(() => {
+        setShowDeals(true);
+        setIsLoading(false);
+        receiveMessage("Do you want to see the Deal Scoring framework?", 'bot')
+      }, 2000);
+      return;
+    }
   
   if (currentQuestion === questions[0]) {
     const prompt2 = `pretend that you are a software developer developing revenue intelligence tools for your client is a RevOps professional. You ask the question: ${currentQuestion}. Your client's response is: ${message}. Give responce "yes" or "no" if you feel the client wants to use Deal Scoring for specifc usecase of pipeline management. \n\nA:`;
@@ -105,12 +122,12 @@ console.log(currentQuestion);
       });
     const data2 = response1.data;
     console.log(data2);
-    if (data2.choices[0].text.trim()==='Yes') {
-        receiveMessage("Got it! Based on your sales process, I have identified a framework for you to create scores. Do you want me to show you?", 'bot');
-        setIsLoading(false);
+    //if (data2.choices[0].text.trim()==='Yes') {
+        //receiveMessage("Got it! Based on your sales process, I have identified a framework for you to create scores. Do you want me to show you?", 'bot');
+        //setIsLoading(false);
         
-    return;
-    } 
+    //return;
+    //} 
    
   } 
   const botMessage = data.choices[0].text.trim();
@@ -142,31 +159,31 @@ console.log(currentQuestion);
             style={{
               margin: '0 auto', // center horizontally    
               flex: 1,
-              width: '80%',
-              minHeight: '170px',
+              width: '60%',
+              minHeight: '190px',
               borderRadius: '5px',
               overflow: 'hidden',
               boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)',
               backgroundColor: 'linear-gradient(to top, #000066 70%, #333399 100%)',
-              paddingTop: '6rem',
+              marginTop: '10rem',
               boxSizing: 'border-box',
             }}
           >
             <iframe
-
-              src="/Scoring.html"
+             src={`./Scoring.html?showNextStep=true`}
               width="100%"
               height="400px"
               style={{
                 border: 'none',
                 overflow: 'hidden',
                 borderRadius: '5px',
-              }}
+              }} 
             ></iframe>
           </div>
           
           </>
 )}
+
           <div
               style={{
                 position: 'fixed',
@@ -189,7 +206,7 @@ console.log(currentQuestion);
             style={{margin: '0 auto',
                 position: 'relative',
   width: '50%',
-  height: '90px',
+  height: '180px',
   padding: '2rem',
 
   boxSizing: 'border-box',
