@@ -66,12 +66,12 @@ console.log(showNextStep);
     console.log(currentQuestion);
     setIsLoading(true);
 
-    if (message.includes('Steps')) {
+    if (message.includes('add next steps for my deals')) {
       // Show Next Step column
       setTimeout(() => {
         setShowNextStep(true);
         setIsLoading(false);
-        window.postMessage({ showNextStep: true }, '*');
+        
       }, 2000);
       return;
     }
@@ -156,31 +156,102 @@ console.log(showNextStep);
     {showDeals && (  
       <>
           <div
-            style={{
-              margin: '0 auto', // center horizontally    
-              flex: 1,
-              width: '60%',
-              minHeight: '190px',
-              borderRadius: '5px',
-              overflow: 'hidden',
-              boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)',
-              backgroundColor: 'linear-gradient(to top, #000066 70%, #333399 100%)',
-              marginTop: '10rem',
-              boxSizing: 'border-box',
-            }}
-          >
-            <iframe
-             src={`./Scoring.html?showNextStep=true`}
-              width="100%"
-              height="400px"
-              style={{
-                border: 'none',
-                overflow: 'hidden',
-                borderRadius: '5px',
-              }} 
-            ></iframe>
-          </div>
-          
+  style={{
+    margin: '0 auto',
+    flex: 1,
+    width: '60%',
+    minHeight: '190px',
+    borderRadius: '5px',
+    overflow: 'hidden',
+    boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)',
+    backgroundColor: '#FFFFFF',
+    marginTop: '10rem',
+    boxSizing: 'border-box',
+  }}
+>
+  <table style={{borderCollapse: 'collapse', width: '100%', borderRadius: '5px'}}>
+    <thead style={{ fontFamily: 'sans-serif',
+    color: 'white'}}>
+      <tr>
+        <th style={{textAlign: 'left', padding: '1rem', color: '#fff', fontSize: '14px', backgroundColor: '#3F3F3F'}}>Opportunity name</th>
+        <th style={{textAlign: 'left', padding: '1rem', color: '#fff', fontSize: '14px', backgroundColor: '#3F3F3F'}}>Opportunity owner</th>
+        <th style={{textAlign: 'left', padding: '1rem', color: '#fff', fontSize: '14px', backgroundColor: '#3F3F3F'}}>Stage</th>
+        <th style={{textAlign: 'left', padding: '1rem', color: '#fff', fontSize: '14px', backgroundColor: '#3F3F3F'}}>Deal Score</th>
+        
+        <th className="reason hidden" style={{textAlign: 'left', padding: '1rem', fontSize: '14px', borderBottom: '1px solid #E5E5E5',backgroundColor: '#3F3F3F'}}>Reason</th>
+        {showNextStep && (
+          <>
+        <th className="next-steps hidden" style={{textAlign: 'left', padding: '1rem', fontSize: '14px', borderBottom: '1px solid #E5E5E5',backgroundColor: '#3F3F3F'}}>Next steps</th>
+        </>
+        )}
+      </tr>
+    </thead>
+    <tbody style={{ fontFamily: 'sans-serif',
+    color: 'black'}}>
+      <tr>
+        <td style={{padding: '1rem', fontSize: '14px', borderBottom: '1px solid #E5E5E5'}}>Acme Corp.</td>
+        <td style={{padding: '1rem', fontSize: '14px', borderBottom: '1px solid #E5E5E5'}}>John Smith</td>
+        <td style={{padding: '1rem', fontSize: '14px', borderBottom: '1px solid #E5E5E5'}}>Demo</td>
+        <td className="deal-score" style={{padding: '1rem', fontSize: '20px', borderBottom: '1px solid #E5E5E5', color: '#22B14C', fontWeight: 'bold'}}>75</td>
+        <td className="reason hidden" style={{padding: '1rem', fontSize: '14px', borderBottom: '1px solid #E5E5E5'}}>Need for product</td>
+        {showNextStep && (
+          <>
+        <td className="next-steps hidden" style={{padding: '1rem', fontSize: '14px', borderBottom: '1px solid #E5E5E5'}}>Follow up with client</td>
+        </>
+        )}
+      </tr>
+      <tr>
+        <td style={{padding: '1rem', fontSize: '14px', borderBottom: '1px solid #E5E5E5'}}>Wayne Enterprises</td>
+        <td style={{padding: '1rem', fontSize: '14px', borderBottom: '1px solid #E5E5E5'}}>Jane Doe</td>
+<td style={{padding: '1rem', fontSize: '14px', borderBottom: '1px solid #E5E5E5'}}>Pricing</td>
+<td className="deal-score" style={{padding: '1rem', fontSize: '20px', borderBottom: '1px solid #E5E5E5', color: '#22B14C', fontWeight: 'bold'}}>60</td>
+<td className="reason hidden" style={{padding: '1rem', fontSize: '14px', borderBottom: '1px solid #E5E5E5'}}>Interested in product</td>
+{showNextStep && (
+          <>
+<td className="next-steps hidden" style={{padding: '1rem', fontSize: '14px', borderBottom: '1px solid #E5E5E5'}}>Schedule demo</td>
+</>
+        )}
+</tr>
+<tr>
+<td style={{padding: '1rem', fontSize: '14px', borderBottom: '1px solid #E5E5E5'}}>Globex Corporation</td>
+<td style={{padding: '1rem', fontSize: '14px', borderBottom: '1px solid #E5E5E5'}}>Bob Johnson</td>
+<td style={{padding: '1rem', fontSize: '14px', borderBottom: '1px solid #E5E5E5'}}>Discovery</td>
+<td className="deal-score" style={{padding: '1rem', fontSize: '20px', borderBottom: '1px solid #E5E5E5', color: '#22B14C', fontWeight: 'bold'}}>90</td>
+<td className="reason hidden" style={{padding: '1rem', fontSize: '14px', borderBottom: '1px solid #E5E5E5'}}>Urgent need for product</td>
+{showNextStep && (
+          <>
+<td className="next-steps hidden" style={{padding: '1rem', fontSize: '14px', borderBottom: '1px solid #E5E5E5'}}>Send contract for review</td>
+</>
+)}
+</tr>
+<tr>
+<td style={{padding: '1rem', fontSize: '14px', borderBottom: '1px solid #E5E5E5'}}>Initech Inc.</td>
+<td style={{padding: '1rem', fontSize: '14px', borderBottom: '1px solid #E5E5E5'}}>Sara Johnson</td>
+<td style={{padding: '1rem', fontSize: '14px', borderBottom: '1px solid #E5E5E5'}}>Pricing</td>
+<td className="deal-score" style={{padding: '1rem', fontSize: '20px', borderBottom: '1px solid #E5E5E5', color: '#22B14C', fontWeight: 'bold'}}>95</td>
+<td className="reason hidden" style={{padding: '1rem', fontSize: '14px', borderBottom: '1px solid #E5E5E5'}}>High budget</td>
+{showNextStep && (
+          <>
+<td className="next-steps hidden" style={{padding: '1rem', fontSize: '14px', borderBottom: '1px solid #E5E5E5'}}>Meeting with CEO</td>
+</>
+)}
+</tr>
+<tr>
+<td style={{padding: '1rem', fontSize: '14px'}}>Virtucon Industries</td>
+<td style={{padding: '1rem', fontSize: '14px'}}>David Lee</td>
+<td style={{padding:'1rem', fontSize: '14px'}}>Negotiation</td>
+
+<td className="deal-score" style={{padding: '1rem', fontSize: '20px', color: '#22B14C', fontWeight: 'bold'}}>85</td>
+<td className="reason hidden" style={{padding: '1rem', fontSize: '14px'}}>Previous customer</td>
+{showNextStep && (
+          <>
+<td className="next-steps hidden" style={{padding: '1rem', fontSize: '14px'}}>Upsell product</td>
+</>
+)}
+</tr>
+</tbody>
+</table>
+</div>
           </>
 )}
 
