@@ -306,6 +306,7 @@
   color:#d9d9d9;
   font-family: Helvetica, sans-serif;
   line-height: 1.5;
+  
 }
 
 .text:last-child {
@@ -328,6 +329,7 @@
   border-radius: 5px;
   border: 1px solid #ddd;
   font-size: 14px;
+  animation: typing 1s steps(30, end);
 }
 
 .button-submit[type="submit"] {
@@ -348,7 +350,7 @@
 }
 .loadingAnimation {
   position: fixed;
-  top: 940px;
+  top: 880px;
   left: 50%;
   transform: translate(-50%, -50%);
   display: flex;
@@ -373,7 +375,12 @@
   66% {
     content: "...";
   }
+
+
 }
+
+
+
 .leftMenuBar {
   display: flex;
   flex-direction: column;
@@ -451,4 +458,32 @@
   border-radius: 5px;
   cursor: pointer;
   margin-left: 10px;
+}
+.typing {
+  animation: typing 1s steps(20, end), blink-caret 0.5s step-end infinite;
+  white-space: nowrap;
+  overflow: hidden;
+  border-right: 0.15em solid #333;
+  font-size: 1.2rem;
+  font-weight: 400;
+  letter-spacing: .05em;
+}
+
+@keyframes typing {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+@keyframes blink-caret {
+  from,
+  to {
+    border-color: transparent;
+  }
+  50% {
+    border-color: #333;
+  }
 }

@@ -7,21 +7,20 @@ export default function DealScoringTable({ onClose, onSave }) {
   
   const [scores, setScores] = useState({
     'Activity': {
-      'Number of Meetings Scheduled': 10,
-      'Number of Demos Scheduled': 10,
-      'Number of Proposals Sent': 5,
-      'Number of Contracts Signed': 5,
+      'Email reply rate': 10,
+      'Number of days since last activity': 10,
+      
     },
     'Communication': {
-      'Frequency of Communication with Prospect': 30,
-      'Response Time to Prospect': 20,
+      
       'Quality of Communication with Prospect': 5,
+      'Relevant stakeholders involved': 10,
+
     },
     'Progress': {
-      'Progress towards Reaching Agreement': 10,
-      'Quality of Progress Made': 10,
-      'Alignment with Prospect’s Needs': 5,
-      'Buy-In from Prospect': 50,
+      'Number of days in stage': 10,
+      'Relevant information shared with prospect': 10,
+      
     },
   });
 

@@ -26,13 +26,16 @@ export default function Dealscoring() {
     const [isLoading, setIsLoading] = useState(false);
     const [showDeals, setShowDeals] = useState(false);
     const [showNextStep, setShowNextStep] = useState(false);
-    
+    const [typing, setTyping] = useState(false);
 
    
     function handleSave() {
       // add your save logic here
       setCurrentQuestion(questions[1]);
+      setTimeout(() => {
       setMessages(prevMessages => [...prevMessages, { message: questions[1], sender: 'bot' }]);
+      setIsLoading(false);
+    }, 2000);
       console.log("Save button clicked");
       setShowPopup(false);
     }
@@ -66,12 +69,14 @@ console.log(showNextStep);
     console.log(message);
     console.log(currentQuestion);
     setIsLoading(true);
+    setTyping(true);
 
     if (message.includes('yes and also add the next steps column')) {
       // Show Next Step column
       setTimeout(() => {
         setShowNextStep(true);
         setIsLoading(false);
+        setTyping(false);
         
       }, 2000);
       return;
@@ -83,6 +88,7 @@ console.log(showNextStep);
       setTimeout(() => {
         setShowPopup(true);
         setIsLoading(false);
+        setTyping(false);
       }, 2000);
       return;
     }
@@ -108,7 +114,8 @@ console.log(showNextStep);
       setTimeout(() => {
         setShowDeals(true);
         setIsLoading(false);
-        receiveMessage("Do you want to see the Deal Scoring framework?", 'bot')
+        receiveMessage("Here it is! Would you like to take a look at the Deal Scoring framework I used?", 'bot')
+        setTyping(false);
       }, 2000);
       return;
     }
@@ -134,6 +141,7 @@ console.log(showNextStep);
   const botMessage = data.choices[0].text.trim();
   console.log(botMessage)
   receiveMessage(botMessage, 'bot');
+  setTyping(false);
   setIsLoading(false);
 }
 
@@ -298,7 +306,9 @@ console.log(showNextStep);
           {messages.slice(0).reverse().map((message, index) => (
   <div
     key={index}
-    className={`message ${message.sender === 'bot' ? 'received' : 'sent'}`} id="messages" style={{ width: '100%' }}
+    className={`message ${message.sender === 'bot' ? 'received' : 'sent'} ${
+      message.typing && message.sender === 'bot' ? 'typing' : '' 
+    }`} id="messages" style={{ width: '100%' }}
   >
             <div className={styles.avatar} id="avatar"></div>
             <div className={message.sender === 'bot' ? styles.text : `${styles.sentText}`} id="message received">{message.message}</div>
@@ -309,6 +319,7 @@ console.log(showNextStep);
           style={{ display: 'flex',
           width: '50%',
           margin: '0 auto',
+          marginTop: '0.5rem',
           justifyContent: 'space-between',
           alignItems: 'center',
           height: '60px',
@@ -332,6 +343,7 @@ console.log(showNextStep);
             autocomplete="off"
             style={{
               display: 'flex',
+              color: '#fff',
               flex: 1,
               padding: '8px 10px',
               borderRadius: '5px',
@@ -378,7 +390,7 @@ console.log(showNextStep);
       )}
 
 <div style={{ position: 'absolute', top: '1rem', right: '1rem', padding: '10px' }}>
-  <button style={{ backgroundColor: '#255690', color: 'white', fontFamily: 'sans-serif', padding: '10px', border: 'none', borderRadius: '5px', cursor: 'pointer', marginRight: '20px', transition: 'background-color 0.3s' }} class="button" onClick={() => console.log('Deploy button clicked')}>
+  <button style={{ backgroundColor: '#255690', color: 'white', fontFamily: 'sans-serif', padding: '10px', border: 'none', borderRadius: '5px', cursor: 'pointer', marginRight: '20px', transition: 'background-color 0.3s' }} class="button" onMouseOver={(e) => e.target.style.backgroundColor = '#1C416F'} onMouseOut={(e) => e.target.style.backgroundColor = '#255690'}>
     <FaCloudUploadAlt style={{ marginRight: '10px' }} />
     Deploy
   </button>
