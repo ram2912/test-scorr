@@ -344,6 +344,7 @@ console.log(showNextStep);
             style={{
               display: 'flex',
               color: '#fff',
+              backgroundColor:'#151515',
               flex: 1,
               padding: '8px 10px',
               borderRadius: '5px',
