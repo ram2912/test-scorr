@@ -281,7 +281,7 @@ console.log(showNextStep);
     borderRadius: '5px',
     overflow: 'hidden',
     boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)',
-    backgroundColor: 'linear-gradient(to top, #000066 70%, #333399 100%)',
+    backgroundColor: 'transparent',
     paddingTop: '6rem',
     boxSizing: 'border-box',
               }}
@@ -418,7 +418,7 @@ console.log(showNextStep);
         left: 0,
         width: '100%',
         height: '100%',
-        backgroundColor: 'rgba(0, 0, 0, 0.5)',
+        backgroundColor: 'transparent',
         zIndex: 9998, // set a lower value than popup
       }}
     ></div>
