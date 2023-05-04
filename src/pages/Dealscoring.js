@@ -99,7 +99,7 @@ console.log(showNextStep);
     });
     const openai = new OpenAIApi(configuration);
     
-    const prompt1 = `pretend that you are a software developer developing revenue intelligence tools for your client is a RevOps professional. Your client's wants to build: ${message}. Give response "yes" or "no" if you feel the client wants to build a deal scoring tool for pipeline management(deal prioritisation, deal prediction etc.). \n\nA:`;
+    const prompt1 = `pretend that you are a software developer developing revenue intelligence tools for your client is a RevOps professional. Your client's wants to build: ${message}. Give response "yes" ONLY if you feel the client wants to build a deal scoring tool for pipeline management(deal prioritisation, deal prediction etc.). Otherwise give response "No". Be very sure. \n\nA:`;
     const response = await openai.createCompletion({
       model:"text-davinci-003",
       prompt: prompt1,
@@ -119,28 +119,21 @@ console.log(showNextStep);
       }, 2000);
       return;
     }
+    else{
+      receiveMessage("Sorry, I do not understand your request. I currently offer deal scoring for pipeline management. Do you want to build that?", 'bot');
+    }
   
-  if (currentQuestion === questions[0]) {
-    const prompt2 = `pretend that you are a software developer developing revenue intelligence tools for your client is a RevOps professional. You ask the question: ${currentQuestion}. Your client's response is: ${message}. Give responce "yes" or "no" if you feel the client wants to use Deal Scoring for specifc usecase of pipeline management. \n\nA:`;
-    const response1 = await openai.createCompletion({
-      model:"text-davinci-003",
-      prompt: prompt2,
-        max_tokens: 100,  
-        temperature: 0.7,
-      });
-    const data2 = response1.data;
-    console.log(data2);
+  
     //if (data2.choices[0].text.trim()==='Yes') {
         //receiveMessage("Got it! Based on your sales process, I have identified a framework for you to create scores. Do you want me to show you?", 'bot');
         //setIsLoading(false);
         
     //return;
     //} 
-   
-  } 
+  
   const botMessage = data.choices[0].text.trim();
   console.log(botMessage)
-  receiveMessage(botMessage, 'bot');
+
   setTyping(false);
   setIsLoading(false);
 }
@@ -419,7 +412,8 @@ console.log(showNextStep);
         left: 0,
         width: '100%',
         height: '100%',
-        backgroundColor: 'transparent',
+        backgroundColor: 'rgba(0, 0, 0, 0.5)',
+        backdropFilter: 'blur(10px)',
         zIndex: 9998, // set a lower value than popup
       }}
     ></div>
