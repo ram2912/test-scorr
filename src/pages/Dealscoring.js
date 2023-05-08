@@ -6,6 +6,7 @@ import { Configuration, OpenAIApi } from "openai";
 import { FaPaperPlane } from 'react-icons/fa';
 import { FaArrowLeft } from 'react-icons/fa';
 import { FaCloudUploadAlt, FaSave } from 'react-icons/fa';
+import DeploymentPopup from 'src/pages/Products/DeploymentPopup.js';
 
 
 
@@ -27,6 +28,8 @@ export default function Dealscoring() {
     const [showDeals, setShowDeals] = useState(false);
     const [showNextStep, setShowNextStep] = useState(false);
     const [typing, setTyping] = useState(false);
+    const [showDeploymentPopup, setShowDeploymentPopup] = useState(false);
+
 
    
     function handleSave() {
@@ -120,7 +123,7 @@ console.log(showNextStep);
       return;
     }
     else{
-      receiveMessage("Sorry, I do not understand your request. I currently offer deal scoring for pipeline management. Do you want to build that?", 'bot');
+      receiveMessage("Sorry, I do not understand your request. I currently offer deal scoring for pipeline management.", 'bot');
     }
   
   
@@ -384,7 +387,7 @@ console.log(showNextStep);
       )}
 
 <div style={{ position: 'absolute', top: '1rem', right: '1rem', padding: '10px' }}>
-  <button style={{ backgroundColor: '#255690', color: 'white', fontFamily: 'sans-serif', padding: '10px', border: 'none', borderRadius: '5px', cursor: 'pointer', marginRight: '20px', transition: 'background-color 0.3s' }} class="button" onMouseOver={(e) => e.target.style.backgroundColor = '#1C416F'} onMouseOut={(e) => e.target.style.backgroundColor = '#255690'}>
+  <button style={{ backgroundColor: '#255690', color: 'white', fontFamily: 'sans-serif', padding: '10px', border: 'none', borderRadius: '5px', cursor: 'pointer', marginRight: '20px', transition: 'background-color 0.3s' }} class="button" onMouseOver={(e) => e.target.style.backgroundColor = '#1C416F'} onMouseOut={(e) => e.target.style.backgroundColor = '#255690'} onClick={() => setShowDeploymentPopup(true)}>
     <FaCloudUploadAlt style={{ marginRight: '10px' }} />
     Deploy
   </button>
@@ -438,6 +441,14 @@ console.log(showNextStep);
       <DealScoringTable onClose={() => setShowPopup(false)} onSave={handleSave}/>
     </div>
   </>
+)}
+{showDeploymentPopup && (
+  <>
+ 
+
+     <DeploymentPopup onClose={() => setShowDeploymentPopup(false)} />
+     
+</>
 )}
 
     </>

@@ -19,9 +19,9 @@ export default function Home() {
       <main className={styles.main}>
           <h1 className={styles.center}>Welcome to SCORR</h1>
           <p className={styles.header}>Product Catalogue</p>
-          <p> <Link href="/Products/Transcription">Transcription</Link></p>
+          <p> <Link href="/Products/ProcessTable">Transcription</Link></p>
           <p><Link href="/Dealscoring">Deal Scoring</Link></p>
-          <p><Link href="/landing_page">Image classification tool</Link></p>        
+          <p><Link href="/ProcessSetup">Image classification tool</Link></p>        
         
 
         

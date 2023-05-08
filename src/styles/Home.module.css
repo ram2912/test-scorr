@@ -77,8 +77,18 @@
   justify-content: center;
   align-items: center;
   position: relative;
-  padding: 1rem 0;
-  font-size: 3rem;
+padding:2rem;
+  font-size: 2rem;
+  font-family: sans-serif;
+}
+
+.centerTable {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+padding:2rem;
+  font-size: 1.5rem;
   font-family: sans-serif;
 }
 
@@ -360,7 +370,25 @@
   color: #ffffff;
 }
 
+.loadingAnimationTable {
+  position: 'absolute';
+  margin-top: 5px;
+  margin-left: 50px;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 4rem;
+  color: #ffffff;
+}
+
 .loadingAnimation::after {
+  content: "...";
+  animation: loading 1s infinite;
+}
+
+.loadingAnimationTable::after {
   content: "...";
   animation: loading 1s infinite;
 }
@@ -486,4 +514,66 @@
   50% {
     border-color: #333;
   }
+}
+.salesforce {
+  width: 20px;
+  height: 20px;
+}
+
+.connected {
+  color: rgb(0, 226, 0);
+  font-size: large;
+  
+}
+
+.disconnected {
+  color: gray;
+  font-size: large;
+}
+.salesforceContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  font-family: 'Helvetica', sans-serif;
+}
+
+.salesforceContainerH3{
+  margin-bottom: 10px;
+}
+
+.salesforceContainerButton {
+  margin-top: 10px;
+  padding: 10px 20px;
+  border-radius: 5px;
+  border: none;
+  color: white;
+  background-color: #4caf50;
+  font-family: 'Helvetica', sans-serif;
+  cursor: pointer;
+}
+
+.salesforce-container button:hover {
+  background-color: #3e8e41;
+}
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+}
+
+.table th,
+.table td {
+  padding: 20px;
+  border: 1px solid #ccc;
+}
+
+.table th {
+  background-color: #202020;
+}
+.table td:first-child,
+.table th:first-child {
+  background-color: #3c3c3c;
+  color: #fff;
 }
