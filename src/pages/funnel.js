@@ -21,7 +21,7 @@ const questions = [
 
 
 
-export default function funnel() {
+export default function Funnel() {
     const [currentQuestion, setCurrentQuestion] = useState(questions[0]);
   const [messages, setMessages] = useState([]);
     const [showPopup, setShowPopup] = useState(false);
