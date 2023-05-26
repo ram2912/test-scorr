@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-export default async function Handlefunnel(message, setIsLoading, setShowDeals, receiveMessage,showNextStep,setShowNextStep,setShowPopup) {
+export async function Handlefunnel(message, setIsLoading, setShowDeals, receiveMessage,showNextStep,setShowNextStep,setShowPopup) {
   const { Configuration, OpenAIApi } = require("openai");
     if (message.includes('yes and also add the next steps column')) {
         // Show Next Step column
