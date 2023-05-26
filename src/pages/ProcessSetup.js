@@ -17,7 +17,7 @@ export default function ProcessSetup() {
 
     
     useEffect(() => {
-      fetch('https://scorr-redeploy.herokuapp.com/contacts', {
+      fetch('https://scorr-redeploy.herokuapp.com/pipelines2', {
         method: 'GET',  
       credentials: 'include'
       })
@@ -29,7 +29,7 @@ export default function ProcessSetup() {
   
 
     const handleHubspotConnect = async () => {
-      const authUrl = 'https://scorr-redeploy.herokuapp.com/';;
+      const authUrl = 'https://scorr-redeploy.herokuapp.com';;
     // Replace with your backend route for authentication
     localStorage.setItem('hubspotConnected', 'true');
   window.location.href = authUrl;
