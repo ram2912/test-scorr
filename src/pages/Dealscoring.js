@@ -9,8 +9,7 @@ import { FaCloudUploadAlt, FaSave } from 'react-icons/fa';
 import DeploymentPopup from 'src/pages/Products/DeploymentPopup.js';
 
 
-
-
+const { handleDealScoring } = require("./pipelinePromt");
 
 
 const questions = [
@@ -67,86 +66,22 @@ console.log(currentQuestion);
   }
 console.log(showNextStep);
   // Send user message to OpenAI API and receive response
-  async function sendMessage(message,currentQuestion) {
+  async function sendMessage(message, currentQuestion) {
     setMessages(prevMessages => [...prevMessages, { message, sender: 'user' }]);
     console.log(message);
     console.log(currentQuestion);
-    setIsLoading(true);
-    setTyping(true);
 
-    if (message.includes('yes and also add the next steps column')) {
-      // Show Next Step column
-      setTimeout(() => {
-        setShowNextStep(true);
-        setIsLoading(false);
-        setTyping(false);
-        
-      }, 2000);
-      return;
-    }
-    console.log(showNextStep);
-    if (message.includes('yes')) {
-      // Show popup screen with pipeline management framework
-      
-      setTimeout(() => {
-        setShowPopup(true);
-        setIsLoading(false);
-        setTyping(false);
-      }, 2000);
-      return;
-    }
-
-    const { Configuration, OpenAIApi } = require("openai");
-    const configuration = new Configuration({
-      apiKey: process.env.OPENAI_API,
-    });
-    const openai = new OpenAIApi(configuration);
-    
-    const prompt1 = `pretend that you are a software developer developing revenue intelligence tools for your client is a RevOps professional. Your client's wants to build: ${message}. Give response "yes" ONLY if you feel the client wants to build a deal scoring tool for pipeline management(deal prioritisation, deal prediction etc.). Otherwise give response "No". Be very sure. \n\nA:`;
-    const response = await openai.createCompletion({
-      model:"text-davinci-003",
-      prompt: prompt1,
-        max_tokens: 100,  
-        temperature: 0.7,
-      });
-    const data = response.data;
-    console.log(data)
-    if (data.choices[0].text.trim()==='Yes') {
-      // Show popup screen with pipeline management framework
-      
-      setTimeout(() => {
-        setShowDeals(true);
-        setIsLoading(false);
-        receiveMessage("Here it is! Would you like to take a look at the Deal Scoring framework I used?", 'bot')
-        setTyping(false);
-      }, 2000);
-      return;
-    }
-    else{
-      receiveMessage("Sorry, I do not understand your request. I currently offer deal scoring for pipeline management.", 'bot');
-    }
-  
-  
-    //if (data2.choices[0].text.trim()==='Yes') {
-        //receiveMessage("Got it! Based on your sales process, I have identified a framework for you to create scores. Do you want me to show you?", 'bot');
-        //setIsLoading(false);
-        
-    //return;
-    //} 
-  
-  const botMessage = data.choices[0].text.trim();
-  console.log(botMessage)
-
-  setTyping(false);
-  setIsLoading(false);
-}
+    // Call handleDealScoring after sending the message
+    await handleDealScoring(message,setIsLoading,setShowDeals,receiveMessage,setShowNextStep,setShowPopup,setTyping);
+  }
 
   // Add bot message to the chat interface
   function receiveMessage(message, sender) {
-    const newMessage = { message, sender };
-    setMessages(prevMessages => [...prevMessages, newMessage]);
+    setMessages(prevMessages => [...prevMessages, { message, sender }]);
   }
-  
+
+  // Rest of your code...
+
 }, []);
 
   return (
@@ -194,8 +129,8 @@ console.log(showNextStep);
     <tbody style={{ fontFamily: 'sans-serif',
     color: 'black'}}>
       <tr>
-        <td style={{padding: '1rem', fontSize: '14px', borderBottom: '1px solid #E5E5E5'}}>Acme Corp.</td>
-        <td style={{padding: '1rem', fontSize: '14px', borderBottom: '1px solid #E5E5E5'}}>John Smith</td>
+        <td style={{padding: '1rem', fontSize: '14px', borderBottom: '1px solid #E5E5E5'}}>Kafene</td>
+        <td style={{padding: '1rem', fontSize: '14px', borderBottom: '1px solid #E5E5E5'}}>Roman Murov</td>
         <td style={{padding: '1rem', fontSize: '14px', borderBottom: '1px solid #E5E5E5'}}>Demo</td>
         <td className="deal-score" style={{padding: '1rem', fontSize: '20px', borderBottom: '1px solid #E5E5E5', color: '#22B14C', fontWeight: 'bold'}}>75</td>
         {showNextStep && (
@@ -206,8 +141,8 @@ console.log(showNextStep);
         )}
       </tr>
       <tr>
-        <td style={{padding: '1rem', fontSize: '14px', borderBottom: '1px solid #E5E5E5'}}>Wayne Enterprises</td>
-        <td style={{padding: '1rem', fontSize: '14px', borderBottom: '1px solid #E5E5E5'}}>Jane Doe</td>
+        <td style={{padding: '1rem', fontSize: '14px', borderBottom: '1px solid #E5E5E5'}}>OnsiteIQ</td>
+        <td style={{padding: '1rem', fontSize: '14px', borderBottom: '1px solid #E5E5E5'}}>Roman Murov</td>
 <td style={{padding: '1rem', fontSize: '14px', borderBottom: '1px solid #E5E5E5'}}>Pricing</td>
 <td className="deal-score" style={{padding: '1rem', fontSize: '20px', borderBottom: '1px solid #E5E5E5', color: '#22B14C', fontWeight: 'bold'}}>60</td>
 {showNextStep && (
@@ -219,8 +154,8 @@ console.log(showNextStep);
         )}
 </tr>
 <tr>
-<td style={{padding: '1rem', fontSize: '14px', borderBottom: '1px solid #E5E5E5'}}>Globex Corporation</td>
-<td style={{padding: '1rem', fontSize: '14px', borderBottom: '1px solid #E5E5E5'}}>Bob Johnson</td>
+<td style={{padding: '1rem', fontSize: '14px', borderBottom: '1px solid #E5E5E5'}}>DoControl</td>
+<td style={{padding: '1rem', fontSize: '14px', borderBottom: '1px solid #E5E5E5'}}>Shriram Pawar</td>
 <td style={{padding: '1rem', fontSize: '14px', borderBottom: '1px solid #E5E5E5'}}>Discovery</td>
 <td className="deal-score" style={{padding: '1rem', fontSize: '20px', borderBottom: '1px solid #E5E5E5', color: '#22B14C', fontWeight: 'bold'}}>90</td>
 {showNextStep && (
@@ -232,8 +167,8 @@ console.log(showNextStep);
 )}
 </tr>
 <tr>
-<td style={{padding: '1rem', fontSize: '14px', borderBottom: '1px solid #E5E5E5'}}>Initech Inc.</td>
-<td style={{padding: '1rem', fontSize: '14px', borderBottom: '1px solid #E5E5E5'}}>Sara Johnson</td>
+<td style={{padding: '1rem', fontSize: '14px', borderBottom: '1px solid #E5E5E5'}}>myoncare</td>
+<td style={{padding: '1rem', fontSize: '14px', borderBottom: '1px solid #E5E5E5'}}>Roman Murov</td>
 <td style={{padding: '1rem', fontSize: '14px', borderBottom: '1px solid #E5E5E5'}}>Pricing</td>
 <td className="deal-score" style={{padding: '1rem', fontSize: '20px', borderBottom: '1px solid #E5E5E5', color: '#22B14C', fontWeight: 'bold'}}>95</td>
 {showNextStep && (
@@ -246,7 +181,7 @@ console.log(showNextStep);
 </tr>
 <tr>
 <td style={{padding: '1rem', fontSize: '14px'}}>Virtucon Industries</td>
-<td style={{padding: '1rem', fontSize: '14px'}}>David Lee</td>
+<td style={{padding: '1rem', fontSize: '14px'}}>Roman Murov</td>
 <td style={{padding:'1rem', fontSize: '14px'}}>Negotiation</td>
 
 <td className="deal-score" style={{padding: '1rem', fontSize: '20px', color: '#22B14C', fontWeight: 'bold'}}>85</td>

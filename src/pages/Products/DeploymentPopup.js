@@ -154,8 +154,9 @@ export default function DeploymentPopup({ onClose }) {
             <h2>App Deployment</h2>
             <label for="environment">Select environment:</label>
             <select id="environment">
-              <option value="salesforce">Salesforce</option>
-              <option value="gsheets">Gsheets</option>
+              <option value="Salesforce">Salesforce</option>
+              <option value="G-sheets">Gsheets</option>
+              <option value="scorr">Hubspot</option>
               <option value="scorr">Scorr Analytics</option>
             </select>
             <label for="user-name">Add user:</label>

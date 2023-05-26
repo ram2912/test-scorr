@@ -78,8 +78,10 @@
   align-items: center;
   position: relative;
 padding:2rem;
+margin-top: 2rem;
   font-size: 2rem;
-  font-family: sans-serif;
+  font-family: 'Proxima Nova', sans-serif;
+  letter-spacing: 0.5px;
 }
 
 .centerTable {
@@ -87,9 +89,24 @@ padding:2rem;
   justify-content: center;
   align-items: center;
   position: relative;
-padding:2rem;
-  font-size: 1.5rem;
-  font-family: sans-serif;
+  padding-bottom: 3rem;
+  padding-left: 2rem;
+  font-size: 1.2rem;
+  font-family: 'Proxima Nova', sans-serif;
+  letter-spacing: 0.5px;
+  color:rgb(199, 232, 255)
+}
+
+.centerDes {
+  display: flex;
+  justify-content: left;
+  align-items: left;
+  position: relative;
+  font-size: 1rem;
+  padding-bottom: 2rem;
+  padding-left: 2rem;
+  font-family: 'Proxima Nova', sans-serif;
+  letter-spacing: 0.5px;
 }
 
 .center::before {

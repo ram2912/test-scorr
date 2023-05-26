@@ -19,7 +19,9 @@ export default function Home() {
       <main className={styles.main}>
           <h1 className={styles.center}>Welcome to SCORR</h1>
           <p><Link href="/Dealscoring">Deal Scoring</Link></p>
-          <p><Link href="/ProcessSetup">Set up </Link></p>        
+          <p><Link href="/funnel">Funnel </Link></p>        
+          <p><Link href="/ProcessSetup">Set up </Link></p> 
+                 
       </main>
     </>
   )

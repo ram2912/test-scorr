@@ -1,9 +1,9 @@
 import Link from 'next/link';
-import React, { useState } from 'react';
 import styles from '@/styles/Home.module.css';
 import ProcessTable from './Products/ProcessTable';
-
+import React, { useState, useEffect } from 'react';
 import { FaCheck, FaArrowLeft, FaPlus } from 'react-icons/fa';
+
 
 export default function ProcessSetup() {
   const [salesforceConnected, setSalesforceConnected] = useState(false);
@@ -11,25 +11,54 @@ export default function ProcessSetup() {
     const [snowflakeConnected, setSnowflakeConnected] = useState(false);
     const [showIframe, setShowIframe] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
+    const [authenticated, setAuthenticated] = useState(false);
+    const [properties, setProperties] = useState([]);
+    const [backendData, setBackendData] = useState([]);
 
+    
+    useEffect(() => {
+      fetch('https://scorr-redeploy.herokuapp.com/contacts', {
+        method: 'GET',  
+      credentials: 'include'
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          setBackendData(data);
+        });
+    }, []);
+  
 
-  function handleSalesforceConnect() {
-    setSalesforceConnected(true);
-  }
+    const handleHubspotConnect = async () => {
+      const authUrl = 'https://scorr-redeploy.herokuapp.com/';;
+    // Replace with your backend route for authentication
+    localStorage.setItem('hubspotConnected', 'true');
+  window.location.href = authUrl;
+  setTimeout(() => {setHubspotConnected(true);
+  }, 2000);
+    };
+  
+    function handleSalesforceConnect() {
+      setTimeout(() => {
+        setSalesforceConnected(true); 
+        setIsLoading(false); // hide the loading animation as soon as the iframe is visible
+      }, 2000);
+    }
 
   function handleSalesforceDisconnect() {
     setSalesforceConnected(false);
   }
 
-  function handleHubspotConnect() {
-    setHubspotConnected(true);
-  }
+  
 
   function handleHubspotDisconnect() {
+    localStorage.removeItem('hubspotConnected');
     setHubspotConnected(false);
   }
   function handleSnowflakeConnect() {
-    setSnowflakeConnected(true);
+    setTimeout(() => {
+      setSnowflakeConnected(true); 
+      setIsLoading(false); // hide the loading animation as soon as the iframe is visible
+    }, 1000);
   }
 
   function handleSnowflakeDisconnect() {
@@ -45,7 +74,7 @@ export default function ProcessSetup() {
 
   return (
     <div>
-      <h1 className={styles.center}>Process Set-up</h1>
+      
       <div
         style={{
           display: 'flex',
@@ -54,10 +83,12 @@ export default function ProcessSetup() {
           justifyContent: 'center',
           fontFamily: 'Helvetica, sans-serif',
           backgroundColor: '#0B0C11',
-          marginTop: '1rem',
+          marginTop: '6rem',
           padding: '2rem',
         }}
       >
+         <h1 className={styles.centerTable}>Step 1: Connect your tools</h1>
+      
         <div style={{ display: 'flex', alignItems: 'center' }}>
           <div className={styles.salesforce}>
             {salesforceConnected ? (
@@ -73,6 +104,7 @@ export default function ProcessSetup() {
               marginBottom: '0px',
               marginRight: '120px',
               fontSize: '1.5rem',
+              letterSpacing: '0.5px',
             }}
           >
             Salesforce
@@ -82,7 +114,7 @@ export default function ProcessSetup() {
               <button
                 onClick={handleSalesforceDisconnect}
                 style={{
-                  backgroundColor: 'red',
+                  backgroundColor: 'green',
                   color: 'white',
                   border: 'none',
                   borderRadius: '5px',
@@ -92,13 +124,13 @@ export default function ProcessSetup() {
                   fontSize: '1rem',
                 }}
               >
-                Disconnect
+                Connected
               </button>
             ) : (
               <button
                 onClick={handleSalesforceConnect}
                 style={{
-                  backgroundColor: 'green',
+                  backgroundColor: 'grey',
                   color: 'white',
                   border: 'none',
                   borderRadius: '5px',
@@ -128,6 +160,7 @@ export default function ProcessSetup() {
               marginBottom: '0px',
               marginRight: '120px',
               fontSize: '1.5rem',
+              letterSpacing: '0.5px',
             }}
           >
             Hubspot
@@ -137,7 +170,7 @@ export default function ProcessSetup() {
               <button
                 onClick={handleHubspotDisconnect}
                 style={{
-                  backgroundColor: 'red',
+                  backgroundColor: 'green',
                   color: 'white',
                   border: 'none',
                   borderRadius: '5px',
@@ -148,13 +181,13 @@ export default function ProcessSetup() {
                   marginLeft:'1.5rem'
                 }}
               >
-                Disconnect
+                Connected
               </button>
             ) : (
               <button
                 onClick={handleHubspotConnect}
                 style={{
-                  backgroundColor: 'green',
+                  backgroundColor: 'grey',
                   color: 'white',
                   border: 'none',
                   borderRadius: '5px',
@@ -185,6 +218,7 @@ export default function ProcessSetup() {
               marginBottom: '0px',
               marginRight: '120px',
               fontSize: '1.5rem',
+              letterSpacing: '0.5px'
             }}
           >
            Snowflake
@@ -194,7 +228,7 @@ export default function ProcessSetup() {
               <button
                 onClick={handleSnowflakeDisconnect}
                 style={{
-                  backgroundColor: 'red',
+                  backgroundColor: 'green',
                   color: 'white',
                   border: 'none',
                   borderRadius: '5px',
@@ -202,15 +236,16 @@ export default function ProcessSetup() {
                   fontFamily: 'Helvetica, sans-serif',
                   cursor: 'pointer',
                   fontSize: '1rem',
+                
                 }}
               >
-                Disconnect
+                Connected
               </button>
             ) : (
               <button
                 onClick={handleSnowflakeConnect}
                 style={{
-                  backgroundColor: 'green',
+                  backgroundColor: 'grey',
                   color: 'white',
                   border: 'none',
                   borderRadius: '5px',
@@ -260,7 +295,7 @@ export default function ProcessSetup() {
                 marginTop:'2rem'
             }} onMouseOver={(e) => e.target.style.backgroundColor = '#1C416F'} onMouseOut={(e) => e.target.style.backgroundColor = '#255690'}
           >
-            Generate Process
+            Preview Process
           </button>
           {isLoading && (
         <div className ={styles.loadingAnimationTable}>
@@ -272,7 +307,7 @@ export default function ProcessSetup() {
         </div>
       )}
       </div>
-
+      
       {showIframe && (
         <> 
 
@@ -310,6 +345,22 @@ export default function ProcessSetup() {
 </>
 
 )}
+
+<div>
+        <h4></h4>
+        {properties.length > 0 ? (
+  properties.map((property) => (
+    <p key={property.name}>
+      Property name: {property.name}
+            </p>
+          ))
+        ) : (
+          <p>No properties found.</p>
+        )}
+      </div>
+
+
+
       <div
         style={{ position: 'absolute', top: '1rem', left: '1rem', padding: '10px' }}
       >
@@ -331,4 +382,4 @@ export default function ProcessSetup() {
     );
     }
 
-
+  
