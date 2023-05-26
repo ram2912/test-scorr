@@ -8,10 +8,10 @@ import { FaArrowLeft } from 'react-icons/fa';
 import { FaCloudUploadAlt, FaSave } from 'react-icons/fa';
 import DeploymentPopup from 'src/pages/Products/DeploymentPopup.js';
 import PipelineForm from './Products/funnelTable';
-const { handleFunnel } = require("./funnelPromt")
+const { Handlefunnel } = require("../../public/funnelPromt")
 
 
-const { handleDealScoring } = require("./pipelinePromt");
+const { handleDealScoring } = require("../../public/pipelinePromt");
 
 
 const questions = [
@@ -74,7 +74,7 @@ console.log(showNextStep);
     console.log(currentQuestion);
 
     // Call handleDealScoring after sending the message
-    await handleFunnel(message, setIsLoading, setShowDeals, receiveMessage,showNextStep,setShowNextStep,setShowPopup)
+    await Handlefunnel(message, setIsLoading, setShowDeals, receiveMessage,showNextStep,setShowNextStep,setShowPopup)
   }
 
   // Add bot message to the chat interface

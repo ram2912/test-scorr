@@ -1,10 +1,7 @@
 import React, { useState } from "react";
 
-
-const { Configuration, OpenAIApi } = require("openai");
-
-export async function handleDealScoring(message, setIsLoading, setShowDeals, receiveMessage,showNextStep,setShowNextStep,setShowPopup) {
-  
+export default async function Handlefunnel(message, setIsLoading, setShowDeals, receiveMessage,showNextStep,setShowNextStep,setShowPopup) {
+  const { Configuration, OpenAIApi } = require("openai");
     if (message.includes('yes and also add the next steps column')) {
         // Show Next Step column
         setTimeout(() => {
@@ -32,7 +29,7 @@ export async function handleDealScoring(message, setIsLoading, setShowDeals, rec
   });
   const openai = new OpenAIApi(configuration);
 
-  const prompt1 = `pretend that you are a software developer developing revenue intelligence tools for your client is a RevOps professional. Your client wants to build: ${message}. Give response "yes" ONLY if you feel the client wants to build a deal scoring tool for pipeline management (deal prioritization, deal prediction, etc.). Otherwise, give the response "No". Be very sure.\n\nA:`;
+  const prompt1 = `pretend that you are a software developer developing revenue intelligence tools for your client is a RevOps professional. Your client wants to build: ${message}. Give response "yes" ONLY if you feel the client wants to build a stage conversion rate funnel for its sales process. Otherwise, give the response "No". Be very sure.\n\nA:`;
   const response = await openai.createCompletion({
     model: "text-davinci-003",
     prompt: prompt1,

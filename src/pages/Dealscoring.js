@@ -9,7 +9,7 @@ import { FaCloudUploadAlt, FaSave } from 'react-icons/fa';
 import DeploymentPopup from 'src/pages/Products/DeploymentPopup.js';
 
 
-const { handleDealScoring } = require("./pipelinePromt");
+const { Handledealscoring } = require("../../public/pipelinePromt");
 
 
 const questions = [
@@ -72,7 +72,7 @@ console.log(showNextStep);
     console.log(currentQuestion);
 
     // Call handleDealScoring after sending the message
-    await handleDealScoring(message,setIsLoading,setShowDeals,receiveMessage,setShowNextStep,setShowPopup,setTyping);
+    await Handledealscoring(message,setIsLoading,setShowDeals,receiveMessage,setShowNextStep,setShowPopup,setTyping);
   }
 
   // Add bot message to the chat interface
