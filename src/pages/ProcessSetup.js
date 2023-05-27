@@ -17,9 +17,8 @@ export default function ProcessSetup() {
 
     
     useEffect(() => {
-      fetch('https://scorr-redeploy.herokuapp.com/pipelines2', {
-        method: 'GET',  
-      credentials: 'include'
+      fetch('https://scorr-redeploy.herokuapp.com/contacts', {
+        credentials: 'include'
       })
         .then((response) => response.json())
         .then((data) => {
