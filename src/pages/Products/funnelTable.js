@@ -15,13 +15,16 @@ const PipelineForm = () => {
       const response = await fetch('https://backend.scorr-app.eu/pipelines2', {
         credentials: 'include',
       });
-      const data = await response.json();
-      const pipelineNames = data.map((pipeline) => pipeline.pipelineName);
+      const json = await response.json(); // Parse the response body as JSON
+      const data = JSON.parse(json); // Parse the JSON data
+  
+      const pipelineNames = data.results.map((pipeline) => pipeline.label);
       setPipelines(pipelineNames);
     } catch (error) {
       console.error('Error fetching pipelines:', error);
     }
   };
+  
 
   const handleLeadPipelineChange = (event) => {
     setLeadPipeline(event.target.value);
