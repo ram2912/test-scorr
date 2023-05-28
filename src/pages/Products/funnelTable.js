@@ -12,7 +12,7 @@ const PipelineForm = () => {
 
   const fetchPipelines = async () => {
     try {
-      const response = await fetch('https://scorr-redeploy.herokuapp.com/contacts', {
+      const response = await fetch('https://backend.scorr-app.eu/pipelines', {
         credentials: 'include',
       });
       const data = await response.json();
