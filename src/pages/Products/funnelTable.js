@@ -12,7 +12,7 @@ const PipelineForm = () => {
 
   const fetchPipelines = async () => {
     try {
-      const response = await fetch('https://backend.scorr-app.eu/pipelines', {
+      const response = await fetch('https://backend.scorr-app.eu/pipelines2', {
         credentials: 'include',
       });
       const data = await response.json();
