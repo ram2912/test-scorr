@@ -102,37 +102,31 @@ const PipelineForm = () => {
       <div>
         <label htmlFor="lead-pipeline">Lead Pipeline:</label>
         <select id="lead-pipeline" value={leadPipeline} onChange={handleLeadPipelineChange}>
-          <option value="">Select Lead Pipeline</option>
-          {pipelines.map((pipeline) => (
-            <option key={pipeline.id} value={pipeline.id}>
-            {pipeline.name}
-            </option>
-          ))}
-        </select>
+  <option value="">Select Lead Pipeline</option>
+  {pipelines.map((pipeline) => (
+    <option key={pipeline.id} value={pipeline.name}>{pipeline.name}</option>
+  ))}
+</select>
       </div>
 
       <div>
         <label htmlFor="bdr-pipeline">BDR Pipeline:</label>
         <select id="bdr-pipeline" value={bdrPipeline} onChange={handleBdrPipelineChange}>
-          <option value="">Select BDR Pipeline</option>
-          {pipelines.map((pipeline) => (
-            <option key={pipeline.id} value={pipeline.id}>
-            {pipeline.name}
-            </option>
-          ))}
-        </select>
+  <option value="">Select BDR Pipeline</option>
+  {pipelines.map((pipeline) => (
+    <option key={pipeline.id} value={pipeline.name}>{pipeline.name}</option>
+  ))}
+</select>
       </div>
 
       <div>
         <label htmlFor="sales-pipeline">Sales Pipeline:</label>
         <select id="sales-pipeline" value={salesPipeline} onChange={handleSalesPipelineChange}>
-          <option value="">Select Sales Pipeline</option>
-          {pipelines.map((pipeline) => (
-            <option key={pipeline.id} value={pipeline.id}>
-            {pipeline.name}
-            </option>
-          ))}
-        </select>
+  <option value="">Select Sales Pipeline</option>
+  {pipelines.map((pipeline) => (
+    <option key={pipeline.id} value={pipeline.name}>{pipeline.name}</option>
+  ))}
+</select>
       </div>
 
       <button type="submit">Submit</button>
