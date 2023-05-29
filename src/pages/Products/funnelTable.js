@@ -5,6 +5,11 @@ const PipelineForm = () => {
   const [bdrPipeline, setBdrPipeline] = useState('');
   const [salesPipeline, setSalesPipeline] = useState('');
   const [pipelines, setPipelines] = useState([]);
+  const [successMessage, setSuccessMessage] = useState('');
+  const [funnelName, setFunnelName] = useState('');
+
+  
+
 
   useEffect(() => {
     fetchPipelines();
@@ -43,6 +48,10 @@ const PipelineForm = () => {
 
   
 
+  
+
+  
+
   const handleSubmit = async (event) => {
     event.preventDefault();
 
@@ -56,6 +65,7 @@ const PipelineForm = () => {
   .map((pipeline) => pipeline.id);
 
   const data = {
+    funnelName: funnelName,
     leadPipeline: {
       id: pipelineIds[0],
       name: leadPipeline,
@@ -83,6 +93,7 @@ const PipelineForm = () => {
       });
   
       if (response.ok) {
+        setSuccessMessage('Pipelines stored in the database successfully!');
         console.log('Pipelines stored in the database successfully!');
       } else {
         console.error('Error storing pipelines:', response.status);
@@ -99,6 +110,15 @@ const PipelineForm = () => {
 
   return (
     <form onSubmit={handleSubmit}>
+    <div>
+  <label htmlFor="funnel-name">Funnel Name:</label>
+  <input
+    type="text"
+    id="funnel-name"
+    value={funnelName}
+    onChange={(event) => setFunnelName(event.target.value)}
+  />
+</div>
       <div>
         <label htmlFor="lead-pipeline">Lead Pipeline:</label>
         <select id="lead-pipeline" value={leadPipeline} onChange={handleLeadPipelineChange}>
@@ -128,6 +148,8 @@ const PipelineForm = () => {
   ))}
 </select>
       </div>
+
+      {successMessage && <p>{successMessage}</p>}
 
       <button type="submit">Submit</button>
     </form>
