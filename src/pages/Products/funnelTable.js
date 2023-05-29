@@ -17,7 +17,7 @@ const PipelineForm = () => {
       });
       const data = await response.json(); // Parse the response body as JSON
   
-      const pipelineData = data.pipelines.map((pipeline) => ({
+      const pipelineData = data.results.map((pipeline) => ({
         id: pipeline.id,
         name: pipeline.label,
       }));
@@ -42,50 +42,56 @@ const PipelineForm = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-  
-    const pipelineIds = pipelines
-      .filter((pipeline) => [leadPipeline, bdrPipeline, salesPipeline].includes(pipeline.name))
-      .map((pipeline) => pipeline.id);
-  
-    const data = {
-      leadPipeline: {
-        id: pipelineIds[0],
-        name: leadPipeline,
-      },
-      bdrPipeline: {
-        id: pipelineIds[1],
-        name: bdrPipeline,
-      },
-      salesPipeline: {
-        id: pipelineIds[2],
-        name: salesPipeline,
-      },
-    };
-  
-    try {
-      const response = await fetch('https://backend.scorr-app.eu/store-pipelines', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        credentials: 'include',
-        body: JSON.stringify(data), // Convert the data to JSON format
-      });
-  
-      if (response.ok) {
-        console.log('Pipelines stored in the database successfully!');
-      } else {
-        console.error('Error storing pipelines:', response.status);
-      }
-    } catch (error) {
-      console.error('Error storing pipelines:', error);
-    }
-  
-    // Reset the form
-    setLeadPipeline('');
-    setBdrPipeline('');
-    setSalesPipeline('');
+
+  // Find the pipeline objects based on their names
+  const leadPipelineObj = pipelines.find((pipeline) => pipeline.name === leadPipeline);
+  const bdrPipelineObj = pipelines.find((pipeline) => pipeline.name === bdrPipeline);
+  const salesPipelineObj = pipelines.find((pipeline) => pipeline.name === salesPipeline);
+
+  if (!leadPipelineObj || !bdrPipelineObj || !salesPipelineObj) {
+    console.error('Invalid pipeline name(s).');
+    return;
+  }
+
+  const data = {
+    leadPipeline: {
+      id: leadPipelineObj.id,
+      name: leadPipeline,
+    },
+    bdrPipeline: {
+      id: bdrPipelineObj.id,
+      name: bdrPipeline,
+    },
+    salesPipeline: {
+      id: salesPipelineObj.id,
+      name: salesPipeline,
+    },
   };
+
+  try {
+    const response = await fetch('https://backend.scorr-app.eu/store-pipelines', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      credentials: 'include',
+      body: JSON.stringify(data),
+    });
+
+    if (response.ok) {
+      console.log('Pipelines stored in the database successfully!');
+    } else {
+      console.error('Error storing pipelines:', response.status);
+    }
+  } catch (error) {
+    console.error('Error storing pipelines:', error);
+  }
+
+  // Reset the form
+  setLeadPipeline('');
+  setBdrPipeline('');
+  setSalesPipeline('');
+};
 
   return (
     <form onSubmit={handleSubmit}>
