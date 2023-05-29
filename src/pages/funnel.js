@@ -8,6 +8,8 @@ import { FaArrowLeft } from 'react-icons/fa';
 import { FaCloudUploadAlt, FaSave } from 'react-icons/fa';
 import DeploymentPopup from 'src/pages/Products/DeploymentPopup.js';
 import PipelineForm from './Products/funnelTable';
+import Sidebar from 'src/pages/Products/sidebar.js'
+
 const { Handlefunnel } = require("../../public/funnelPromt")
 
 
@@ -88,117 +90,22 @@ console.log(showNextStep);
 
   return (
     <>
+    <div style={{ position: 'relative' }}>
+  <Sidebar style={{ position: 'absolute', top: 0, left: 0, width: '250px' }} /> {/* Adjust the width of the sidebar */}
+  <div style={{ marginLeft: '250px' }}>
+    {/* Main content */}
+  </div>
+</div>
 {!showDeals && (
-  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '70vh', position: 'relative' }}>
-    <img src="./White logo - no background.png" alt="Logo" style={{ width: '25%', height: 'auto', zIndex: 1 }} />
+  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '70vh' }}>
+    <img src="./White logo - no background.png" alt="Logo" style={{ width: '25%', height: 'auto', position: 'relative', zIndex: 1 }} /> {/* Increase the z-index of the logo */}
   </div>
 )}
 
             
     {showDeals && (  
       <>
-          <div
-  style={{
-    margin: '0 auto',
-    flex: 1,
-    width: '60%',
-    minHeight: '190px',
-    borderRadius: '5px',
-    overflow: 'hidden',
-    boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)',
-    backgroundColor: '#FFFFFF',
-    marginTop: '10rem',
-    boxSizing: 'border-box',
-  }}
->
-  <table style={{borderCollapse: 'collapse', width: '100%', borderRadius: '5px'}}>
-    <thead style={{ fontFamily: 'sans-serif',
-    color: 'white'}}>
-      <tr>
-        <th style={{textAlign: 'left', padding: '1rem', color: '#fff', fontSize: '14px', backgroundColor: '#3F3F3F'}}>Opportunity name</th>
-        <th style={{textAlign: 'left', padding: '1rem', color: '#fff', fontSize: '14px', backgroundColor: '#3F3F3F'}}>Opportunity owner</th>
-        <th style={{textAlign: 'left', padding: '1rem', color: '#fff', fontSize: '14px', backgroundColor: '#3F3F3F'}}>Stage</th>
-        <th style={{textAlign: 'left', padding: '1rem', color: '#fff', fontSize: '14px', backgroundColor: '#3F3F3F'}}>Deal Score</th>
-        {showNextStep && (
-          <>
-        <th className="reason hidden" style={{textAlign: 'left', padding: '1rem', fontSize: '14px', borderBottom: '1px solid #E5E5E5',backgroundColor: '#3F3F3F'}}>Reason</th>
-        
-        <th className="next-steps hidden" style={{textAlign: 'left', padding: '1rem', fontSize: '14px', borderBottom: '1px solid #E5E5E5',backgroundColor: '#3F3F3F'}}>Next steps</th>
-        </>
-        )}
-      </tr>
-    </thead>
-    <tbody style={{ fontFamily: 'sans-serif',
-    color: 'black'}}>
-      <tr>
-        <td style={{padding: '1rem', fontSize: '14px', borderBottom: '1px solid #E5E5E5'}}>Kafene</td>
-        <td style={{padding: '1rem', fontSize: '14px', borderBottom: '1px solid #E5E5E5'}}>Roman Murov</td>
-        <td style={{padding: '1rem', fontSize: '14px', borderBottom: '1px solid #E5E5E5'}}>Demo</td>
-        <td className="deal-score" style={{padding: '1rem', fontSize: '20px', borderBottom: '1px solid #E5E5E5', color: '#22B14C', fontWeight: 'bold'}}>75</td>
-        {showNextStep && (
-          <>
-        <td className="reason hidden" style={{padding: '1rem', fontSize: '14px', borderBottom: '1px solid #E5E5E5'}}>Need for product</td>
-        <td className="next-steps hidden" style={{padding: '1rem', fontSize: '14px', borderBottom: '1px solid #E5E5E5'}}>Follow up with client</td>
-        </>
-        )}
-      </tr>
-      <tr>
-        <td style={{padding: '1rem', fontSize: '14px', borderBottom: '1px solid #E5E5E5'}}>OnsiteIQ</td>
-        <td style={{padding: '1rem', fontSize: '14px', borderBottom: '1px solid #E5E5E5'}}>Roman Murov</td>
-<td style={{padding: '1rem', fontSize: '14px', borderBottom: '1px solid #E5E5E5'}}>Pricing</td>
-<td className="deal-score" style={{padding: '1rem', fontSize: '20px', borderBottom: '1px solid #E5E5E5', color: '#22B14C', fontWeight: 'bold'}}>60</td>
-{showNextStep && (
-          <>
-<td className="reason hidden" style={{padding: '1rem', fontSize: '14px', borderBottom: '1px solid #E5E5E5'}}>CFO not involved</td>
-
-<td className="next-steps hidden" style={{padding: '1rem', fontSize: '14px', borderBottom: '1px solid #E5E5E5'}}>Send follow-up with updated pricing</td>
-</>
-        )}
-</tr>
-<tr>
-<td style={{padding: '1rem', fontSize: '14px', borderBottom: '1px solid #E5E5E5'}}>DoControl</td>
-<td style={{padding: '1rem', fontSize: '14px', borderBottom: '1px solid #E5E5E5'}}>Shriram Pawar</td>
-<td style={{padding: '1rem', fontSize: '14px', borderBottom: '1px solid #E5E5E5'}}>Discovery</td>
-<td className="deal-score" style={{padding: '1rem', fontSize: '20px', borderBottom: '1px solid #E5E5E5', color: '#22B14C', fontWeight: 'bold'}}>90</td>
-{showNextStep && (
-          <>
-<td className="reason hidden" style={{padding: '1rem', fontSize: '14px', borderBottom: '1px solid #E5E5E5'}}>Urgent need for product</td>
-
-<td className="next-steps hidden" style={{padding: '1rem', fontSize: '14px', borderBottom: '1px solid #E5E5E5'}}>Schedule demo next week</td>
-</>
-)}
-</tr>
-<tr>
-<td style={{padding: '1rem', fontSize: '14px', borderBottom: '1px solid #E5E5E5'}}>myoncare</td>
-<td style={{padding: '1rem', fontSize: '14px', borderBottom: '1px solid #E5E5E5'}}>Roman Murov</td>
-<td style={{padding: '1rem', fontSize: '14px', borderBottom: '1px solid #E5E5E5'}}>Pricing</td>
-<td className="deal-score" style={{padding: '1rem', fontSize: '20px', borderBottom: '1px solid #E5E5E5', color: '#22B14C', fontWeight: 'bold'}}>95</td>
-{showNextStep && (
-          <>
-<td className="reason hidden" style={{padding: '1rem', fontSize: '14px', borderBottom: '1px solid #E5E5E5'}}>High budget</td>
-
-<td className="next-steps hidden" style={{padding: '1rem', fontSize: '14px', borderBottom: '1px solid #E5E5E5'}}>Meeting with CEO</td>
-</>
-)}
-</tr>
-<tr>
-<td style={{padding: '1rem', fontSize: '14px'}}>Virtucon Industries</td>
-<td style={{padding: '1rem', fontSize: '14px'}}>Roman Murov</td>
-<td style={{padding:'1rem', fontSize: '14px'}}>Negotiation</td>
-
-<td className="deal-score" style={{padding: '1rem', fontSize: '20px', color: '#22B14C', fontWeight: 'bold'}}>85</td>
-{showNextStep && (
-          <>
-<td className="reason hidden" style={{padding: '1rem', fontSize: '14px'}}>Previous customer</td>
-
-<td className="next-steps hidden" style={{padding: '1rem', fontSize: '14px'}}>Offer discount less than 30%</td>
-</>
-)}
-</tr>
-</tbody>
-</table>
-</div>
-          </>
+         </>
 )}
 
           <div
@@ -208,6 +115,7 @@ console.log(showNextStep);
     left: '50%',
     transform: 'translateX(-50%)',
     margin: '0 auto',
+    marginLeft: '8rem',
     width: '80%',
     flex: 1,
     minHeight: '170px',
@@ -336,7 +244,7 @@ console.log(showNextStep);
           
           <div style={{ position: 'absolute', top: '1rem', left: '1rem', padding: '10px' }}>
   <Link href="/" passHref>
-    <span style={{ marginTop: '2rem', color: '#fff', cursor: 'pointer', fontFamily: 'sans-serif'}}>
+    <span style={{ marginLeft: '13rem', marginTop: '2rem', color: '#fff', cursor: 'pointer', fontFamily: 'sans-serif'}}>
       <FaArrowLeft size={16} style={{ marginRight: '8px' }} />
       Back to home
     </span>
@@ -368,6 +276,7 @@ console.log(showNextStep);
         maxHeight: '80%',
         overflow: 'auto',
         margin: '0 auto',
+        marginLeft: '20rem',
         padding: '2rem',
         borderRadius: '5px',
         backgroundColor: '#040506',

@@ -50,7 +50,7 @@ export async function Handlefunnel(message, setIsLoading, setShowDeals, receiveM
   } else {
     receiveMessage("Sorry, I do not understand your request. I currently offer deal scoring for pipeline management.", "bot");
   }
-  const botMessage = data.choices[0].text.trim();
+  const botMessage = data.choices[0].text.trim();h
   console.log(botMessage);
 
   setIsLoading(false);
