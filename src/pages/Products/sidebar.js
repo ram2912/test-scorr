@@ -9,7 +9,7 @@ useEffect(() => {
   
   async function fetchFunnels() {
     try {
-      const response = await fetch('/funnels');
+      const response = await fetch('https://backend.scorr-app.eu/funnels');
       const data = await response.json();
       setFunnelNames(data);
     } catch (error) {
