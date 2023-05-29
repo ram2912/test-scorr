@@ -17,7 +17,7 @@ const PipelineForm = () => {
       });
       const data = await response.json(); // Parse the response body as JSON
   
-      const pipelineData = data.map((pipeline) => ({
+      const pipelineData = data.results.map((pipeline) => ({
         id: pipeline.id,
         name: pipeline.label,
       }));
@@ -41,33 +41,31 @@ const PipelineForm = () => {
     setSalesPipeline(event.target.value);
   };
 
-
+  
 
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-  const pipelineData = pipelines.map((pipeline) => ({
-    id: pipeline.id,
-    name: pipeline.name,
-  }));
+    console.log('leadPipeline:', leadPipeline);
+    console.log('bdrPipeline:', bdrPipeline);
+    console.log('salesPipeline:', salesPipeline);
 
-  const findPipelineId = (name) => pipelineData.find((pipeline) => pipeline.name === name)?.id;
 
-  const leadPipelineId = findPipelineId(leadPipeline);
-  const bdrPipelineId = findPipelineId(bdrPipeline);
-  const salesPipelineId = findPipelineId(salesPipeline);
+  const pipelineIds = pipelines
+  .filter((pipeline) => [leadPipeline, bdrPipeline, salesPipeline].includes(pipeline.name))
+  .map((pipeline) => pipeline.id);
 
   const data = {
     leadPipeline: {
-      id: leadPipelineId,
+      id: pipelineIds[0],
       name: leadPipeline,
     },
     bdrPipeline: {
-      id: bdrPipelineId,
+      id: pipelineIds[1],
       name: bdrPipeline,
     },
     salesPipeline: {
-      id: salesPipelineId,
+      id: pipelineIds[2],
       name: salesPipeline,
     },
   };
