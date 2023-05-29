@@ -23,6 +23,7 @@ const PipelineForm = () => {
       }));
   
       setPipelines(pipelineData);
+      console.log(pipelineData);
     } catch (error) {
       console.error('Error fetching pipelines:', error);
     }
@@ -40,27 +41,36 @@ const PipelineForm = () => {
     setSalesPipeline(event.target.value);
   };
 
+  
+
   const handleSubmit = async (event) => {
     event.preventDefault();
-  
-    const pipelineIds = pipelines
-      .filter((pipeline) => [leadPipeline, bdrPipeline, salesPipeline].includes(pipeline.name))
-      .map((pipeline) => pipeline.id);
-  
-    const data = {
-      leadPipeline: {
-        id: pipelineIds[0],
-        name: leadPipeline,
-      },
-      bdrPipeline: {
-        id: pipelineIds[1],
-        name: bdrPipeline,
-      },
-      salesPipeline: {
-        id: pipelineIds[2],
-        name: salesPipeline,
-      },
-    };
+
+  const pipelineData = pipelines.map((pipeline) => ({
+    id: pipeline.id,
+    name: pipeline.name,
+  }));
+
+  const findPipelineId = (name) => pipelineData.find((pipeline) => pipeline.name === name)?.id;
+
+  const leadPipelineId = findPipelineId(leadPipeline);
+  const bdrPipelineId = findPipelineId(bdrPipeline);
+  const salesPipelineId = findPipelineId(salesPipeline);
+
+  const data = {
+    leadPipeline: {
+      id: leadPipelineId,
+      name: leadPipeline,
+    },
+    bdrPipeline: {
+      id: bdrPipelineId,
+      name: bdrPipeline,
+    },
+    salesPipeline: {
+      id: salesPipelineId,
+      name: salesPipeline,
+    },
+  };
 
     console.log(data);
   
