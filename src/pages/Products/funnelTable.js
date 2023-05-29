@@ -42,56 +42,52 @@ const PipelineForm = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-
-  // Find the pipeline objects based on their names
-  const leadPipelineObj = pipelines.find((pipeline) => pipeline.name === leadPipeline);
-  const bdrPipelineObj = pipelines.find((pipeline) => pipeline.name === bdrPipeline);
-  const salesPipelineObj = pipelines.find((pipeline) => pipeline.name === salesPipeline);
-
-  if (!leadPipelineObj || !bdrPipelineObj || !salesPipelineObj) {
-    console.error('Invalid pipeline name(s).');
-    return;
-  }
-
-  const data = {
-    leadPipeline: {
-      id: leadPipelineObj.id,
-      name: leadPipeline,
-    },
-    bdrPipeline: {
-      id: bdrPipelineObj.id,
-      name: bdrPipeline,
-    },
-    salesPipeline: {
-      id: salesPipelineObj.id,
-      name: salesPipeline,
-    },
-  };
-
-  try {
-    const response = await fetch('https://backend.scorr-app.eu/store-pipelines', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
+  
+    const pipelineIds = pipelines
+      .filter((pipeline) => [leadPipeline, bdrPipeline, salesPipeline].includes(pipeline.name))
+      .map((pipeline) => pipeline.id);
+  
+    const data = {
+      leadPipeline: {
+        id: pipelineIds[0],
+        name: leadPipeline,
       },
-      credentials: 'include',
-      body: JSON.stringify(data),
-    });
+      bdrPipeline: {
+        id: pipelineIds[1],
+        name: bdrPipeline,
+      },
+      salesPipeline: {
+        id: pipelineIds[2],
+        name: salesPipeline,
+      },
+    };
 
-    if (response.ok) {
-      console.log('Pipelines stored in the database successfully!');
-    } else {
-      console.error('Error storing pipelines:', response.status);
+    console.log(data);
+  
+    try {
+      const response = await fetch('https://backend.scorr-app.eu/store-pipelines', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        credentials: 'include',
+        body: JSON.stringify(data), // Convert the data to JSON format
+      });
+  
+      if (response.ok) {
+        console.log('Pipelines stored in the database successfully!');
+      } else {
+        console.error('Error storing pipelines:', response.status);
+      }
+    } catch (error) {
+      console.error('Error storing pipelines:', error);
     }
-  } catch (error) {
-    console.error('Error storing pipelines:', error);
-  }
-
-  // Reset the form
-  setLeadPipeline('');
-  setBdrPipeline('');
-  setSalesPipeline('');
-};
+  
+    // Reset the form
+    setLeadPipeline('');
+    setBdrPipeline('');
+    setSalesPipeline('');
+  };
 
   return (
     <form onSubmit={handleSubmit}>
