@@ -17,7 +17,7 @@ const PipelineForm = () => {
       });
       const data = await response.json(); // Parse the response body as JSON
   
-      const pipelineData = data.results.map((pipeline) => ({
+      const pipelineData = data.pipelines.map((pipeline) => ({
         id: pipeline.id,
         name: pipeline.label,
       }));
