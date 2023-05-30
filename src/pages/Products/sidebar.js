@@ -3,6 +3,7 @@ import React, { useState,useEffect } from 'react';
 
 export default function Sidebar() {
 const [funnelNames, setFunnelNames] = useState([]);
+const [conversionRates, setConversionRates] = useState([]);
 
 useEffect(() => {
     fetchFunnels();
@@ -18,9 +19,16 @@ useEffect(() => {
     }
   }
 
-  const handleClick = (name) => {
-    // Handle click event for the block
-    console.log(`Clicked on ${name}`);
+  const handleClick = async (name) => {
+    try {
+        const response1 = await fetch(`https://backend.scorr-app.eu/pipelines-stages?funnelName=${name}`)
+      const response = await fetch(`https://backend.scorr-app.eu/conversion-rate`);
+      const data = await response.json();
+      setConversionRates(data.conversionRates);
+      console.log(conversionRates);
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   return (
