@@ -21,7 +21,9 @@ useEffect(() => {
 
   const handleClick = async (name) => {
     try {
-        const response1 = await fetch(`https://backend.scorr-app.eu/pipelines-stages?funnelName=${name}`)
+        const response1 = await fetch(`https://backend.scorr-app.eu/pipelines-stages?funnelName=${name}`, {
+        credentials: 'include',
+      });
       const response = await fetch(`https://backend.scorr-app.eu/conversion-rate`);
       const data = await response.json();
       setConversionRates(data.conversionRates);
