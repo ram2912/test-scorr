@@ -52,6 +52,16 @@ export default function Funnel() {
     }
 console.log(currentQuestion);
   useEffect(() => {
+
+    fetch('https://backend.scorr-app.eu/deals', {
+        credentials: 'include',
+        })
+        .then((response) => response.json())
+        .then((data) => {
+            console.log(data);
+        });
+
+
   // Get references to the chat interface elements
   const messageForm = document.getElementById('message-form');
   const messageInput = document.getElementById('message-input');
@@ -127,7 +137,8 @@ console.log(showNextStep);
   left: '50%',
   transform: 'translateX(-50%)',
   margin: '0 auto',
-  marginLeft: '28rem',
+  marginLeft: '18rem',
+  
   width: '80%',
   flex: 1,
   minHeight: '700px',

@@ -594,3 +594,28 @@ margin-top: 2rem;
   background-color: #3c3c3c;
   color: #fff;
 }
+
+.conversionRatesTable {
+  width: 60%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  font-family: 'Helvetica', sans-serif;
+}
+
+.conversionRatesTable th,
+.conversionRatesTable td {
+  border: 1px solid #ccc;
+  padding: 1px;
+  text-align: left;
+}
+
+.conversionRatesTable th {
+  background-color: #f2f2f2;
+  color:#000000
+}
+
+.selectedButton {
+  background-color: #d8d8d8;
+  color: #f30000;
+}
+

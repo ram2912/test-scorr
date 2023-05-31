@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import styles from '@/styles/Home.module.css';
 
 export default function ConversionRatesPage () {
   const [conversionRates, setConversionRates] = useState([]);
@@ -20,7 +21,7 @@ export default function ConversionRatesPage () {
   return (
     <div>
       <h2>Conversion Rates</h2>
-      <table>
+      <table className ={ styles.conversionRatesTable}>
         <thead>
           <tr>
             <th>Source Stage</th>
