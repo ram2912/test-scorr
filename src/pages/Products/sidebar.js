@@ -1,6 +1,8 @@
 
 import React, { useState,useEffect } from 'react';
 
+import ConversionRatesPage from 'public/ConversionRatesPage.js';
+
 export default function Sidebar() {
 const [funnelNames, setFunnelNames] = useState([]);
 const [conversionRates, setConversionRates] = useState([]);
@@ -28,6 +30,8 @@ useEffect(() => {
       const data = await response.json();
       setConversionRates(data.conversionRates);
       console.log(conversionRates);
+
+      window.location.reload();
     } catch (error) {
       console.error(error);
     }
