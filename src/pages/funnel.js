@@ -8,13 +8,16 @@ import { FaArrowLeft } from 'react-icons/fa';
 import { FaCloudUploadAlt, FaSave } from 'react-icons/fa';
 import DeploymentPopup from 'src/pages/Products/DeploymentPopup.js';
 import PipelineForm from './Products/funnelTable';
-import Sidebar from 'src/pages/Products/sidebar.js'
+import Sidebar from './Products/sidebar'
+import ConversionRatesPage from 'public/ConversionRatesPage.js';
 
 
 const { Handlefunnel } = require("../../public/funnelPromt")
 
 
 const { handleDealScoring } = require("../../public/pipelinePromt");
+
+
 
 
 const questions = [
@@ -118,51 +121,25 @@ console.log(showNextStep);
 )}
 </div>
 
-
-            
-      
       <>
-      <div
-      style={{
-        position: 'fixed',
-        bottom: '5rem',
-        left: '50%',
-        transform: 'translateX(-50%)',
-        margin: '0 auto',
-        marginLeft: '28rem',
-        width: '80%',
-        flex: 1,
-        minHeight: '500px',
-        borderRadius: '5px',
-        overflow: 'hidden',
-        boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)',
-        
-        paddingTop: '0rem',
-        boxSizing: 'border-box',
-  }}
-        >
-      <div>
-          <h2>Conversion Rates</h2>
-          <table>
-            <thead>
-              <tr>
-                <th>Source Stage</th>
-                <th>Target Stage</th>
-                <th>Conversion Rate</th>
-              </tr>
-            </thead>
-            <tbody>
-              {conversionRates.map((rate, index) => (
-                <tr key={index}>
-                  <td>{rate.sourceStage}</td>
-                  <td>{rate.targetStage}</td>
-                  <td>{rate.conversionRate}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+        <div style={{ position: 'fixed',
+  bottom: '5rem',
+  left: '50%',
+  transform: 'translateX(-50%)',
+  margin: '0 auto',
+  marginLeft: '28rem',
+  width: '80%',
+  flex: 1,
+  minHeight: '700px',
+  borderRadius: '5px',
+  overflow: 'hidden',
+  boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)',
+  backgroundColor: 'transparent',
+  paddingTop: '0rem',
+  boxSizing: 'border-box', }}>
+            <ConversionRatesPage />
         </div>
-        </div>
+
          </>
 
 
