@@ -20,7 +20,7 @@ export default function ConversionRatesPage () {
 
   return (
     <div>
-      <h2>Conversion Rates</h2>
+      <h2 style = {{ fontFamily: 'sans-serif', margin: '0 auto'}}>Conversion Rates</h2>
       <table className ={ styles.conversionRatesTable}>
         <thead>
           <tr>
@@ -32,8 +32,8 @@ export default function ConversionRatesPage () {
         <tbody>
           {conversionRates.map((rate, index) => (
             <tr key={index}>
-              <td>{rate.sourceStage}</td>
-              <td>{rate.targetStage}</td>
+              <td>{rate.sourceStage.name}</td>
+              <td>{rate.targetStage.name}</td>
               <td>{rate.conversionRate}</td>
             </tr>
           ))}
