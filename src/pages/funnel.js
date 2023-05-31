@@ -10,6 +10,7 @@ import DeploymentPopup from 'src/pages/Products/DeploymentPopup.js';
 import PipelineForm from './Products/funnelTable';
 import Sidebar from 'src/pages/Products/sidebar.js'
 
+
 const { Handlefunnel } = require("../../public/funnelPromt")
 
 
@@ -32,6 +33,7 @@ export default function Funnel() {
     const [showNextStep, setShowNextStep] = useState(false);
     const [typing, setTyping] = useState(false);
     const [showDeploymentPopup, setShowDeploymentPopup] = useState(false);
+    const [conversionRates, setConversionRates] = useState([]);
 
 
    
@@ -95,18 +97,74 @@ console.log(showNextStep);
   <div style={{ marginLeft: '250px' }}>
     {/* Main content */}
   </div>
-</div>
-{!showDeals && (
-  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '70vh' }}>
+  {showDeals && (
+  <div style={{ position: 'fixed',
+  bottom: '5rem',
+  left: '50%',
+  transform: 'translateX(-50%)',
+  margin: '0 auto',
+  marginLeft: '28rem',
+  width: '80%',
+  flex: 1,
+  minHeight: '500px',
+  borderRadius: '5px',
+  overflow: 'hidden',
+  boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)',
+  backgroundColor: 'transparent',
+  paddingTop: '0rem',
+  boxSizing: 'border-box', }}>
     <img src="./White logo - no background.png" alt="Logo" style={{ width: '25%', height: 'auto', position: 'relative', zIndex: 1 }} /> {/* Increase the z-index of the logo */}
   </div>
 )}
+</div>
+
 
             
-    {showDeals && (  
+      
       <>
+      <div
+      style={{
+        position: 'fixed',
+        bottom: '5rem',
+        left: '50%',
+        transform: 'translateX(-50%)',
+        margin: '0 auto',
+        marginLeft: '28rem',
+        width: '80%',
+        flex: 1,
+        minHeight: '500px',
+        borderRadius: '5px',
+        overflow: 'hidden',
+        boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)',
+        
+        paddingTop: '0rem',
+        boxSizing: 'border-box',
+  }}
+        >
+      <div>
+          <h2>Conversion Rates</h2>
+          <table>
+            <thead>
+              <tr>
+                <th>Source Stage</th>
+                <th>Target Stage</th>
+                <th>Conversion Rate</th>
+              </tr>
+            </thead>
+            <tbody>
+              {conversionRates.map((rate, index) => (
+                <tr key={index}>
+                  <td>{rate.sourceStage}</td>
+                  <td>{rate.targetStage}</td>
+                  <td>{rate.conversionRate}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+        </div>
          </>
-)}
+
 
           <div
               style={{
