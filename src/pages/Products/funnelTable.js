@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-const PipelineForm = () => {
+const PipelineForm = ({ onClose }) => {
   const [leadPipeline, setLeadPipeline] = useState('');
   const [bdrPipeline, setBdrPipeline] = useState('');
   const [salesPipeline, setSalesPipeline] = useState('');
@@ -111,9 +111,14 @@ const PipelineForm = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-    <div>
-  <label htmlFor="funnel-name">Funnel Name:</label>
+    <div style={{ width: '500px', margin: '0 auto', padding: '20px', marginLeft:'20px',
+    backgroundColor: '#f5f5f5',
+    border: '1px solid #ccc',
+    borderRadius: '5px;' }}>
+    
+    <form onSubmit={handleSubmit} style={{display: 'flex', flexDirection: 'column'}}>
+    <div style={{marginBottom: '15px'}}>
+    <label style = {{fontFamily: 'sans-serif', color: 'GrayText', paddingBottom: '2rem'}} htmlFor="funnel-name">Funnel Name:</label>
   <input
     type="text"
     id="funnel-name"
@@ -121,9 +126,9 @@ const PipelineForm = () => {
     onChange={(event) => setFunnelName(event.target.value)}
   />
 </div>
-      <div>
-        <label htmlFor="lead-pipeline">Lead Pipeline:</label>
-        <select id="lead-pipeline" value={leadPipeline} onChange={handleLeadPipelineChange}>
+      <div style={{marginBottom: '15px'}}>
+        <label style = {{fontFamily: 'sans-serif', color: 'GrayText', paddingBottom: '2rem'}}>Lead Pipeline:</label>
+        <select style ={{ width: '100%', padding: '8px', border: '1px solid #ccc', borderRadius: '4px'}} id="lead-pipeline" value={leadPipeline} onChange={handleLeadPipelineChange}>
   <option value="">Select Lead Pipeline</option>
   {pipelines.map((pipeline) => (
     <option key={pipeline.id} value={pipeline.name}>{pipeline.name}</option>
@@ -131,9 +136,9 @@ const PipelineForm = () => {
 </select>
       </div>
 
-      <div>
-        <label htmlFor="bdr-pipeline">BDR Pipeline:</label>
-        <select id="bdr-pipeline" value={bdrPipeline} onChange={handleBdrPipelineChange}>
+      <div style={{marginBottom: '15px'}}>
+        <label style = {{fontFamily: 'sans-serif', color: 'GrayText', paddingBottom: '2rem'}} htmlFor="bdr-pipeline">BDR Pipeline:</label>
+        <select style ={{ width: '100%', padding: '8px', border: '1px solid #ccc', borderRadius: '4px'}} id="bdr-pipeline" value={bdrPipeline} onChange={handleBdrPipelineChange}>
   <option value="">Select BDR Pipeline</option>
   {pipelines.map((pipeline) => (
     <option key={pipeline.id} value={pipeline.name}>{pipeline.name}</option>
@@ -141,9 +146,9 @@ const PipelineForm = () => {
 </select>
       </div>
 
-      <div>
-        <label htmlFor="sales-pipeline">Sales Pipeline:</label>
-        <select id="sales-pipeline" value={salesPipeline} onChange={handleSalesPipelineChange}>
+      <div style={{marginBottom: '15px'}}>
+        <label style = {{fontFamily: 'sans-serif', color: 'GrayText', paddingBottom: '2rem'}} htmlFor="sales-pipeline">Sales Pipeline:</label>
+        <select style ={{ width: '100%', padding: '8px', border: '1px solid #ccc', borderRadius: '4px'}} id="sales-pipeline" value={salesPipeline} onChange={handleSalesPipelineChange}>
   <option value="">Select Sales Pipeline</option>
   {pipelines.map((pipeline) => (
     <option key={pipeline.id} value={pipeline.name}>{pipeline.name}</option>
@@ -151,10 +156,14 @@ const PipelineForm = () => {
 </select>
       </div>
 
-      {successMessage && <p>{successMessage}</p>}
+      {successMessage && <p style={{ fontFamily: 'sans-serif', marginTop: '10px', color:'green'}}>{successMessage}</p>}
 
-      <button type="submit">Submit</button>
+      <div style={{display: 'flex', justifyContent: 'space-between', marginTop: '20px'}}>
+      <button style={{backgroundColor: '#4caf50', color:'white', padding: '5px', borderRadius: '5px'}}type="submit">Submit</button>
+      <button style={{backgroundColor: 'grey', color:'white', padding: '5px', borderRadius: '5px'}}type="button" onClick={onClose} >Close</button>
+        </div>
     </form>
+    </div>
   );
 };
 
