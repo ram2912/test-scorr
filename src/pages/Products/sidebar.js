@@ -2,9 +2,9 @@ import React, { useState, useEffect } from 'react';
 import styles from '@/styles/Home.module.css';
 import { FaCog, FaPlus } from 'react-icons/fa';
 
-export default function Sidebar({ onPop }) {
+export default function Sidebar({ onPop, onConversionRatesUpdate }) {
   const [funnelNames, setFunnelNames] = useState([]);
-  const [conversionRates, setConversionRates] = useState([]);
+ 
   const [selectedFunnel, setSelectedFunnel] = useState('');
 
   useEffect(() => {
@@ -21,15 +21,7 @@ export default function Sidebar({ onPop }) {
     }
   }
 
-  async function fetchConversionRates() {
-    try {
-      const response = await fetch('https://backend.scorr-app.eu/conversion-rate');
-      const data = await response.json();
-      setConversionRates(data.conversionRates);
-    } catch (error) {
-      console.error(error);
-    }
-  }
+  
 
   const handleClick = async (name) => {
     try {
@@ -38,11 +30,12 @@ export default function Sidebar({ onPop }) {
       });
       const response = await fetch(`https://backend.scorr-app.eu/conversion-rate`);
       const data = await response.json();
-      setConversionRates(data.conversionRates);
+      const conversionRates = data.conversionRates;
+
+      onConversionRatesUpdate(conversionRates);
       setSelectedFunnel(name);
       console.log(conversionRates);
 
-     fetchConversionRates();
     } catch (error) {
       console.error(error);
     }

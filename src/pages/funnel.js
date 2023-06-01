@@ -40,6 +40,8 @@ export default function Funnel() {
     const [showDeploymentPopup, setShowDeploymentPopup] = useState(false);
     const [conversionRates, setConversionRates] = useState([]);
 
+    const handleConversionRatesUpdate = (rates) => { setConversionRates(rates) };
+
 
    
     function handleSave() {
@@ -130,7 +132,7 @@ console.log(showNextStep);
     <>
      
     <div style={{ position: 'relative' }}>
-  <Sidebar style={{ position: 'absolute', top: 0, left: 0, width: '250px' }} onPop={() => setShowPopup(true)}/> 
+  <Sidebar onConversionRatesUpdate={handleConversionRatesUpdate} style={{ position: 'absolute', top: 0, left: 0, width: '250px' }} onPop={() => setShowPopup(true)}/> 
 </div>
 
       
@@ -301,7 +303,7 @@ console.log(showNextStep);
   backgroundColor: 'transparent',
   paddingTop: '1rem',
   boxSizing: 'border-box', }}>
-            <ConversionRatesPage />
+            <ConversionRatesPage conversionRates={conversionRates} />
         </div>
 
          </>

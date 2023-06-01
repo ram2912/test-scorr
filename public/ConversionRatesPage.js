@@ -1,24 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import styles from '@/styles/Home.module.css';
 
-export default function ConversionRatesPage () {
-  const [conversionRates, setConversionRates] = useState([]);
-
-  useEffect(() => {
-    fetchConversionRates();
-  }, []);
-
-  async function fetchConversionRates() {
-    try {
-      const response = await fetch('https://backend.scorr-app.eu/conversion-rate');
-      const data = await response.json();
-      setConversionRates(data.conversionRates);
-    } catch (error) {
-      console.error(error);
-    }
-  }
-
-  return (
+export default function ConversionRatesPage ({ conversionRates }) {
+ return (
     <div>
       
       <table className ={ styles.conversionRatesTable}>
