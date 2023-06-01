@@ -596,7 +596,7 @@ margin-top: 2rem;
 }
 
 .conversionRatesTable {
-  width: 60%;
+  width: 50%;
   border-collapse: collapse;
   margin-top: 20px;
   font-family: 'Helvetica', sans-serif;
@@ -605,7 +605,7 @@ margin-top: 2rem;
 .conversionRatesTable th,
 .conversionRatesTable td {
   border: 1px solid #5c5c5c;
-  padding: 1px;
+  padding: 3px;
   text-align: left;
   background-color: #454545; ;
   font-size: small;
@@ -613,7 +613,8 @@ margin-top: 2rem;
 
 .conversionRatesTable th {
   background-color: #c3c3c3;
-  color:#000000
+  color:rgb(69, 69, 69);
+  padding: 5px;
 }
 
 .selectedButton {

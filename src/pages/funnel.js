@@ -133,13 +133,13 @@ console.log(showNextStep);
 
       <>
         <div style={{ position: 'fixed',
-  bottom: '5rem',
-  left: '50%',
+  bottom: '6rem',
+  left: '40%',
   transform: 'translateX(-50%)',
   margin: '0 auto',
-  marginLeft: '18rem',
+    marginLeft: '28rem',
   
-  width: '80%',
+  width: '60%',
   flex: 1,
   minHeight: '700px',
   borderRadius: '5px',
@@ -157,7 +157,7 @@ console.log(showNextStep);
           <div
               style={{
                 position: 'fixed',
-    bottom: '5rem',
+    bottom: '1rem',
     left: '50%',
     transform: 'translateX(-50%)',
     margin: '0 auto',

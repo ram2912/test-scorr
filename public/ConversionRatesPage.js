@@ -32,9 +32,9 @@ export default function ConversionRatesPage () {
         <tbody>
           {conversionRates.map((rate, index) => (
             <tr key={index}>
-              <td>{rate.sourceStage.name}</td>
-              <td>{rate.targetStage.name}</td>
-              <td>{rate.conversionRate}</td>
+              <td style={{width: '150px', fontSize:'small'}}>{rate.sourceStage.name}</td>
+              <td style={{width: '150px', fontSize:'small'}}>{rate.targetStage.name}</td>
+              <td style={{width: '80px', fontSize:'small'}}>{rate.conversionRate}</td>
             </tr>
           ))}
         </tbody>

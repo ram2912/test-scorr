@@ -64,6 +64,8 @@ const PipelineForm = () => {
   .filter((pipeline) => [leadPipeline, bdrPipeline, salesPipeline].includes(pipeline.name))
   .map((pipeline) => pipeline.id);
 
+  console.log(pipelineIds);
+
   const data = {
     funnelName: funnelName,
     leadPipeline: {
