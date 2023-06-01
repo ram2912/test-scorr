@@ -20,7 +20,7 @@ export default function ConversionRatesPage () {
 
   return (
     <div>
-      <h2 style = {{ fontFamily: 'sans-serif', margin: '0 auto'}}>Conversion Rates</h2>
+      
       <table className ={ styles.conversionRatesTable}>
         <thead>
           <tr>

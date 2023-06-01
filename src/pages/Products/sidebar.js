@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import styles from '@/styles/Home.module.css';
+import { FaCog, FaPlus } from 'react-icons/fa';
 
-export default function Sidebar() {
+export default function Sidebar({ onPop }) {
   const [funnelNames, setFunnelNames] = useState([]);
   const [conversionRates, setConversionRates] = useState([]);
   const [selectedFunnel, setSelectedFunnel] = useState('');
@@ -31,15 +32,18 @@ export default function Sidebar() {
       setSelectedFunnel(name);
       console.log(conversionRates);
 
-      window.location.reload();
+      fetchFunnels();
     } catch (error) {
       console.error(error);
     }
   };
 
   return (
-    <div style={{ width: '200px', backgroundColor: '#191919', height: '100vh', paddingTop: '80px' }}>
-      {/* Sidebar content */}
+    <div style={{ width: '200px', backgroundColor: '#191919', height: '100vh', paddingTop: '30px', overflow: 'hidden' }}>
+      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', position: 'relative', paddingBottom: '60px' }}>
+        <img src="./White logo - no background.png" alt="Logo" style={{ width: '60%', height: 'auto', zIndex: 1 }} />
+      </div>
+      <h2 style={{ fontFamily: 'sans-serif', margin: '0 auto', textAlign: 'center', color: 'white', fontSize: 'Medium', paddingBottom: '20px' }}>Funnels</h2>
       {funnelNames.map((funnel, index) => (
         <button
           key={index}
@@ -47,19 +51,63 @@ export default function Sidebar() {
           className={selectedFunnel === funnel ? styles.selectedButton : ''}
           style={{
             display: 'block',
-            width: '100%',
+            margin: '4px auto',
+            marginBottom: '10px',
+            width: '90%',
             padding: '10px',
-            background: 'none',
+            background: '#2F2F2F',
+            borderRadius: '5px',
             border: 'none',
             color: '#fff',
             cursor: 'pointer'
-          }}
+          }} onMouseOver={(e) => e.target.style.backgroundColor = '#636363'} onMouseOut={(e) => e.target.style.backgroundColor = '#2F2F2F'}
         >
           {funnel}
         </button>
       ))}
-    </div>
-  );
+      <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '10px', marginTop: '20px' }}>
+        <button
+          style={{
+            width: '30px',
+            height: '30px',
+            background: '#5A5A5A',
+            borderRadius: '50%',
+            border: 'none',
+            color: '#fff',
+            cursor: 'pointer',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center'
+          }} onClick={onPop} onMouseOver={(e) => e.target.style.backgroundColor = '#636363'} onMouseOut={(e) => e.target.style.backgroundColor = '#5A5A5A'}
+        >
+          <FaPlus size={14} />
+        </button>
+      </div>
+      
+      <div style={{ width: '200px', textAlign: 'left', position: 'absolute', bottom: '20px' }}>
+  <div style={{ display: 'flex', alignItems: 'left', justifyContent: 'center' }}>
+    
+    <button
+      style={{
+        width: '80%',
+        padding: '5px',
+        background: 'transparent',
+        borderRadius: '5px',
+        border: 'none',
+        color: '#fff',
+        cursor: 'pointer',
+        fontSize: 'medium',
+      }}
+    ><FaCog size={15} color="#fff" style={{marginRight: '7px'}} />
+      Setup
+    </button>
+  </div>
+</div>
+
+    
+  </div>
+);
 }
+
 
 

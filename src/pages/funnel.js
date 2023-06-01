@@ -20,6 +20,8 @@ const { handleDealScoring } = require("../../public/pipelinePromt");
 
 
 
+
+
 const questions = [
     'What do you want to build today?', 
     'Do you want me to add the reason for the deal score?',
@@ -60,6 +62,27 @@ console.log(currentQuestion);
         .then((data) => {
             console.log(data);
         });
+
+        function handleClose() {
+            // add your save logic here
+            setCurrentQuestion(questions[1]);
+            setTimeout(() => {
+            setMessages(prevMessages => [...prevMessages, { message: questions[1], sender: 'bot' }]);
+            setIsLoading(false);
+          }, 2000);
+            console.log("Save button clicked");
+            setShowPopup(false);
+          }
+        
+        function handlePopup() {
+            // add your save logic here
+            
+            setTimeout(() => {
+            setIsLoading(false);
+          }, 2000);
+            console.log("Save button clicked");
+            setShowPopup(true);
+          }
 
 
   // Get references to the chat interface elements
@@ -105,53 +128,12 @@ console.log(showNextStep);
 
   return (
     <>
+     
     <div style={{ position: 'relative' }}>
-  <Sidebar style={{ position: 'absolute', top: 0, left: 0, width: '250px' }} /> {/* Adjust the width of the sidebar */}
-  <div style={{ marginLeft: '250px' }}>
-    {/* Main content */}
-  </div>
-  {showDeals && (
-  <div style={{ position: 'fixed',
-  bottom: '5rem',
-  left: '50%',
-  transform: 'translateX(-50%)',
-  margin: '0 auto',
-  marginLeft: '28rem',
-  width: '80%',
-  flex: 1,
-  minHeight: '500px',
-  borderRadius: '5px',
-  overflow: 'hidden',
-  boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)',
-  backgroundColor: 'transparent',
-  paddingTop: '0rem',
-  boxSizing: 'border-box', }}>
-    <img src="./White logo - no background.png" alt="Logo" style={{ width: '25%', height: 'auto', position: 'relative', zIndex: 1 }} /> {/* Increase the z-index of the logo */}
-  </div>
-)}
+  <Sidebar style={{ position: 'absolute', top: 0, left: 0, width: '250px' }} onPop={() => setShowPopup(true)}/> 
 </div>
 
-      <>
-        <div style={{ position: 'fixed',
-  bottom: '6rem',
-  left: '40%',
-  transform: 'translateX(-50%)',
-  margin: '0 auto',
-    marginLeft: '28rem',
-  
-  width: '60%',
-  flex: 1,
-  minHeight: '700px',
-  borderRadius: '5px',
-  overflow: 'hidden',
-  boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)',
-  backgroundColor: 'transparent',
-  paddingTop: '0rem',
-  boxSizing: 'border-box', }}>
-            <ConversionRatesPage />
-        </div>
-
-         </>
+      
 
 
           <div
@@ -177,7 +159,7 @@ console.log(showNextStep);
             style={{margin: '0 auto',
                 position: 'relative',
   width: '50%',
-  height: '180px',
+  height: '80px',
   padding: '2rem',
 
   boxSizing: 'border-box',
@@ -226,7 +208,7 @@ console.log(showNextStep);
             type="text"
             id="message-input"
             name="message"
-            placeholder="What do you want to build?"
+            placeholder="Tell me what you want to build..."
             autocomplete="off"
             style={{
               display: 'flex',
@@ -296,6 +278,35 @@ console.log(showNextStep);
     </span>
   </Link>
 </div>
+
+<div style={{ position: 'absolute', top: '5rem', left: '15rem', padding: '10px', color: '#fff', fontFamily: 'sans-serif' }}>
+        
+          <h1 style={{fontSize: 'x-large'}}>Selected Funnel</h1>
+        
+      </div>
+
+      <>
+        <div style={{ position: 'fixed',
+  bottom: '1rem',
+  left: '50%',
+    transform: 'translateX(-50%)',
+    margin: '0 auto',
+    marginLeft: '26rem',
+    marginTop: '20rem',
+    width: '100%',
+  minHeight: '700px',
+  borderRadius: '5px',
+  overflow: 'hidden',
+  boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)',
+  backgroundColor: 'transparent',
+  paddingTop: '1rem',
+  boxSizing: 'border-box', }}>
+            <ConversionRatesPage />
+        </div>
+
+         </>
+
+
           {showPopup && (
   <>
     <div
