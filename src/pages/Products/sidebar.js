@@ -4,7 +4,6 @@ import { FaCog, FaPlus } from 'react-icons/fa';
 
 export default function Sidebar({ onPop, onConversionRatesUpdate }) {
   const [funnelNames, setFunnelNames] = useState([]);
- 
   const [selectedFunnel, setSelectedFunnel] = useState('');
 
   useEffect(() => {
@@ -41,10 +40,16 @@ export default function Sidebar({ onPop, onConversionRatesUpdate }) {
     }
   };
 
+  const handleSidebarClick = (event) => {
+    event.stopPropagation();
+  };
+
+  
+
   return (
-    <div style={{ width: '200px', backgroundColor: '#191919', height: '100vh', paddingTop: '30px', overflow: 'hidden' }}>
+    <div style={{ width: '200px', backgroundColor: '#191919', height: '100vh', paddingTop: '30px', overflow: 'hidden' }} onClick={handleSidebarClick}>
       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', position: 'relative', paddingBottom: '60px' }}>
-        <img src="./White logo - no background.png" alt="Logo" style={{ width: '60%', height: 'auto', zIndex: 1 }} />
+        <img src="./White logo - no background.png" alt="Logo" style={{ width: '50%', height: 'auto', zIndex: 1 }} />
       </div>
       <h2 style={{ fontFamily: 'sans-serif', margin: '0 auto', textAlign: 'center', color: 'white', fontSize: 'Medium', paddingBottom: '20px' }}>Funnels</h2>
       {funnelNames.map((funnel, index) => (
@@ -58,12 +63,20 @@ export default function Sidebar({ onPop, onConversionRatesUpdate }) {
             marginBottom: '10px',
             width: '90%',
             padding: '10px',
-            background: '#2F2F2F',
+            background: selectedFunnel === funnel ? '#636363' : '#212121',
             borderRadius: '5px',
             border: 'none',
-            color: '#fff',
+            color: selectedFunnel === funnel ? '#fff' : '#fff',
             cursor: 'pointer'
-          }} onMouseOver={(e) => e.target.style.backgroundColor = '#636363'} onMouseOut={(e) => e.target.style.backgroundColor = '#2F2F2F'}
+          }} onMouseOver={(e) => {
+            if (selectedFunnel !== funnel) {
+              e.target.style.backgroundColor = '#313131';
+            }
+          }} onMouseOut={(e) => {
+            if (selectedFunnel !== funnel) {
+              e.target.style.backgroundColor = '#212121';
+            }
+          }}
         >
           {funnel}
         </button>
@@ -81,7 +94,7 @@ export default function Sidebar({ onPop, onConversionRatesUpdate }) {
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center'
-          }} onClick={onPop} onMouseOver={(e) => e.target.style.backgroundColor = '#636363'} onMouseOut={(e) => e.target.style.backgroundColor = '#5A5A5A'}
+          }} onClick={onPop} onMouseOver={(e) => e.target.style.backgroundColor = '#424242 '} onMouseOut={(e) => e.target.style.backgroundColor = '#5A5A5A'}
         >
           <FaPlus size={14} />
         </button>
