@@ -69,7 +69,7 @@ const PipelineForm = () => {
   const data = {
     funnelName: funnelName,
     leadPipeline: {
-      id: pipelineIds[0],
+      id: pipelineIds[2],
       name: leadPipeline,
     },
     bdrPipeline: {
@@ -77,7 +77,7 @@ const PipelineForm = () => {
       name: bdrPipeline,
     },
     salesPipeline: {
-      id: pipelineIds[2],
+      id: pipelineIds[0],
       name: salesPipeline,
     },
   };
