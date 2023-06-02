@@ -2,9 +2,10 @@ import React, { useState, useEffect } from 'react';
 import styles from '@/styles/Home.module.css';
 import { FaCog, FaPlus } from 'react-icons/fa';
 
-export default function Sidebar({ onPop, onConversionRatesUpdate }) {
+export default function Sidebar({ onPop, onConversionRatesUpdate, onFunnelSelection }) {
   const [funnelNames, setFunnelNames] = useState([]);
   const [selectedFunnel, setSelectedFunnel] = useState('');
+  
 
   useEffect(() => {
     fetchFunnels();
@@ -33,6 +34,7 @@ export default function Sidebar({ onPop, onConversionRatesUpdate }) {
 
       onConversionRatesUpdate(conversionRates);
       setSelectedFunnel(name);
+      onFunnelSelection(name);
       console.log(conversionRates);
 
     } catch (error) {
@@ -47,11 +49,11 @@ export default function Sidebar({ onPop, onConversionRatesUpdate }) {
   
 
   return (
-    <div style={{ width: '200px', backgroundColor: '#191919', height: '100vh', paddingTop: '30px', overflow: 'hidden' }} onClick={handleSidebarClick}>
+    <div style={{ width: '250px', backgroundColor: '#010102', height: '100vh', paddingTop: '30px', overflow: 'hidden', boxShadow: '0 0 15px rgba(0, 0, 0, 0.3)' }} onClick={handleSidebarClick}>
       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', position: 'relative', paddingBottom: '60px' }}>
         <img src="./White logo - no background.png" alt="Logo" style={{ width: '50%', height: 'auto', zIndex: 1 }} />
       </div>
-      <h2 style={{ fontFamily: 'sans-serif', margin: '0 auto', textAlign: 'center', color: 'white', fontSize: 'Medium', paddingBottom: '20px' }}>Funnels</h2>
+      <h2 style={{ fontFamily: 'IndustrialSans, sans-serif', margin: '0 auto', textAlign: 'center', color: 'white', fontSize: 'Medium', paddingBottom: '20px' }}>Funnels</h2>
       {funnelNames.map((funnel, index) => (
         <button
           key={index}
@@ -63,18 +65,19 @@ export default function Sidebar({ onPop, onConversionRatesUpdate }) {
             marginBottom: '10px',
             width: '90%',
             padding: '10px',
-            background: selectedFunnel === funnel ? '#636363' : '#212121',
+            background: selectedFunnel === funnel ? '#192568' : '#131316',
             borderRadius: '5px',
             border: 'none',
             color: selectedFunnel === funnel ? '#fff' : '#fff',
-            cursor: 'pointer'
+            cursor: 'pointer',
+            fontFamily: 'IndustrialSans, sans-serif'
           }} onMouseOver={(e) => {
             if (selectedFunnel !== funnel) {
-              e.target.style.backgroundColor = '#313131';
+              e.target.style.backgroundColor = '#222226';
             }
           }} onMouseOut={(e) => {
             if (selectedFunnel !== funnel) {
-              e.target.style.backgroundColor = '#212121';
+              e.target.style.backgroundColor = '#131316';
             }
           }}
         >
@@ -113,6 +116,7 @@ export default function Sidebar({ onPop, onConversionRatesUpdate }) {
         color: '#fff',
         cursor: 'pointer',
         fontSize: 'medium',
+        fontFamily: 'IndustrialSans, sans-serif'
       }}
     ><FaCog size={15} color="#fff" style={{marginRight: '7px'}} />
       Setup

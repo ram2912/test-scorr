@@ -39,8 +39,18 @@ export default function Funnel() {
     const [typing, setTyping] = useState(false);
     const [showDeploymentPopup, setShowDeploymentPopup] = useState(false);
     const [conversionRates, setConversionRates] = useState([]);
+    const [selectedFunnel, setSelectedFunnel] = useState('');
+    const [leadPipeline, setLeadPipeline] = useState('');
+  const [bdrPipeline, setBdrPipeline] = useState('');
+  const [salesPipeline, setSalesPipeline] = useState('');
 
     const handleConversionRatesUpdate = (rates) => { setConversionRates(rates) };
+
+    const handleFunnelSelection = (funnelName) => {
+        setSelectedFunnel(funnelName);
+      };
+
+      
 
 
    
@@ -132,7 +142,7 @@ console.log(showNextStep);
     <>
      
     <div style={{ position: 'relative' }}>
-  <Sidebar onConversionRatesUpdate={handleConversionRatesUpdate} style={{ position: 'absolute', top: 0, left: 0, width: '250px' }} onPop={() => setShowPopup(true)}/> 
+  <Sidebar onConversionRatesUpdate={handleConversionRatesUpdate} onFunnelSelection={handleFunnelSelection} style={{ position: 'absolute', top: 0, left: 0, width: '250px',  }} onPop={() => setShowPopup(true)}/> 
 </div>
 
       
@@ -274,29 +284,31 @@ console.log(showNextStep);
           
           <div style={{ position: 'absolute', top: '1rem', left: '1rem', padding: '10px' }}>
   <Link href="/" passHref>
-    <span style={{ marginLeft: '13rem', marginTop: '2rem', color: '#fff', cursor: 'pointer', fontFamily: 'sans-serif'}}>
+    <span style={{ marginLeft: '17rem', marginTop: '2rem', color: '#fff', cursor: 'pointer', fontFamily: 'sans-serif'}}>
       <FaArrowLeft size={16} style={{ marginRight: '8px' }} />
       Back to home
     </span>
   </Link>
 </div>
 
-<div style={{ position: 'absolute', top: '5rem', left: '15rem', padding: '10px', color: '#fff', fontFamily: 'sans-serif' }}>
+<div style={{ position: 'absolute', top: '5rem', left: '18rem', padding: '10px', color: '#fff', fontFamily: 'sans-serif' }}>
         
-          <h1 style={{fontSize: 'x-large'}}>Selected Funnel</h1>
+<h1 style={{ fontSize: '25px', fontFamily: 'IndustrialSans, sans-serif' }}>
+        Funnel: <span style={{ color: 'white',letterSpacing: '0.5px'  }}>{selectedFunnel}</span>
+      </h1>
         
       </div>
 
       <>
         <div style={{ position: 'fixed',
-  bottom: '1rem',
+  bottom: '20rem',
   left: '50%',
     transform: 'translateX(-50%)',
     margin: '0 auto',
     marginLeft: '26rem',
     marginTop: '20rem',
     width: '100%',
-  minHeight: '700px',
+  minHeight: '400px',
   borderRadius: '5px',
   overflow: 'hidden',
   boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)',

@@ -5,8 +5,8 @@
   'Roboto Mono', 'Oxygen Mono', 'Ubuntu Monospace', 'Source Code Pro',
   'Fira Mono', 'Droid Sans Mono', 'Courier New', monospace;
   --foreground-hex: #ffffff;
-      --background-start-hex: #000000;
-      --background-end-hex: #000000;
+      --background-start-hex: #1e2030;
+      --background-end-hex: #1e2030;
       --tile-start-hex: #020d2e;
       --tile-end-hex: #020513;
       --tile-border: conic-gradient(#ffffff80, #ffffff40, #ffffff30, #ffffff20, #ffffff10, #ffffff10, #ffffff80);
