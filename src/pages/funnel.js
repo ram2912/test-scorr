@@ -177,7 +177,7 @@ console.log(showNextStep);
   boxSizing: 'border-box',
   display: 'flex',
     flexDirection: 'column-reverse',
-    backgroundColor: '#151515',
+    backgroundColor: 'black',
     borderRadius: '10px',
     overflow: 'auto', 
         }}
@@ -225,7 +225,7 @@ console.log(showNextStep);
             style={{
               display: 'flex',
               color: '#fff',
-              backgroundColor:'#151515',
+              backgroundColor:'black',
               flex: 1,
               padding: '8px 10px',
               borderRadius: '5px',
@@ -341,16 +341,15 @@ console.log(showNextStep);
       style={{
         position: 'fixed',
         top: '50%',
-        left: '50%',
+        left: '30%',
         transform: 'translate(-50%, -50%)',
-        width: '70%',
+        width: '40%',
         maxHeight: '80%',
         overflow: 'auto',
         margin: '0 auto',
         marginLeft: '20rem',
         padding: '2rem',
         borderRadius: '5px',
-        backgroundColor: '#040506',
         zIndex: 9999, // set a high value for z-index
         // other styles...
       }}

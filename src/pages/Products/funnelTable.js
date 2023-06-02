@@ -112,23 +112,25 @@ const PipelineForm = ({ onClose }) => {
 
   return (
     <div style={{ width: '500px', margin: '0 auto', padding: '20px', marginLeft:'20px',
-    backgroundColor: '#f5f5f5',
-    border: '1px solid #ccc',
-    borderRadius: '5px;' }}>
+    backgroundColor: '#1C1C1C',
+    borderRadius: '10px',
+    
+    height: '450px' }}>
     
     <form onSubmit={handleSubmit} style={{display: 'flex', flexDirection: 'column'}}>
     <div style={{marginBottom: '15px'}}>
-    <label style = {{fontFamily: 'sans-serif', color: 'GrayText', paddingBottom: '2rem'}} htmlFor="funnel-name">Funnel Name:</label>
-  <input
+    <label style = {{display: 'block', fontFamily: 'sans-serif', color: '#E0E0E0 ', paddingBottom: '1rem', marginTop: '1rem'}} htmlFor="funnel-name">Funnel Name:  </label>
+  <input style ={{display: 'block', width: '100%', padding: '8px',border: 'none', borderRadius: '4px'}}
     type="text"
     id="funnel-name"
+    placeholder='Enter Funnel Name'
     value={funnelName}
     onChange={(event) => setFunnelName(event.target.value)}
   />
 </div>
       <div style={{marginBottom: '15px'}}>
-        <label style = {{fontFamily: 'sans-serif', color: 'GrayText', paddingBottom: '2rem'}}>Lead Pipeline:</label>
-        <select style ={{ width: '100%', padding: '8px', border: '1px solid #ccc', borderRadius: '4px'}} id="lead-pipeline" value={leadPipeline} onChange={handleLeadPipelineChange}>
+        <label style = {{display: 'block', fontFamily: 'sans-serif', color: '#E0E0E0', paddingBottom: '1rem'}}>Lead Pipeline:</label>
+        <select style ={{display: 'block', width: '100%', padding: '8px',border: 'none', borderRadius: '4px'}} id="lead-pipeline" value={leadPipeline} onChange={handleLeadPipelineChange}>
   <option value="">Select Lead Pipeline</option>
   {pipelines.map((pipeline) => (
     <option key={pipeline.id} value={pipeline.name}>{pipeline.name}</option>
@@ -137,8 +139,8 @@ const PipelineForm = ({ onClose }) => {
       </div>
 
       <div style={{marginBottom: '15px'}}>
-        <label style = {{fontFamily: 'sans-serif', color: 'GrayText', paddingBottom: '2rem'}} htmlFor="bdr-pipeline">BDR Pipeline:</label>
-        <select style ={{ width: '100%', padding: '8px', border: '1px solid #ccc', borderRadius: '4px'}} id="bdr-pipeline" value={bdrPipeline} onChange={handleBdrPipelineChange}>
+        <label style = {{display: 'block', fontFamily: 'sans-serif', color: '#E0E0E0', paddingBottom: '1rem'}} htmlFor="bdr-pipeline">BDR Pipeline:</label>
+        <select style ={{ width: '100%', padding: '8px', border: 'none', borderRadius: '4px'}} id="bdr-pipeline" value={bdrPipeline} onChange={handleBdrPipelineChange}>
   <option value="">Select BDR Pipeline</option>
   {pipelines.map((pipeline) => (
     <option key={pipeline.id} value={pipeline.name}>{pipeline.name}</option>
@@ -147,8 +149,8 @@ const PipelineForm = ({ onClose }) => {
       </div>
 
       <div style={{marginBottom: '15px'}}>
-        <label style = {{fontFamily: 'sans-serif', color: 'GrayText', paddingBottom: '2rem'}} htmlFor="sales-pipeline">Sales Pipeline:</label>
-        <select style ={{ width: '100%', padding: '8px', border: '1px solid #ccc', borderRadius: '4px'}} id="sales-pipeline" value={salesPipeline} onChange={handleSalesPipelineChange}>
+        <label style = {{display: 'block', fontFamily: 'sans-serif', color: '#E0E0E0', paddingBottom: '1rem'}} htmlFor="sales-pipeline">Sales Pipeline:</label>
+        <select style ={{ width: '100%', padding: '8px',border: 'none', borderRadius: '4px'}} id="sales-pipeline" value={salesPipeline} onChange={handleSalesPipelineChange}>
   <option value="">Select Sales Pipeline</option>
   {pipelines.map((pipeline) => (
     <option key={pipeline.id} value={pipeline.name}>{pipeline.name}</option>
@@ -159,8 +161,8 @@ const PipelineForm = ({ onClose }) => {
       {successMessage && <p style={{ fontFamily: 'sans-serif', marginTop: '10px', color:'green'}}>{successMessage}</p>}
 
       <div style={{display: 'flex', justifyContent: 'space-between', marginTop: '20px'}}>
-      <button style={{backgroundColor: '#4caf50', color:'white', padding: '5px', borderRadius: '5px'}}type="submit">Submit</button>
-      <button style={{backgroundColor: 'grey', color:'white', padding: '5px', borderRadius: '5px'}}type="button" onClick={onClose} >Close</button>
+      <button style={{backgroundColor: '#4caf50', color:'white', padding: '5px', borderRadius: '5px', border: 'none'}}type="submit">Submit</button>
+      <button style={{backgroundColor: 'grey', color:'white', padding: '5px', borderRadius: '5px', border: 'none'}}type="button" onClick={onClose} >Close</button>
         </div>
     </form>
     </div>
