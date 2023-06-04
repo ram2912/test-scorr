@@ -17,7 +17,7 @@ const PipelineForm = ({ onClose }) => {
 
   const fetchPipelines = async () => {
     try {
-      const response = await fetch('https://backend.scorr-app.eu/pipelines2', {
+      const response = await fetch('https://testback.scorr-app.eu/pipelines2', {
         credentials: 'include',
       });
       const data = await response.json(); // Parse the response body as JSON
@@ -85,7 +85,7 @@ const PipelineForm = ({ onClose }) => {
     console.log(data);
   
     try {
-      const response = await fetch('https://backend.scorr-app.eu/store-pipelines', {
+      const response = await fetch('https://testback.scorr-app.eu/store-pipelines', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

@@ -67,7 +67,7 @@ export default function Funnel() {
 console.log(currentQuestion);
   useEffect(() => {
 
-    fetch('https://backend.scorr-app.eu/deals', {
+    fetch('https://testback.scorr-app.eu/deals', {
         credentials: 'include',
         })
         .then((response) => response.json())
