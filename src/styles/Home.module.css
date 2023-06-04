@@ -86,15 +86,30 @@ margin-top: 2rem;
 
 .centerTable {
   display: flex;
-  justify-content: center;
+  justify-content: left;
   align-items: center;
   position: relative;
-  padding-bottom: 3rem;
+  padding-bottom: 1rem;
   padding-left: 2rem;
-  font-size: 1.2rem;
-  font-family: 'Proxima Nova', sans-serif;
+  font-size: 2rem;
+  font-weight: 400;
+  font-family: 'inter', sans-serif;
   letter-spacing: 0.5px;
-  color:rgb(199, 232, 255)
+  color:rgb(254, 254, 254)
+}
+
+.centerTable1 {
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  position: relative;
+  padding-bottom: 1rem;
+  padding-left: 2rem;
+  font-size: 15px;
+  font-weight: 300;
+  font-family: 'inter', sans-serif;
+  letter-spacing: 0.5px;
+  color:rgb(254, 254, 254)
 }
 
 .centerDes {

@@ -3,6 +3,7 @@ import styles from '@/styles/Home.module.css';
 import ProcessTable from './Products/ProcessTable';
 import React, { useState, useEffect } from 'react';
 import { FaCheck, FaArrowLeft, FaPlus } from 'react-icons/fa';
+import SetupSB from '../../public/Components/setupSB';
 
 
 export default function ProcessSetup() {
@@ -24,7 +25,28 @@ export default function ProcessSetup() {
         .then((data) => {
           setBackendData(data);
         });
+
+        checkAuthorizationStatus();
     }, []);
+
+    const checkAuthorizationStatus = async () => {
+      try {
+        const response = await fetch('https://backend.scorr-app.eu/authorization-status');
+        const data = await response.json();
+    
+        if (response.ok) {
+          console.log(data.status);
+          setHubspotConnected(true); // "authorized"
+        } else {
+          console.log(data.status); 
+          setHubspotConnected(false);// "unauthorized"
+        }
+      } catch (error) {
+        console.log('Error checking authorization status:', error);
+        setHubspotConnected(false);
+      }
+    };
+    
   
 
     const handleHubspotConnect = async () => {
@@ -32,7 +54,7 @@ export default function ProcessSetup() {
     // Replace with your backend route for authentication
     localStorage.setItem('hubspotConnected', 'true');
   window.location.href = authUrl;
-  setTimeout(() => {setHubspotConnected(true);
+  setTimeout(() => {checkAuthorizationStatus();
   }, 2000);
     };
   
@@ -72,23 +94,35 @@ export default function ProcessSetup() {
   }
 
   return (
-    <div>
+    <div style={{display: 'flex'}}>
+
+<div style={{ flex: '2', position: 'relative' }}>
+  <SetupSB style={{ position: 'absolute', top: 0, left: 0, width: '250px',  }} onPop={() => setShowPopup(true)}/> 
+</div>
       
       <div
         style={{
+          flex: '8',
           display: 'flex',
           flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'center',
-          fontFamily: 'Helvetica, sans-serif',
-          backgroundColor: '#0B0C11',
-          marginTop: '6rem',
+          alignItems: 'stretch',
+          justifyContent: 'flex-start',
+          fontWeight: '300',
+  fontFamily: 'inter, sans-serif',
+          backgroundColor: '#161616',
+          borderRadius: '10px',
+          marginTop: '5rem',
           padding: '2rem',
+          border: '1px solid #3B3B3B',
+          marginLeft: '5%',
+          marginRight: '10%',
+          height: '40%',
         }}
       >
-         <h1 className={styles.centerTable}>Step 1: Connect your tools</h1>
+         <h1 className={styles.centerTable}>Connect Your Tools</h1>
+         <h1 className={styles.centerTable1}>Connect your Customer data sources for Lead, BDR and Sales </h1>
       
-        <div style={{ display: 'flex', alignItems: 'center' }}>
+        <div style={{ display: 'flex', alignItems: 'center', borderTop:'1px solid #767676', paddingTop:'30px' }}>
           <div className={styles.salesforce}>
             {salesforceConnected ? (
               <FaCheck className={styles.connected} />
@@ -98,9 +132,12 @@ export default function ProcessSetup() {
           </div>
           <h3
             style={{
+              flex: '1',
               marginLeft: '5px',
               marginTop: '0px',
               marginBottom: '0px',
+              fontWeight: '300',
+  fontFamily: 'inter, sans-serif',
               marginRight: '120px',
               fontSize: '1.5rem',
               letterSpacing: '0.5px',
@@ -113,7 +150,10 @@ export default function ProcessSetup() {
               <button
                 onClick={handleSalesforceDisconnect}
                 style={{
+                  flex: '1',
                   backgroundColor: 'green',
+                  fontWeight: '300',
+  fontFamily: 'inter, sans-serif',
                   color: 'white',
                   border: 'none',
                   borderRadius: '5px',
@@ -129,7 +169,10 @@ export default function ProcessSetup() {
               <button
                 onClick={handleSalesforceConnect}
                 style={{
-                  backgroundColor: 'grey',
+                  flex: '1',
+                  backgroundColor: '#393939',
+                  fontWeight: '300',
+  fontFamily: 'inter, sans-serif',
                   color: 'white',
                   border: 'none',
                   borderRadius: '5px',
@@ -154,8 +197,11 @@ export default function ProcessSetup() {
           </div>
           <h3
             style={{
+              flex: '1',
               marginLeft: '5px',
               marginTop: '0px',
+              fontWeight: '300',
+  fontFamily: 'inter, sans-serif',
               marginBottom: '0px',
               marginRight: '120px',
               fontSize: '1.5rem',
@@ -172,6 +218,8 @@ export default function ProcessSetup() {
                   backgroundColor: 'green',
                   color: 'white',
                   border: 'none',
+                  fontWeight: '300',
+  fontFamily: 'inter, sans-serif',
                   borderRadius: '5px',
                   padding: '10px 20px',
                   fontFamily: 'Helvetica, sans-serif',
@@ -186,11 +234,13 @@ export default function ProcessSetup() {
               <button
                 onClick={handleHubspotConnect}
                 style={{
-                  backgroundColor: 'grey',
+                  backgroundColor: '#393939',
                   color: 'white',
                   border: 'none',
                   borderRadius: '5px',
                   padding: '10px 20px',
+                  fontWeight: '300',
+  fontFamily: 'inter, sans-serif',
                   fontFamily: 'Helvetica, sans-serif',
                   cursor: 'pointer',
                   fontSize: '1rem',
@@ -212,10 +262,13 @@ export default function ProcessSetup() {
           </div>
           <h3
             style={{
+              flex: '1',
               marginLeft: '5px',
               marginTop: '0px',
               marginBottom: '0px',
               marginRight: '120px',
+              fontWeight: '300',
+  fontFamily: 'inter, sans-serif',
               fontSize: '1.5rem',
               letterSpacing: '0.5px'
             }}
@@ -244,7 +297,7 @@ export default function ProcessSetup() {
               <button
                 onClick={handleSnowflakeConnect}
                 style={{
-                  backgroundColor: 'grey',
+                  backgroundColor: '#393939',
                   color: 'white',
                   border: 'none',
                   borderRadius: '5px',
@@ -265,9 +318,9 @@ export default function ProcessSetup() {
           </div>
           <button
             style={{
-                backgroundColor: 'grey',
+                backgroundColor: 'transparent',
                 color: 'white',
-                border: 'none',
+                border: '1px solid #3B3B3B',
                 borderRadius: '5px',
                 padding: '5px 15px',
                 fontFamily: 'Helvetica, sans-serif',
@@ -276,26 +329,32 @@ export default function ProcessSetup() {
                 marginRight:'17.5rem'
             }}
           >
-           <FaPlus className={styles.disonnected} />  Add 
+           <FaPlus className={styles.disonnected} />
           </button>
           
         </div>
-        <button
-            onClick={handleGenerateProcess}
-            style={{
-                backgroundColor: '#255690',
-                color: 'white',
-                border: 'none',
-                borderRadius: '5px',
-                padding: '10px 15px',
-                fontFamily: 'Helvetica, sans-serif',
-                cursor: 'pointer',
-                fontSize: '1rem',
-                marginTop:'2rem'
-            }} onMouseOver={(e) => e.target.style.backgroundColor = '#1C416F'} onMouseOut={(e) => e.target.style.backgroundColor = '#255690'}
-          >
-            Preview Process
-          </button>
+        <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
+  <button
+    onClick={handleGenerateProcess}
+    style={{
+      backgroundColor: '#255690',
+      color: 'white',
+      border: 'none',
+      borderRadius: '5px',
+      padding: '10px 15px',
+      fontFamily: 'Helvetica, sans-serif',
+      cursor: 'pointer',
+      fontSize: '1rem',
+      marginTop: '2rem',
+      width: '10%',
+    }}
+    onMouseOver={(e) => (e.target.style.backgroundColor = '#1C416F')}
+    onMouseOut={(e) => (e.target.style.backgroundColor = '#255690')}
+  >
+    Save
+  </button>
+</div>
+
           {isLoading && (
         <div className ={styles.loadingAnimationTable}>
           <div className={styles.loadingDots}>
@@ -327,6 +386,8 @@ export default function ProcessSetup() {
   <Link href="/Dealscoring"><button
     style={{
       backgroundColor: '#255690',
+      borderWidth: '1px',
+      borderColor: 'white',
       color: 'white',
       border: 'none',
       borderRadius: '5px',
@@ -345,23 +406,11 @@ export default function ProcessSetup() {
 
 )}
 
-<div>
-        <h4></h4>
-        {properties.length > 0 ? (
-  properties.map((property) => (
-    <p key={property.name}>
-      Property name: {property.name}
-            </p>
-          ))
-        ) : (
-          <p>No properties found.</p>
-        )}
-      </div>
 
 
 
       <div
-        style={{ position: 'absolute', top: '1rem', left: '1rem', padding: '10px' }}
+        style={{ position: 'absolute', top: '1rem', left: '15rem', padding: '10px' }}
       >
         <Link href="/" passHref>
           <span
