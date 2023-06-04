@@ -31,7 +31,9 @@ export default function ProcessSetup() {
 
     const checkAuthorizationStatus = async () => {
       try {
-        const response = await fetch('https://testback.scorr-app.eu/authorization-status');
+        const response = await fetch('https://testback.scorr-app.eu/authorization-status', {
+          credentials: 'include'
+        });
         const data = await response.json();
     
         if (response.ok) {
