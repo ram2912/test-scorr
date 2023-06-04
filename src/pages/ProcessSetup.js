@@ -31,7 +31,7 @@ export default function ProcessSetup() {
 
     const checkAuthorizationStatus = async () => {
       try {
-        const response = await fetch('https://backend.scorr-app.eu/authorization-status');
+        const response = await fetch('https://testback.scorr-app.eu/authorization-status');
         const data = await response.json();
     
         if (response.ok) {
@@ -50,7 +50,7 @@ export default function ProcessSetup() {
   
 
     const handleHubspotConnect = async () => {
-      const authUrl = 'https://backend.scorr-app.eu';
+      const authUrl = 'https://testback.scorr-app.eu';
     // Replace with your backend route for authentication
     localStorage.setItem('hubspotConnected', 'true');
   window.location.href = authUrl;
