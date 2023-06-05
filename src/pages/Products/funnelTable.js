@@ -61,7 +61,7 @@ const PipelineForm = ({ onClose }) => {
 
 
   const pipelineIds = pipelines
-  .filter((pipeline) => [leadPipeline, bdrPipeline, salesPipeline].includes(pipeline.name))
+  .filter((pipeline) => [leadPipeline,salesPipeline,bdrPipeline].includes(pipeline.name))
   .map((pipeline) => pipeline.id);
 
   console.log(pipelineIds);
