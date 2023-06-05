@@ -73,11 +73,11 @@ const PipelineForm = ({ onClose }) => {
       name: leadPipeline,
     },
     bdrPipeline: {
-      id: pipelineIds[1],
+      id: pipelineIds[2],
       name: bdrPipeline,
     },
     salesPipeline: {
-      id: pipelineIds[2],
+      id: pipelineIds[1],
       name: salesPipeline,
     },
   };
