@@ -65,7 +65,7 @@ export default function Sidebar({ onPop, onConversionRatesUpdate, onFunnelSelect
             marginBottom: '10px',
             width: '95%',
             padding: '10px',
-            background: selectedFunnel === funnel ? '#0D1B6B ' : '#101010 ',
+            background: selectedFunnel === funnel ? '#888888' : '#101010 ',
             borderRadius: '5px',
             border: 'none',
             color: selectedFunnel === funnel ? '#fff' : '#fff',

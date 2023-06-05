@@ -53,7 +53,7 @@ export default function SetupSB({ onPop }) {
       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', position: 'relative', paddingBottom: '60px' }}>
         <img src="./White logo - no background.png" alt="Logo" style={{ width: '50%', height: 'auto', zIndex: 1 }} />
       </div>
-      <h2 style={{ fontFamily: 'IndustrialSans, sans-serif', margin: '0 auto', textAlign: 'center', color: 'white', fontSize: 'Medium', paddingBottom: '20px' }}>Settings</h2>
+      <h2 style={{ fontWeight: '400',fontFamily: 'inter, sans-serif', margin: '0 auto', textAlign: 'center', color: 'white', fontSize: 'Medium', paddingBottom: '20px' }}>Settings</h2>
       
         <button
 
@@ -68,7 +68,8 @@ export default function SetupSB({ onPop }) {
             border: 'none',
             color: '#fff',
             cursor: 'pointer',
-            fontFamily: 'IndustrialSans, sans-serif'
+            fontWeight: '300',
+  fontFamily: 'inter, sans-serif',
           }} 
         >
           Tool Connections

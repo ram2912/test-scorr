@@ -12,6 +12,7 @@ import Sidebar from './Products/sidebar'
 import ConversionRatesPage from 'public/ConversionRatesPage.js';
 
 
+
 const { Handlefunnel } = require("../../public/funnelPromt")
 
 
@@ -140,30 +141,61 @@ console.log(showNextStep);
 
   return (
     <>
-     
-    <div style={{ position: 'relative' }}>
-  <Sidebar onConversionRatesUpdate={handleConversionRatesUpdate} onFunnelSelection={handleFunnelSelection} style={{ position: 'absolute', top: 0, left: 0, width: '250px',  }} onPop={() => setShowPopup(true)}/> 
+     <div style={{ display: 'flex'}}>
+    <div style={{ flex: '2', position: 'relative' }}>
+  <Sidebar onConversionRatesUpdate={handleConversionRatesUpdate} onFunnelSelection={handleFunnelSelection} style={{ position: 'absolute', top: 0, left: 0,}} onPop={() => setShowPopup(true)}/> 
 </div>
+<div style={{ flex: '8' , display: 'flex', flexDirection: 'column',}}>
 
+<div style={{ flex: '15%', position: 'relative', marginLeft:'5%'}}>
       
 
+        
+<h1 style={{ fontSize: '25px', fontFamily: 'IndustrialSans, sans-serif', marginTop: '5rem' }}>
+        Funnel: <span style={{ color: 'white',letterSpacing: '0.5px'  }}>{selectedFunnel}</span>
+      </h1>
+        
+      
+      </div>
+      <div style={{ flex: '65%',border: '1px solid #3B3B3B',borderRadius: '10px', position: 'relative', backgroundColor: '#010102', height: '100vh', paddingTop: '30px', overflow: 'hidden', boxShadow: '0 0 15px rgba(0, 0, 0, 0.3)', marginLeft: '5%', marginRight:'5%'}}>
+
+      <>
+        <div style={{
+       
+    margin: '0 auto',
+    marginLeft: '5%',
+    width: '90%',
+    height: '100%',
+  borderRadius: '5px',
+  overflow: 'hidden',
+  boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)',
+  backgroundColor: 'transparent',
+  paddingTop: '1rem',
+  boxSizing: 'border-box', }}>
+            <ConversionRatesPage conversionRates={conversionRates} />
+        </div>
+        
+
+         </>
+            </div>
+            <div style={{ flex: '20%', position: 'relative'}}>
 
           <div
               style={{
-                position: 'fixed',
+    
     bottom: '1rem',
-    left: '50%',
-    transform: 'translateX(-50%)',
+    
+   
     margin: '0 auto',
-    marginLeft: '8rem',
-    width: '80%',
-    flex: 1,
+    
+    width: '90%',
+    
     minHeight: '170px',
     borderRadius: '5px',
     overflow: 'hidden',
     boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)',
     backgroundColor: 'transparent',
-    paddingTop: '6rem',
+    paddingTop: '2rem',
     boxSizing: 'border-box',
               }}
             >
@@ -270,6 +302,8 @@ console.log(showNextStep);
           </div>
         </div>
       )}
+            </div>
+            
 
 <div style={{ position: 'absolute', top: '1rem', right: '1rem', padding: '10px' }}>
   <button style={{ backgroundColor: '#255690', color: 'white', fontFamily: 'sans-serif', padding: '10px', border: 'none', borderRadius: '5px', cursor: 'pointer', marginRight: '20px', transition: 'background-color 0.3s' }} class="button" onMouseOver={(e) => e.target.style.backgroundColor = '#1C416F'} onMouseOut={(e) => e.target.style.backgroundColor = '#255690'} onClick={() => setShowDeploymentPopup(true)}>
@@ -291,34 +325,7 @@ console.log(showNextStep);
   </Link>
 </div>
 
-<div style={{ position: 'absolute', top: '5rem', left: '18rem', padding: '10px', color: '#fff', fontFamily: 'sans-serif' }}>
-        
-<h1 style={{ fontSize: '25px', fontFamily: 'IndustrialSans, sans-serif' }}>
-        Funnel: <span style={{ color: 'white',letterSpacing: '0.5px'  }}>{selectedFunnel}</span>
-      </h1>
-        
-      </div>
 
-      <>
-        <div style={{ position: 'fixed',
-  bottom: '20rem',
-  left: '50%',
-    transform: 'translateX(-50%)',
-    margin: '0 auto',
-    marginLeft: '26rem',
-    marginTop: '20rem',
-    width: '100%',
-  minHeight: '400px',
-  borderRadius: '5px',
-  overflow: 'hidden',
-  boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)',
-  backgroundColor: 'transparent',
-  paddingTop: '1rem',
-  boxSizing: 'border-box', }}>
-            <ConversionRatesPage conversionRates={conversionRates} />
-        </div>
-
-         </>
 
 
           {showPopup && (
@@ -366,7 +373,8 @@ console.log(showNextStep);
      
 </>
 )}
-
+</div>
+</div>
     </>
   );
 }

@@ -614,22 +614,27 @@ margin-top: 2rem;
   width: 50%;
   border-collapse: collapse;
   margin-top: 20px;
-  font-family: 'Helvetica', sans-serif;
+  font-family: 'inter', sans-serif;
+  font-weight: 300;
 }
 
 .conversionRatesTable th,
 .conversionRatesTable td {
-  border: 1px solid #5c5c5c;
+  border: 1px solid #505050;
   padding: 3px;
   text-align: left;
   background-color: #454545; ;
   font-size: small;
+  font-family: 'inter', sans-serif;
+  font-weight: 400;
 }
 
 .conversionRatesTable th {
-  background-color: #c3c3c3;
-  color:rgb(69, 69, 69);
+  background-color: #6e6e6e;
+  color:rgb(247, 247, 247);
   padding: 5px;
+  font-family: 'inter', sans-serif;
+  font-weight: 400;
 }
 
 .selectedButton {
