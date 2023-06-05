@@ -611,9 +611,9 @@ margin-top: 2rem;
 }
 
 .conversionRatesTable {
-  width: 50%;
+  width: 100%;
   border-collapse: collapse;
-  margin-top: 20px;
+ 
   font-family: 'inter', sans-serif;
   font-weight: 300;
 }

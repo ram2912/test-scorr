@@ -165,7 +165,7 @@ console.log(showNextStep);
     margin: '0 auto',
     marginLeft: '5%',
     width: '90%',
-    height: '100%',
+    height: '80%',
   borderRadius: '5px',
   overflow: 'hidden',
   boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)',
