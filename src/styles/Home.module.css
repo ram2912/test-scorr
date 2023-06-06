@@ -623,7 +623,7 @@ margin-top: 2rem;
   border: 1px solid #505050;
   padding: 3px;
   text-align: left;
-  background-color: #454545; ;
+  background-color: #454545; 
   font-size: small;
   font-family: 'inter', sans-serif;
   font-weight: 400;
@@ -640,5 +640,10 @@ margin-top: 2rem;
 .selectedButton {
   background-color: #d8d8d8;
   color: #f30000;
+}
+
+.suggestedColumnData {
+  opacity: 0.5;
+  transition: opacity 0.3s, filter 0.3s;
 }
 
