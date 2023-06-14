@@ -58,7 +58,12 @@ export default function DealScoringTable({ onClose, onSave }) {
   setCriteria(true);
  }
 
-  
+
+ const [isToggled, setIsToggled] = useState(false);
+
+  const handleToggle = () => {
+    setIsToggled(!isToggled);
+  };
   
 
   return (
@@ -89,17 +94,22 @@ export default function DealScoringTable({ onClose, onSave }) {
         {criteria && (
   <>
 <Table data={data} />
-<div style={{ display: 'flex', justifyContent: 'center', marginTop: '3rem', marginBottom:'3rem' }}>
-              <button style={{ fontSize:'Large', backgroundColor: '#126122', color: 'white', padding: '10px 18px', borderRadius: '5px', border: 'none', cursor: 'pointer', transition: 'background-color 0.2s ease-in-out' }} onClick={(e) => {
+<div style={{ display: 'flex', flexDirection:'column', justifyContent: 'center', marginTop: '3rem', marginBottom:'3rem' }}>
+<span className={styles.label1}>Continuous Learning</span>
+<div className={`${styles.toggleSwitch} ${isToggled ? styles.toggled : ''}`} onClick={handleToggle}>  
+  <div className={styles.slider}></div>
+</div>
+
+              <button style={{ margin:'auto',width:'30%', display:'flex',justifyContent: 'center', alignContent:'center', fontSize:'Large', backgroundColor: '#126122', color: 'white', padding: '10px 18px', borderRadius: '5px', border: 'none', cursor: 'pointer', transition: 'background-color 0.2s ease-in-out' }} onClick={(e) => {
     setIsLoading(true);
     setTimeout(() => {
-    onClose && onClose();// Call onClose if it exists
+    onClose();// Call onClose if it exists
     setIsLoading(false);
   }, 2000);
   }}>
                 Generate scoring model
               </button>
-              <div style={{ marginLeft: '1rem' }}>
+              <div style={{ margin:'auto',marginTop: '1rem' }}>
       {isLoading && (
         <RotateSpinner
         size={30} color="#686769" loading={true}
@@ -163,11 +173,11 @@ export default function DealScoringTable({ onClose, onSave }) {
       </div>
       </div>
       </div>
-      <div style={{ display: 'flex', justifyContent: 'center', marginTop: '3rem' }}>
-              <button style={{ fontSize:'Large', backgroundColor: '#126122', color: 'white', padding: '10px 18px', borderRadius: '5px', border: 'none', cursor: 'pointer', transition: 'background-color 0.2s ease-in-out' }} onClick={e => handleSetup()} >
+      <div style={{  display: 'flex', flexDirection:'column', justifyContent: 'center', marginTop: '3rem', marginBottom:'3rem' }}>
+              <button style={{ margin:'auto',width:'30%', display:'flex',justifyContent: 'center', alignContent:'center', fontSize:'Large', backgroundColor: '#126122', color: 'white', padding: '10px 18px', borderRadius: '5px', border: 'none', cursor: 'pointer', transition: 'background-color 0.2s ease-in-out' }} onClick={e => handleSetup()} >
                 Generate AI framework
               </button>
-              <div style={{ marginLeft: '1rem' }}>
+              <div style={{ margin:'auto',marginTop: '1rem',}} >
       {isLoading && (
         <RotateSpinner
         size={30} color="#686769" loading={true}
