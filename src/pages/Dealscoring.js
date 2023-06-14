@@ -7,7 +7,7 @@ import { FaPaperPlane } from 'react-icons/fa';
 import { FaArrowLeft } from 'react-icons/fa';
 import { FaCloudUploadAlt, FaSave } from 'react-icons/fa';
 import DeploymentPopup from 'src/pages/Products/DeploymentPopup.js';
-import DealScoringSB from 'public/Components/DealScoringSB.js';
+import DealScoringSB from 'src/Components/DealscoringSB.js';
 
 
 const { Handledealscoring } = require("public/pipelinePromt.js");
