@@ -391,10 +391,6 @@ margin-top: 2rem;
   margin: 0 20px;
 }
 .loadingAnimation {
-  position: fixed;
-  top: 880px;
-  left: 50%;
-  transform: translate(-50%, -50%);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -404,10 +400,6 @@ margin-top: 2rem;
 
 .loadingAnimationTable {
   position: 'absolute';
-  margin-top: 5px;
-  margin-left: 50px;
-  left: 50%;
-  transform: translate(-50%, -50%);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -647,3 +639,92 @@ margin-top: 2rem;
   transition: opacity 0.3s, filter 0.3s;
 }
 
+.milestoneAnimation {
+  position: relative;
+  width: 65%;
+  height: 30px;
+  margin: 0 auto;
+}
+
+.step {
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: rgb(255, 246, 246);
+  
+}
+
+.step span {
+  font-size: 12px;
+  color: white;
+}
+
+.step.completed {
+  background-color: green;
+}
+
+.step:nth-child(2) {
+  left: 50%;
+}
+
+.step:nth-child(3) {
+  left: 100%;
+}
+
+.line {
+  position: absolute;
+  top: 50%;
+  left: 5px;
+  width: calc(100% - 10px);
+  height: 2px;
+  background-color: rgb(255, 255, 255);
+}
+
+.container1 {
+  
+  margin: 0 auto;
+
+  font-size: small;
+  font-family: 'inter', sans-serif;
+  background-color: transparent;
+  border-radius: 10px;
+  
+}
+
+
+
+.label {
+  display: block;
+  font-family: sans-serif;
+  color: #ffffff;
+  font-size: 0.8rem;
+  padding-top: 10px;
+}
+
+.inputField {
+  display: block;
+  width: 80%;
+  padding: 3px;
+  border: none;
+  border-radius: 4px;
+}
+
+.inputField2 {
+  display: block;
+  width: 80%;
+  padding: 3px;
+  border: none;
+  border-radius: 4px;
+}
+
+.btn {
+  background-color: #4caf50;
+  color: white;
+  padding: 5px;
+  margin-top: 10px;
+  border-radius: 5px;
+  border: none;
+}

@@ -1,7 +1,7 @@
 {
   "name": "lowcode",
   "version": "0.1.0",
-  "proxy":"https://scorr-redeploy.herokuapp.com/",
+  "proxy": "https://scorr-redeploy.herokuapp.com/",
   "private": true,
   "scripts": {
     "dev": "next dev",
@@ -10,8 +10,10 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@fortawesome/fontawesome-free": "^6.4.0",
     "@fortawesome/fontawesome-svg-core": "^6.4.0",
     "@fortawesome/free-solid-svg-icons": "^6.4.0",
+    "@fortawesome/react-fontawesome": "^0.2.0",
     "antd": "^5.4.6",
     "axios": "^1.4.0",
     "eslint": "8.38.0",
@@ -24,13 +26,14 @@
     "open": "^9.1.0",
     "openai": "^3.2.1",
     "react": "^18.2.0",
+    "react-beautiful-dnd": "^13.1.1",
     "react-dom": "18.2.0",
     "react-icons": "^4.8.0",
+    "react-modal": "^3.16.1",
     "request-promise-native": "^1.0.9",
     "styled-components": "^5.3.10"
   },
   "devDependencies": {
     "dotenv-webpack": "^8.0.1"
   }
-  
 }

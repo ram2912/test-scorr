@@ -7,6 +7,7 @@ import { FaPaperPlane } from 'react-icons/fa';
 import { FaArrowLeft } from 'react-icons/fa';
 import { FaCloudUploadAlt, FaSave } from 'react-icons/fa';
 import DeploymentPopup from 'src/pages/Products/DeploymentPopup.js';
+import DealScoringSB from 'public/Components/DealScoringSB.js';
 
 
 const { Handledealscoring } = require("public/pipelinePromt.js");
@@ -85,31 +86,55 @@ console.log(showNextStep);
 }, []);
 
   return (
-    <>
-{!showDeals && (
-  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '70vh', position: 'relative' }}>
-    <img src="./White logo - no background.png" alt="Logo" style={{ width: '25%', height: 'auto', zIndex: 1 }} />
-  </div>
-)}
+<>
+     <div style={{ display: 'flex'}}>
+    <div style={{ flex: '2', position: 'relative' }}>
+  <DealScoringSB  style={{ position: 'absolute', top: 0, left: 0,}} onPop={() => setShowPopup(true)}/> 
+</div>
+<div style={{ flex: '8' , display: 'flex', flexDirection: 'column',}}>
 
-            
+<div style={{ flex: '10%', position: 'relative', marginLeft:'5%'}}>
+      
+
+        
+
+        
+      
+      </div>
+      <div style={{ flex: '65%',border: '1px solid #3B3B3B',borderRadius: '10px', position: 'relative', backgroundColor: '#010102', height: '100vh', paddingTop: '20px', overflow: 'hidden', boxShadow: '0 0 15px rgba(0, 0, 0, 0.3)', marginLeft: '5%', marginRight:'5%'}}>
+
+      <>
+        <div style={{
+       
+    margin: '0 auto',
+    marginLeft: '5%',
+    width: '90%',
+    height: '80%',
+  borderRadius: '5px',
+  overflow: 'hidden',
+  boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)',
+  backgroundColor: 'transparent',
+  paddingTop: '1rem',
+  boxSizing: 'border-box', }}>
     {showDeals && (  
       <>
           <div
   style={{
     margin: '0 auto',
     flex: 1,
-    width: '60%',
-    minHeight: '190px',
+    width: '90%',
+    minHeight: '250px',
     borderRadius: '5px',
-    overflow: 'hidden',
+    overflowY: 'auto',
     boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)',
-    backgroundColor: '#FFFFFF',
-    marginTop: '10rem',
+    
     boxSizing: 'border-box',
   }}
 >
-  <table style={{borderCollapse: 'collapse', width: '100%', borderRadius: '5px'}}>
+  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '1rem', borderBottom: '1px solid #E5E5E5', border:'none' }}>
+    <h2 style={{ fontWeight: '400', fontFamily: 'inter, sans-serif', fontSize:'medium',color: 'white' }}>Deals Preview</h2>
+    </div>
+  <table style={{borderCollapse: 'collapse', width: '100%', borderRadius: '5px',backgroundColor: '#FFFFFF',}}>
     <thead style={{ fontFamily: 'sans-serif',
     color: 'white'}}>
       <tr>
@@ -198,22 +223,30 @@ console.log(showNextStep);
 </div>
           </>
 )}
+            
+        </div>
+        
+
+         </>
+            </div>
+            <div style={{ flex: '20%', position: 'relative'}}>
 
           <div
               style={{
-                position: 'fixed',
-    bottom: '5rem',
-    left: '50%',
-    transform: 'translateX(-50%)',
+    
+    bottom: '1rem',
+    
+   
     margin: '0 auto',
-    width: '80%',
-    flex: 1,
+    
+    width: '90%',
+    
     minHeight: '170px',
     borderRadius: '5px',
     overflow: 'hidden',
     boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)',
     backgroundColor: 'transparent',
-    paddingTop: '6rem',
+    paddingTop: '2rem',
     boxSizing: 'border-box',
               }}
             >
@@ -221,13 +254,13 @@ console.log(showNextStep);
             style={{margin: '0 auto',
                 position: 'relative',
   width: '50%',
-  height: '180px',
+  height: '150px',
   padding: '2rem',
 
   boxSizing: 'border-box',
   display: 'flex',
     flexDirection: 'column-reverse',
-    backgroundColor: '#151515',
+    backgroundColor: 'black',
     borderRadius: '10px',
     overflow: 'auto', 
         }}
@@ -270,12 +303,12 @@ console.log(showNextStep);
             type="text"
             id="message-input"
             name="message"
-            placeholder="What do you want to build?"
+            placeholder="Tell me what you want to build..."
             autocomplete="off"
             style={{
               display: 'flex',
               color: '#fff',
-              backgroundColor:'#151515',
+              backgroundColor:'black',
               flex: 1,
               padding: '8px 10px',
               borderRadius: '5px',
@@ -320,6 +353,8 @@ console.log(showNextStep);
           </div>
         </div>
       )}
+            </div>
+            
 
 <div style={{ position: 'absolute', top: '1rem', right: '1rem', padding: '10px' }}>
   <button style={{ backgroundColor: '#255690', color: 'white', fontFamily: 'sans-serif', padding: '10px', border: 'none', borderRadius: '5px', cursor: 'pointer', marginRight: '20px', transition: 'background-color 0.3s' }} class="button" onMouseOver={(e) => e.target.style.backgroundColor = '#1C416F'} onMouseOut={(e) => e.target.style.backgroundColor = '#255690'} onClick={() => setShowDeploymentPopup(true)}>
@@ -334,12 +369,16 @@ console.log(showNextStep);
           
           <div style={{ position: 'absolute', top: '1rem', left: '1rem', padding: '10px' }}>
   <Link href="/" passHref>
-    <span style={{ marginTop: '2rem', color: '#fff', cursor: 'pointer', fontFamily: 'sans-serif'}}>
+    <span style={{ marginLeft: '17rem', marginTop: '2rem', color: '#fff', cursor: 'pointer', fontFamily: 'sans-serif'}}>
       <FaArrowLeft size={16} style={{ marginRight: '8px' }} />
       Back to home
     </span>
   </Link>
 </div>
+
+
+
+
           {showPopup && (
   <>
     <div
@@ -359,21 +398,21 @@ console.log(showNextStep);
       className="popup"
       style={{
         position: 'fixed',
-        top: '50%',
-        left: '50%',
-        transform: 'translate(-50%, -50%)',
-        width: '70%',
-        maxHeight: '80%',
-        overflow: 'auto',
+        top: '5%',
+        left: '10%',
+        width: '80%',
+        maxHeight: '100%',
         margin: '0 auto',
-        padding: '2rem',
         borderRadius: '5px',
-        backgroundColor: '#040506',
-        zIndex: 9999, // set a high value for z-index
-        // other styles...
+        zIndex: 9999,
       }}
     >
-      <DealScoringTable onClose={() => setShowPopup(false)} onSave={handleSave}/>
+      <DealScoringTable onClose={() => {
+  setShowPopup(false);
+  setShowDeals(true);
+  handleSave();
+}}
+/>
     </div>
   </>
 )}
@@ -385,8 +424,8 @@ console.log(showNextStep);
      
 </>
 )}
-
+</div>
+</div>
     </>
   );
 }
-

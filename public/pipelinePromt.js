@@ -42,7 +42,7 @@ export async function Handledealscoring(message, setIsLoading, setShowDeals, rec
   if (data.choices[0].text.trim() === "Yes") {
     // Show popup screen with pipeline management framework
     setTimeout(() => {
-      setShowDeals(true);
+      setShowPopup(true);
       setIsLoading(false);
       receiveMessage("Here it is! Would you like to take a look at the Deal Scoring framework I used?", "bot");
       
