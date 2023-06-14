@@ -3,7 +3,7 @@ import styles from '@/styles/Home.module.css';
 import ProcessTable from './Products/ProcessTable';
 import React, { useState, useEffect } from 'react';
 import { FaCheck, FaArrowLeft, FaPlus } from 'react-icons/fa';
-import SetupSB from '../../public/Components/setupSB';
+import SetupSB from '../Components/setupSB';
 
 
 export default function ProcessSetup() {

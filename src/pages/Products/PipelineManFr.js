@@ -3,11 +3,11 @@ import Link from 'next/link';
 import { questions } from 'src/pages/Dealscoring.js';
 import { setCurrentQuestion } from 'src/pages/Dealscoring.js';
 import styles from '@/styles/Home.module.css';
-import CRMFilter from 'public/Components/CrmAPI.js';
-import EngagementAPI from '../../../public/Components/EngagementAPI';
+import CRMFilter from '../../Components/CrmAPI';
+import EngagementAPI from '../../Components/EngagementAPI';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowDown } from '@fortawesome/free-solid-svg-icons';
-import Table from 'public/Components/ScoringSetup.js';
+import Table from 'src/Components/ScoringSetup.js';
 
 
 export default function DealScoringTable({ onClose, onSave }) {
