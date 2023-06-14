@@ -29,7 +29,9 @@
     "react-beautiful-dnd": "^13.1.1",
     "react-dom": "18.2.0",
     "react-icons": "^4.8.0",
+    "react-loader-spinner": "^5.3.4",
     "react-modal": "^3.16.1",
+    "react-spinners-kit": "^1.9.1",
     "request-promise-native": "^1.0.9",
     "styled-components": "^5.3.10"
   },

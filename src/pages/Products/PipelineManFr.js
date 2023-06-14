@@ -8,6 +8,9 @@ import EngagementAPI from '../../Components/EngagementAPI';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowDown } from '@fortawesome/free-solid-svg-icons';
 import Table from 'src/Components/ScoringSetup.js';
+import { RotateSpinner } from 'react-spinners-kit';
+
+
 
 
 export default function DealScoringTable({ onClose, onSave }) {
@@ -45,13 +48,15 @@ export default function DealScoringTable({ onClose, onSave }) {
   }
 
   function handleSetup() {
+    setIsLoading(true);
     setTimeout(() => {
     setAPI(false);
     setNextTool(false);
     setResources(false);
+    setIsLoading(false);
   }, 2000);
   setCriteria(true);
-  }
+ }
 
   
   
@@ -85,9 +90,23 @@ export default function DealScoringTable({ onClose, onSave }) {
   <>
 <Table data={data} />
 <div style={{ display: 'flex', justifyContent: 'center', marginTop: '3rem', marginBottom:'3rem' }}>
-              <button style={{ fontSize:'Large', backgroundColor: '#126122', color: 'white', padding: '10px 18px', borderRadius: '5px', border: 'none', cursor: 'pointer', transition: 'background-color 0.2s ease-in-out' }} onClick={onClose} >
+              <button style={{ fontSize:'Large', backgroundColor: '#126122', color: 'white', padding: '10px 18px', borderRadius: '5px', border: 'none', cursor: 'pointer', transition: 'background-color 0.2s ease-in-out' }} onClick={(e) => {
+    setIsLoading(true);
+    setTimeout(() => {
+    onClose && onClose();// Call onClose if it exists
+    setIsLoading(false);
+  }, 2000);
+  }}>
                 Generate scoring model
               </button>
+              <div style={{ marginLeft: '1rem' }}>
+      {isLoading && (
+        <RotateSpinner
+        size={30} color="#686769" loading={true}
+        
+        />
+      )}
+      </div>
             </div>
 </>
 )}
@@ -104,7 +123,7 @@ export default function DealScoringTable({ onClose, onSave }) {
     <img src="./salesforce-logo.png" alt="Logo" style={{ width: '50%', height: 'auto', zIndex: 1 }} />
   </button>
   <button style={{ flex: '1', display: 'flex', flexDirection: 'column', alignItems: 'center', borderRadius: '5px', border: '1px solid gray', padding: '10px', margin: '0 10px', background: 'none', cursor: 'pointer' }} onMouseOver={(e) => e.target.style.borderColor = '#266C95'} onMouseOut={(e) => e.target.style.borderColor = 'grey'} onClick={e => handleNextTool()}>
-    <img src="./bigquery.png" alt="Logo" style={{ width: '40%', height: 'auto', zIndex: 1 }} />
+    <img src="./629881477e802c4d1eb2007b.png" alt="Logo" style={{ width: '70%', height: 'auto', zIndex: 1 }} />
   </button>
   <button style={{ flex: '1', display: 'flex', flexDirection: 'column', alignItems: 'center', borderRadius: '5px', border: '1px solid gray', padding: '10px', margin: '0 10px', background: 'none', cursor: 'pointer' }} onMouseOver={(e) => e.target.style.borderColor = '#266C95'} onMouseOut={(e) => e.target.style.borderColor = 'grey'}>
     <img src="./hubspot-logo.png" alt="Logo" style={{ width: '50%', height: 'auto', zIndex: 1 }} />
@@ -148,21 +167,25 @@ export default function DealScoringTable({ onClose, onSave }) {
               <button style={{ fontSize:'Large', backgroundColor: '#126122', color: 'white', padding: '10px 18px', borderRadius: '5px', border: 'none', cursor: 'pointer', transition: 'background-color 0.2s ease-in-out' }} onClick={e => handleSetup()} >
                 Generate AI framework
               </button>
+              <div style={{ marginLeft: '1rem' }}>
+      {isLoading && (
+        <RotateSpinner
+        size={30} color="#686769" loading={true}
+        
+        />
+      )}
+      </div>
             </div>
+            
       </>
       )}
       </div>
       </div>
 </>
 )}
-
   </>
 )}
   </div>
-  
-
-
-
 </div>
       );
       

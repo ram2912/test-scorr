@@ -20,7 +20,7 @@ export default function EngagementAPI() {
 
   return (
     <div className={styles.container1}>
-      <h2 style={{fontWeight: '300', paddingBottom:'10px'}}>Engagement: Gong </h2>
+      <h2 style={{fontWeight: '300', paddingBottom:'10px'}}>Gong </h2>
       <div className={styles.formGroup}>
       <label className={styles.label} htmlFor="funnel-name">Record type</label>
         <select

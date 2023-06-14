@@ -20,7 +20,7 @@ export default function CRMFilter() {
 
   return (
     <div className={styles.container1}>
-      <h2 style={{fontWeight: '300', paddingBottom:'10px'}}>CRM: Salesforce </h2>
+      <h2 style={{fontWeight: '300', paddingBottom:'10px'}}>Salesforce </h2>
       <div className={styles.formGroup}>
       <label className={styles.label} htmlFor="funnel-name">Object:</label>
         <select
