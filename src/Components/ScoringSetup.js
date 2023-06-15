@@ -102,7 +102,7 @@ export default function Table ({ data, handleScoreChange, handleFactorChange, on
         </div>
       {showAddForm && (
         <div style={{display:'flex', flex:'40%', flexDirection:'column', width:'40%', justifyContent:'center',alignContent:'center', margin:'auto', marginTop: '40px', backgroundColor:'#323232', border:'1px solid grey', borderRadius:'8px' }}>
-          <input style={{backgroundColor: 'black',fontFamily: 'Inter, sans-serif',padding:'3px',fontWeight: '300',width: '80%',margin: 'auto', marginTop:'20px', border:'1px solid black',borderRadius:'3px'}} placeholder='Enter new factor'
+          <input style={{backgroundColor: 'black',color:'white',fontFamily: 'Inter, sans-serif',padding:'3px',fontWeight: '300',width: '80%',margin: 'auto', marginTop:'20px', border:'1px solid black',borderRadius:'3px'}} placeholder='Enter new factor'
            value={newFactor} onChange={(e) => setNewFactor(e.target.value)} />
            <input style={{backgroundColor: 'black',fontFamily: 'Inter, sans-serif',padding:'3px',fontWeight: '300',width: '80%',margin: 'auto', marginTop:'5px', border:'1px solid black',borderRadius:'3px'}} placeholder='Description'
            />

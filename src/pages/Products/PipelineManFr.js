@@ -130,13 +130,13 @@ export default function DealScoringTable({ onClose, onSave }) {
   <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between' }}>
   <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: '2rem' }}>
   <button style={{ flex: '1', display: 'flex', flexDirection: 'column', alignItems: 'center', borderRadius: '5px', border: '1px solid gray', padding: '10px', margin: '0 10px', background: 'none', cursor: 'pointer' }} onMouseOver={(e) => e.target.style.borderColor = '#266C95'} onMouseOut={(e) => e.target.style.borderColor = 'grey'} onClick={e => handleResource()}>
-    <img src="./salesforce-logo.png" alt="Logo" style={{ width: '50%', height: 'auto', zIndex: 1 }} />
+    <img src="./hubspot-logo.png" alt="Logo" style={{ width: '50%', height: 'auto', zIndex: 1 }} />
   </button>
   <button style={{ flex: '1', display: 'flex', flexDirection: 'column', alignItems: 'center', borderRadius: '5px', border: '1px solid gray', padding: '10px', margin: '0 10px', background: 'none', cursor: 'pointer' }} onMouseOver={(e) => e.target.style.borderColor = '#266C95'} onMouseOut={(e) => e.target.style.borderColor = 'grey'} onClick={e => handleNextTool()}>
     <img src="./629881477e802c4d1eb2007b.png" alt="Logo" style={{ width: '70%', height: 'auto', zIndex: 1 }} />
   </button>
   <button style={{ flex: '1', display: 'flex', flexDirection: 'column', alignItems: 'center', borderRadius: '5px', border: '1px solid gray', padding: '10px', margin: '0 10px', background: 'none', cursor: 'pointer' }} onMouseOver={(e) => e.target.style.borderColor = '#266C95'} onMouseOut={(e) => e.target.style.borderColor = 'grey'}>
-    <img src="./hubspot-logo.png" alt="Logo" style={{ width: '50%', height: 'auto', zIndex: 1 }} />
+    <img src="./salesforce-logo.png" alt="Logo" style={{ width: '50%', height: 'auto', zIndex: 1 }} />
   </button>
   <button style={{ flex: '1', display: 'flex', flexDirection: 'column', alignItems: 'center', borderRadius: '5px', border: '1px solid gray', padding: '10px', margin: '0 10px', background: 'none', cursor: 'pointer' }} onMouseOver={(e) => e.target.style.borderColor = '#266C95'} onMouseOut={(e) => e.target.style.borderColor = 'grey'}>
     <img src="./Google_Sheets_logo_(2014-2020).svg.png" alt="Logo" style={{ width: '25%', height: 'auto', zIndex: 1 }} />
