@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import styles from '@/styles/Home.module.css';
 import { FaCog, FaPlus } from 'react-icons/fa';
-import config from './config.js'
+import config from 'public/config.js'
 
 const funnelUrl = config.funnelUrl;
 const conversionRateUrl = config.endpoints.conversionRateUrl;

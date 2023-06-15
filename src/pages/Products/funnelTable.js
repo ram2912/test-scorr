@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import config from './config.js';
+import config from 'public/config.js';
 
 const pipelinesUrl = config.endpoints.pipelinesUrl;
 const storePipelinesUrl = config.endpoints.storePipelinesUrl;
