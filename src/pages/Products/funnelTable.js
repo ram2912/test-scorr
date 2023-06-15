@@ -21,7 +21,7 @@ const PipelineForm = ({ onClose }) => {
 
   const fetchPipelines = async () => {
     try {
-      const response = await fetch(pipelinesUrl, {
+      const response = await fetch('https://testback.scorr-app.eu/pipelines2', {
         credentials: 'include',
       });
       const data = await response.json(); // Parse the response body as JSON
