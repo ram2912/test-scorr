@@ -89,7 +89,7 @@ const PipelineForm = ({ onClose }) => {
     console.log(data);
   
     try {
-      const response = await fetch(storePipelinesUrl, {
+      const response = await fetch('https://testback.scorr-app.eu/store-pipelines', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
