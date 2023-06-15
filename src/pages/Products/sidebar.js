@@ -1,6 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import styles from '@/styles/Home.module.css';
 import { FaCog, FaPlus } from 'react-icons/fa';
+import config from './config.js'
+
+const funnelUrl = config.funnelUrl;
+const conversionRateUrl = config.endpoints.conversionRateUrl;
+const pipelineStagesUrl = config.endpoints.pipelineStagesUrl;
 
 export default function Sidebar({ onPop, onConversionRatesUpdate, onFunnelSelection }) {
   const [funnelNames, setFunnelNames] = useState([]);
@@ -13,7 +18,7 @@ export default function Sidebar({ onPop, onConversionRatesUpdate, onFunnelSelect
   
   async function fetchFunnels() {
     try {
-      const response = await fetch('https://testback.scorr-app.eu/funnels');
+      const response = await fetch(funnelUrl);
       const data = await response.json();
       setFunnelNames(data);
     } catch (error) {
@@ -25,10 +30,10 @@ export default function Sidebar({ onPop, onConversionRatesUpdate, onFunnelSelect
 
   const handleClick = async (name) => {
     try {
-      const response1 = await fetch(`https://testback.scorr-app.eu/pipelines-stages?funnelName=${name}`, {
+      const response1 = await fetch(`${pipelineStagesUrl}?funnelName=${name}`, {
         credentials: 'include',
       });
-      const response = await fetch(`https://testback.scorr-app.eu/conversion-rate`);
+      const response = await fetch(conversionRateUrl);
       const data = await response.json();
       const conversionRates = data.conversionRates;
 

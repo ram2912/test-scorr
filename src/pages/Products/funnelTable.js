@@ -1,4 +1,8 @@
 import React, { useState, useEffect } from 'react';
+import config from './config.js';
+
+const pipelinesUrl = config.endpoints.pipelinesUrl;
+const storePipelinesUrl = config.endpoints.storePipelinesUrl;
 
 const PipelineForm = ({ onClose }) => {
   const [leadPipeline, setLeadPipeline] = useState('');
@@ -17,7 +21,7 @@ const PipelineForm = ({ onClose }) => {
 
   const fetchPipelines = async () => {
     try {
-      const response = await fetch('https://testback.scorr-app.eu/pipelines2', {
+      const response = await fetch(pipelinesUrl, {
         credentials: 'include',
       });
       const data = await response.json(); // Parse the response body as JSON
@@ -85,7 +89,7 @@ const PipelineForm = ({ onClose }) => {
     console.log(data);
   
     try {
-      const response = await fetch('https://testback.scorr-app.eu/store-pipelines', {
+      const response = await fetch(storePipelinesUrl, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

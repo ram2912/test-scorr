@@ -68,13 +68,7 @@ export default function Funnel() {
 console.log(currentQuestion);
   useEffect(() => {
 
-    fetch('https://testback.scorr-app.eu/deals', {
-        credentials: 'include',
-        })
-        .then((response) => response.json())
-        .then((data) => {
-            console.log(data);
-        });
+    
 
         function handleClose() {
             // add your save logic here
