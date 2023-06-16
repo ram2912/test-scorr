@@ -73,7 +73,7 @@ const PipelineForm = ({ onClose }) => {
   const data = {
     funnelName: funnelName,
     leadPipeline: {
-      id: pipelineIds[0],
+      id: pipelineIds[1],
       name: leadPipeline,
     },
     bdrPipeline: {
@@ -81,7 +81,7 @@ const PipelineForm = ({ onClose }) => {
       name: bdrPipeline,
     },
     salesPipeline: {
-      id: pipelineIds[1],
+      id: pipelineIds[0],
       name: salesPipeline,
     },
   };
