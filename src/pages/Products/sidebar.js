@@ -7,6 +7,11 @@ const funnelUrl = config.funnelUrl;
 const conversionRateUrl = config.endpoints.conversionRateUrl;
 const pipelineStagesUrl = config.endpoints.pipelineStagesUrl;
 
+console.log(funnelUrl);
+console.log(conversionRateUrl);
+console.log(pipelineStagesUrl);
+
+
 export default function Sidebar({ onPop, onConversionRatesUpdate, onFunnelSelection }) {
   const [funnelNames, setFunnelNames] = useState([]);
   const [selectedFunnel, setSelectedFunnel] = useState('');
