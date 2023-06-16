@@ -3,7 +3,7 @@ import styles from '@/styles/Home.module.css';
 import { FaCog, FaPlus } from 'react-icons/fa';
 import config from 'public/config.js'
 
-const funnelUrl = config.funnelUrl;
+const funnelUrl = config.endpoints.funnelUrl;
 const conversionRateUrl = config.endpoints.conversionRateUrl;
 const pipelineStagesUrl = config.endpoints.pipelineStagesUrl;
 
