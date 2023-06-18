@@ -5,6 +5,9 @@ const devConfig = {
     conversionRateUrl: 'https://testback.scorr-app.eu/conversion-rate',
     pipelinesUrl: 'https://testback.scorr-app.eu/pipelines2',
     storePipelinesUrl: 'https://testback.scorr-app.eu/store-pipelines',
+    authorizationUrl: 'https://testback.scorr-app.eu/install',
+    authorizationStatusUrl: 'https://testback.scorr-app.eu/authorization-status',
+    
   },
 };
 
@@ -14,7 +17,9 @@ const prodConfig = {
     pipelineStagesUrl: 'https://backend.scorr-app.eu/pipelines-stages',
     conversionRateUrl: 'https://backend.scorr-app.eu/conversion-rate',
     pipelinesUrl: 'https://backend.scorr-app.eu/pipelines2',
-    storePipelinesUrl: 'https://backend.scorr-app.eu/store-pipelines', // Production another endpoint URL
+    storePipelinesUrl: 'https://backend.scorr-app.eu/store-pipelines',
+    authorizationUrl: 'https://backend.scorr-app.eu/install',
+    authorizationStatusUrl: 'https://testback.scorr-app.eu/authorization-status' 
   },
 };
 

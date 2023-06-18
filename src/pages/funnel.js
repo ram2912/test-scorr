@@ -12,6 +12,7 @@ import Sidebar from './Products/sidebar'
 import ConversionRatesPage from 'public/ConversionRatesPage.js';
 import config from 'public/config.js';
 import { env } from '../../next.config';
+import { useRouter } from 'next/router';
 
 const environment = env;
 console.log(environment);
@@ -20,9 +21,8 @@ console.log(environment);
 
 const { Handlefunnel } = require("../../public/funnelPromt")
 
-
 const { handleDealScoring } = require("../../public/pipelinePromt");
-
+ const authorizationStatusUrl = config.endpoints.authorizationStatusUrl;
 
 
 
@@ -36,6 +36,8 @@ const questions = [
 
 
 export default function Funnel() {
+  const router = useRouter();
+  console.log('Router',router);
     const [currentQuestion, setCurrentQuestion] = useState(questions[0]);
   const [messages, setMessages] = useState([]);
     const [showPopup, setShowPopup] = useState(false);
@@ -56,10 +58,6 @@ export default function Funnel() {
         setSelectedFunnel(funnelName);
       };
 
-      
-
-
-   
     function handleSave() {
       // add your save logic here
       setCurrentQuestion(questions[1]);
@@ -71,8 +69,33 @@ export default function Funnel() {
       setShowPopup(false);
     }
 console.log(currentQuestion);
+
+const checkAuthorizationStatus = async () => {
+  try {
+    const response = await fetch(authorizationStatusUrl, {
+      credentials: 'include'
+    });
+    const data = await response.json();
+
+    if (response.ok) {
+      console.log('Hubspot Connection', data.status);
+      
+    } else {
+      console.log('Hubspot Connection',data.status); 
+      
+      router.push('/login');// "unauthorized"
+      
+    }
+  } catch (error) {
+    console.log('Error checking authorization status:', error);
+    
+    router.push('/login');
+  }
+};
+
   useEffect(() => {
 
+    checkAuthorizationStatus();
     
 
         function handleClose() {
@@ -134,7 +157,11 @@ console.log(showNextStep);
     setMessages(prevMessages => [...prevMessages, { message, sender }]);
   }
 
-  // Rest of your code...
+
+
+  
+
+
 
 }, []);
 
