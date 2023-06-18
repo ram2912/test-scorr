@@ -11,8 +11,9 @@ import PipelineForm from './Products/funnelTable';
 import Sidebar from './Products/sidebar'
 import ConversionRatesPage from 'public/ConversionRatesPage.js';
 import config from 'public/config.js';
+import { env } from '../../next.config';
 
-const environment = process.env.NODE_ENV;
+const environment = env;
 console.log(environment);
 
 

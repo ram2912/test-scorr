@@ -18,11 +18,13 @@ const prodConfig = {
   },
 };
 
+const env = 'development';
+
 const config = {
   endpoints: {},
 };
 
-if (process.env.NODE_ENV === 'development') {
+if (env === 'development') {
   config.endpoints = devConfig.endpoints;
 } else {
   config.endpoints = prodConfig.endpoints;
