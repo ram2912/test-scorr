@@ -12,7 +12,7 @@ import config from '../../public/config';
 const authorizationStatusUrl = config.endpoints.authorizationStatusUrl;
 
 const inter = Inter({ subsets: ['latin'] })
-console.log(process.env.OPENAI_API);
+
 export default function Home() {
   const router = useRouter();
   const checkAuthorizationStatus = async () => {
