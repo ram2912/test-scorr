@@ -186,24 +186,24 @@ console.log(showNextStep);
 </div>
 <div style={{ flex: '8' , display: 'flex', flexDirection: 'column',}}>
 
-<div style={{ flex: '15%', position: 'relative', marginLeft:'5%'}}>
+<div style={{ flex: '25%', position: 'relative', marginLeft:'5%'}}>
       
 
         
 <h1 style={{ fontSize: '25px', fontFamily: 'IndustrialSans, sans-serif', marginTop: '5rem' }}>
         Funnel: <span style={{ color: 'white',letterSpacing: '0.5px'  }}>{selectedFunnel}</span>
       </h1>
-      <h2 style={{ fontSize: '10px', fontFamily: 'inter, sans-serif',fontWeight:'300', marginTop: '1rem' }}>
+      <h2 style={{ fontSize: '15px', fontFamily: 'inter, sans-serif',fontWeight:'300', marginTop: '1rem' }}>
         Lead Pipeline: <span style={{ color: 'white',letterSpacing: '0.5px'  }}>{leadPipeline}</span>
       </h2>
-      <h2 style={{ fontSize: '10px', fontFamily: 'inter, sans-serif',fontWeight:'300', marginTop: '0.5rem' }}>
+      <h2 style={{ fontSize: '15px', fontFamily: 'inter, sans-serif',fontWeight:'300', marginTop: '0.5rem' }}>
         BDR Pipeline: <span style={{ color: 'white',letterSpacing: '0.5px'  }}>{bdrPipeline}</span>
       </h2>
-      <h2 style={{ fontSize: '10px', fontFamily: 'inter, sans-serif', fontWeight:'300', marginTop: '0.5rem' }}>
+      <h2 style={{ fontSize: '15px', fontFamily: 'inter, sans-serif', fontWeight:'300', marginTop: '0.5rem', marginBottom:'0.5rem' }}>
         Sales Pipeline: <span style={{ color: 'white',letterSpacing: '0.5px'  }}>{salesPipeline}</span>
       </h2>
       </div>
-      <div style={{ flex: '65%',border: '1px solid #3B3B3B',borderRadius: '10px', position: 'relative', backgroundColor: '#010102', height: '100vh', paddingTop: '30px', overflow: 'hidden', boxShadow: '0 0 15px rgba(0, 0, 0, 0.3)', marginLeft: '5%', marginRight:'5%'}}>
+      <div style={{ flex: '55%',border: '1px solid #3B3B3B',borderRadius: '10px', position: 'relative', backgroundColor: '#010102', height: '100vh', paddingTop: '30px', overflow: 'hidden', boxShadow: '0 0 15px rgba(0, 0, 0, 0.3)', marginLeft: '5%', marginRight:'5%'}}>
 
       <>
         <div style={{
