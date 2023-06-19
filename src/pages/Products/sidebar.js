@@ -9,7 +9,7 @@ import { AiOutlineFunnelPlot } from 'react-icons/ai';
 const funnelUrl = config.endpoints.funnelUrl;
 const conversionRateUrl = config.endpoints.conversionRateUrl;
 const pipelineStagesUrl = config.endpoints.pipelineStagesUrl;
-const pipelineNameUrl = config.endpoints.pipelinesUrl;
+const pipelineNameUrl = config.endpoints.pipelineNameUrl;
 
 console.log(funnelUrl);
 console.log(conversionRateUrl);
