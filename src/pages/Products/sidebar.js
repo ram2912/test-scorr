@@ -9,6 +9,7 @@ import { AiOutlineFunnelPlot } from 'react-icons/ai';
 const funnelUrl = config.endpoints.funnelUrl;
 const conversionRateUrl = config.endpoints.conversionRateUrl;
 const pipelineStagesUrl = config.endpoints.pipelineStagesUrl;
+const pipelineNameUrl = config.endpoints.pipelinesUrl;
 
 console.log(funnelUrl);
 console.log(conversionRateUrl);
@@ -18,6 +19,7 @@ console.log(pipelineStagesUrl);
 export default function Sidebar({ onPop, onConversionRatesUpdate, onFunnelSelection }) {
   const [funnelNames, setFunnelNames] = useState([]);
   const [selectedFunnel, setSelectedFunnel] = useState('');
+
   
 
   useEffect(() => {
@@ -41,6 +43,20 @@ export default function Sidebar({ onPop, onConversionRatesUpdate, onFunnelSelect
       const response1 = await fetch(`${pipelineStagesUrl}?funnelName=${name}`, {
         credentials: 'include',
       });
+
+      const response2 = await fetch(`${pipelineNameUrl}?funnelName=${name}`, {
+        credentials: 'include',
+        });
+      
+      const data2 = await response2.json();
+      const leadPipeline = data2.lead_pipeline_name;
+      const bdrPipeline = data2.bdr_pipeline_name;
+      const salesPipeline = data2.sales_pipeline_name;
+
+      console.log(leadPipeline);
+      console.log(bdrPipeline);
+      console.log(salesPipeline);
+
       const response = await fetch(conversionRateUrl);
       const data = await response.json();
       const conversionRates = data.conversionRates;

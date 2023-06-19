@@ -7,6 +7,7 @@ const devConfig = {
     storePipelinesUrl: 'https://testback.scorr-app.eu/store-pipelines',
     authorizationUrl: 'https://testback.scorr-app.eu/install',
     authorizationStatusUrl: 'https://testback.scorr-app.eu/authorization-status',
+    pipelineNameUrl: 'https://testback.scorr-app.eu/pipelines-names',
     
   },
 };
@@ -19,11 +20,12 @@ const prodConfig = {
     pipelinesUrl: 'https://backend.scorr-app.eu/pipelines2',
     storePipelinesUrl: 'https://backend.scorr-app.eu/store-pipelines',
     authorizationUrl: 'https://backend.scorr-app.eu/install',
-    authorizationStatusUrl: 'https://testback.scorr-app.eu/authorization-status' 
+    authorizationStatusUrl: 'https://testback.scorr-app.eu/authorization-status',
+    pipelineNameUrl: 'https://testback.scorr-app.eu/pipelines-names',
   },
 };
 
-const env = 'production'; // 'development' or 'production'
+const env = 'development'; // 'development' or 'production'
 
 const config = {
   endpoints: {},
