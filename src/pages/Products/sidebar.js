@@ -16,7 +16,7 @@ console.log(conversionRateUrl);
 console.log(pipelineStagesUrl);
 
 
-export default function Sidebar({ onPop, onConversionRatesUpdate, onFunnelSelection }) {
+export default function Sidebar({ onPop, onConversionRatesUpdate, onFunnelSelection, onLeadPipelineSelection, onBdrPipelineSelection, onSalesPipelineSelection }) {
   const [funnelNames, setFunnelNames] = useState([]);
   const [selectedFunnel, setSelectedFunnel] = useState('');
 
@@ -60,7 +60,10 @@ export default function Sidebar({ onPop, onConversionRatesUpdate, onFunnelSelect
       const response = await fetch(conversionRateUrl);
       const data = await response.json();
       const conversionRates = data.conversionRates;
-
+      
+      onLeadPipelineSelection(leadPipeline);
+      onBdrPipelineSelection(bdrPipeline);
+      onSalesPipelineSelection(salesPipeline);
       onConversionRatesUpdate(conversionRates);
       setSelectedFunnel(name);
       onFunnelSelection(name);

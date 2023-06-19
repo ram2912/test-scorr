@@ -51,11 +51,24 @@ export default function Funnel() {
     const [leadPipeline, setLeadPipeline] = useState('');
   const [bdrPipeline, setBdrPipeline] = useState('');
   const [salesPipeline, setSalesPipeline] = useState('');
+  
 
     const handleConversionRatesUpdate = (rates) => { setConversionRates(rates) };
 
     const handleFunnelSelection = (funnelName) => {
         setSelectedFunnel(funnelName);
+      };
+
+    const handleLeadPipelineSelection = (pipelineName) => {
+        setLeadPipeline(pipelineName);
+      };
+
+    const handleBdrPipelineSelection = (pipelineName) => {
+        setBdrPipeline(pipelineName);
+      };
+
+    const handleSalesPipelineSelection = (pipelineName) => {
+        setSalesPipeline(pipelineName);
       };
 
     function handleSave() {
@@ -169,7 +182,7 @@ console.log(showNextStep);
     <>
      <div style={{ display: 'flex'}}>
     <div style={{ flex: '2', position: 'relative' }}>
-  <Sidebar onConversionRatesUpdate={handleConversionRatesUpdate} onFunnelSelection={handleFunnelSelection} style={{ position: 'absolute', top: 0, left: 0,}} onPop={() => setShowPopup(true)}/> 
+  <Sidebar onConversionRatesUpdate={handleConversionRatesUpdate} onFunnelSelection={handleFunnelSelection} onLeadPipelineSelection={handleLeadPipelineSelection} onBdrPipelineSelection={handleBdrPipelineSelection} onSalesPipelineSelection={handleSalesPipelineSelection} style={{ position: 'absolute', top: 0, left: 0,}} onPop={() => setShowPopup(true)}/> 
 </div>
 <div style={{ flex: '8' , display: 'flex', flexDirection: 'column',}}>
 
@@ -179,6 +192,9 @@ console.log(showNextStep);
         
 <h1 style={{ fontSize: '25px', fontFamily: 'IndustrialSans, sans-serif', marginTop: '5rem' }}>
         Funnel: <span style={{ color: 'white',letterSpacing: '0.5px'  }}>{selectedFunnel}</span>
+      </h1>
+      <h1 style={{ fontSize: '25px', fontFamily: 'IndustrialSans, sans-serif', marginTop: '5rem' }}>
+        Lead Pipeline: <span style={{ color: 'white',letterSpacing: '0.5px'  }}>{leadPipeline}</span>
       </h1>
         
       
