@@ -66,7 +66,7 @@ export default function Sidebar({ onPop, onConversionRatesUpdate, onFunnelSelect
       <Link href="/"><div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', position: 'relative', paddingBottom: '60px' }}>
         <img src="./White logo - no background.png" alt="Logo" style={{ width: '50%', height: 'auto', zIndex: 1 }} />
       </div></Link>
-      <h2 style={{  margin: 'auto',marginBottom: '20px',marginLeft:'15px', marginRight:'15px', borderBottom: '1px solid #5b5b5b', fontWeight: '400',fontFamily: 'inter, sans-serif', textAlign: 'center', color: 'white', fontSize: 'large', paddingBottom: '20px' }}>Funnels</h2>
+      <h2 style={{  margin: 'auto',marginBottom: '10px',marginLeft:'15px', marginRight:'15px', borderBottom: '1px solid #5b5b5b', fontWeight: '400',fontFamily: 'inter, sans-serif', textAlign: 'center', color: 'white', fontSize: 'large', paddingBottom: '10px' }}>My Funnels</h2>
       {funnelNames.map((funnel, index) => (
         <button
           key={index}
@@ -79,7 +79,7 @@ export default function Sidebar({ onPop, onConversionRatesUpdate, onFunnelSelect
     width: '95%',
     padding: '15px',
     textAlign:'left',
-    paddingLeft: '30px',
+    paddingLeft: '50px',
     backgroundColor: 'transparent',
     borderRadius: '5px',
     border: 'none',
@@ -127,31 +127,7 @@ export default function Sidebar({ onPop, onConversionRatesUpdate, onFunnelSelect
       <div style={{display:'flex', flexDirection: 'column',margin:'auto', paddingTop:'20px',borderTop:'1px solid #5b5b5b',width:'250px',justifyContent:'center', alignContent:'center', position: 'absolute', bottom: '20px' }}>
   <div style={{ display: 'flex', alignItems: 'center', alignText:'center', justifyContent: 'center', flexDirection:'column' }}>
     
-    <button
-      style={{
-        width: '80%',
-        textAlign:'left',
-        padding: '10px',
-        paddingLeft: '15px',
-        marginBottom: '10px',
-        background: '#23345a',
-        borderRadius: '5px',
-        border: 'none',
-        color: '#fff',
-        cursor: 'pointer',
-        fontFamily: 'IndustrialSans, sans-serif',
-        fontSize: 'small',
-      }}
-    onMouseOver={(e) => {
-    
-        e.target.style.backgroundColor = '#4e5c7a';
-      
-    }} onMouseOut={(e) => {
-      e.target.style.backgroundColor = '#23345a';
-      }}
-    ><FaSignInAlt size={12} color="#fff" style={{marginRight: '7px'}} />
-      Sign-in (Hubspot)
-    </button>
+  
     <button
       style={{
         width: '80%',

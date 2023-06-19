@@ -2,21 +2,19 @@
   --max-width: 1100px;
   --border-radius: 12px;
   --font-mono: ui-monospace, Menlo, Monaco, 'Cascadia Mono', 'Segoe UI Mono',
-  'Roboto Mono', 'Oxygen Mono', 'Ubuntu Monospace', 'Source Code Pro',
-  'Fira Mono', 'Droid Sans Mono', 'Courier New', monospace;
+    'Roboto Mono', 'Oxygen Mono', 'Ubuntu Monospace', 'Source Code Pro',
+    'Fira Mono', 'Droid Sans Mono', 'Courier New', monospace;
   --foreground-hex: #ffffff;
-      --background-start-hex: #161616;
-      --background-end-hex: #161616;
-      --tile-start-hex: #020d2e;
-      --tile-end-hex: #020513;
-      --tile-border: conic-gradient(#ffffff80, #ffffff40, #ffffff30, #ffffff20, #ffffff10, #ffffff10, #ffffff80);
-      --callout-hex: #141414;
-      --callout-border-hex: #6c6c6c;
-      --card-hex: #646464;
-      --card-border-hex: #c8c8c8;
+  --background-start-hex: #161616;
+  --background-end-hex: #161616;
+  --tile-start-hex: #020d2e;
+  --tile-end-hex: #020513;
+  --tile-border: conic-gradient(#ffffff80, #ffffff40, #ffffff30, #ffffff20, #ffffff10, #ffffff10, #ffffff80);
+  --callout-hex: #141414;
+  --callout-border-hex: #6c6c6c;
+  --card-hex: #646464;
+  --card-border-hex: #c8c8c8;
 }
-
-
 
 * {
   box-sizing: border-box;
@@ -40,8 +38,11 @@ a {
   text-decoration: none;
 }
 
-@media (prefers-color-scheme: dark) {
+@media (prefers-color-scheme: light) {
   html {
-      color-scheme: dark;
+    color-scheme: dark;
   }
 }
+
+
+
