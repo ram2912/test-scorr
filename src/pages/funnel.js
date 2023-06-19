@@ -190,16 +190,16 @@ console.log(showNextStep);
       
 
         
-<h1 style={{ fontSize: '18px',color:'#999999', fontFamily: 'IndustrialSans, sans-serif', marginTop: '5rem' }}>
-        Funnel: <span style={{ color: 'white',letterSpacing: '0.5px'  }}>{selectedFunnel}</span>
+<h1 style={{ fontSize: '20px',color:'#999999', fontFamily: 'inter, sans-serif', marginTop: '5rem' }}>
+        <span style={{ color: 'white',letterSpacing: '0.5px'  }}>{selectedFunnel}</span>
       </h1>
       <h2 style={{ fontSize: '15px', color:'#eeeeee', fontFamily: 'inter, sans-serif',fontWeight:'300', marginTop: '1rem' }}>
         Lead Pipeline: <span style={{ color: 'white',letterSpacing: '0.5px'  }}>{leadPipeline}</span>
       </h2>
-      <h2 style={{ fontSize: '15px',color:'#eeeeee', fontFamily: 'inter, sans-serif',fontWeight:'300', marginTop: '0.5rem' }}>
+      <h2 style={{ fontSize: '15px',color:'#eeeeee', fontFamily: 'inter, sans-serif',fontWeight:'300', marginTop: '0.7rem' }}>
         BDR Pipeline: <span style={{ color: 'white',letterSpacing: '0.5px'  }}>{bdrPipeline}</span>
       </h2>
-      <h2 style={{ fontSize: '15px',color:'#eeeeee', fontFamily: 'inter, sans-serif', fontWeight:'300', marginTop: '0.5rem', marginBottom:'0.5rem' }}>
+      <h2 style={{ fontSize: '15px',color:'#eeeeee', fontFamily: 'inter, sans-serif', fontWeight:'300', marginTop: '0.7rem', marginBottom:'0.2rem' }}>
         Sales Pipeline: <span style={{ color: 'white',letterSpacing: '0.5px'  }}>{salesPipeline}</span>
       </h2>
       </div>
