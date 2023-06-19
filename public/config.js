@@ -23,7 +23,7 @@ const prodConfig = {
   },
 };
 
-const env = 'development';
+const env = 'production';
 
 const config = {
   endpoints: {},
