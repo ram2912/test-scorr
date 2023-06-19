@@ -190,7 +190,7 @@ console.log(showNextStep);
       
 
         
-<h1 style={{ fontSize: '18px', fontFamily: 'IndustrialSans, sans-serif', marginTop: '5rem' }}>
+<h1 style={{ fontSize: '18px',color:'#999999', fontFamily: 'IndustrialSans, sans-serif', marginTop: '5rem' }}>
         Funnel: <span style={{ color: 'white',letterSpacing: '0.5px'  }}>{selectedFunnel}</span>
       </h1>
       <h2 style={{ fontSize: '15px', color:'#999999', fontFamily: 'inter, sans-serif',fontWeight:'300', marginTop: '1rem' }}>
