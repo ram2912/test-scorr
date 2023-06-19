@@ -190,17 +190,17 @@ console.log(showNextStep);
       
 
         
-<h1 style={{ fontSize: '20px',color:'#999999', fontFamily: 'inter, sans-serif', marginTop: '5rem' }}>
+<h1 style={{ fontSize: '25px',color:'#999999', fontFamily: 'inter, sans-serif', fontWeight:'300', marginTop: '5rem' }}>
         <span style={{ color: 'white',letterSpacing: '0.5px'  }}>{selectedFunnel}</span>
       </h1>
-      <h2 style={{ fontSize: '15px', color:'#eeeeee', fontFamily: 'inter, sans-serif',fontWeight:'300', marginTop: '1rem' }}>
-        Lead Pipeline: <span style={{ color: 'white',letterSpacing: '0.5px'  }}>{leadPipeline}</span>
+      <h2 style={{ fontSize: '10px', color:'#eeeeee', fontFamily: 'inter, sans-serif',fontWeight:'300', marginTop: '1rem' }}>
+        Lead Pipeline: <span style={{ fontSize: '15px',color: 'white',letterSpacing: '0.5px'  }}>{leadPipeline}</span>
       </h2>
-      <h2 style={{ fontSize: '15px',color:'#eeeeee', fontFamily: 'inter, sans-serif',fontWeight:'300', marginTop: '0.7rem' }}>
-        BDR Pipeline: <span style={{ color: 'white',letterSpacing: '0.5px'  }}>{bdrPipeline}</span>
+      <h2 style={{ fontSize: '10px',color:'#eeeeee', fontFamily: 'inter, sans-serif',fontWeight:'300', marginTop: '0.7rem' }}>
+        BDR Pipeline: <span style={{ color: 'white',fontSize: '15px', letterSpacing: '0.5px'  }}>{bdrPipeline}</span>
       </h2>
-      <h2 style={{ fontSize: '15px',color:'#eeeeee', fontFamily: 'inter, sans-serif', fontWeight:'300', marginTop: '0.7rem', marginBottom:'0.2rem' }}>
-        Sales Pipeline: <span style={{ color: 'white',letterSpacing: '0.5px'  }}>{salesPipeline}</span>
+      <h2 style={{ fontSize: '10px',color:'#eeeeee', fontFamily: 'inter, sans-serif', fontWeight:'300', marginTop: '0.7rem', marginBottom:'0.2rem' }}>
+        Sales Pipeline: <span style={{ color: 'white',fontSize: '15px',letterSpacing: '0.5px'  }}>{salesPipeline}</span>
       </h2>
       </div>
       <div style={{ flex: '55%',border: '1px solid #3B3B3B',borderRadius: '10px', position: 'relative', backgroundColor: '#010102', height: '100vh', paddingTop: '30px', overflow: 'hidden', boxShadow: '0 0 15px rgba(0, 0, 0, 0.3)', marginLeft: '5%', marginRight:'5%'}}>
