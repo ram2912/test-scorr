@@ -4,7 +4,10 @@ import ProcessTable from './Products/ProcessTable';
 import React, { useState, useEffect } from 'react';
 import { FaCheck, FaArrowLeft, FaPlus } from 'react-icons/fa';
 import SetupSB from '../Components/setupSB';
+import config from 'public/config.js'
 
+const authorizationUrl = config.endpoints.authorizationUrl;
+const authorizationStatusUrl = config.endpoints.authorizationStatusUrl;
 
 export default function ProcessSetup() {
   const [salesforceConnected, setSalesforceConnected] = useState(false);
@@ -15,6 +18,8 @@ export default function ProcessSetup() {
     const [authenticated, setAuthenticated] = useState(false);
     const [properties, setProperties] = useState([]);
     const [backendData, setBackendData] = useState([]);
+
+
 
     
     useEffect(() => {
@@ -31,7 +36,7 @@ export default function ProcessSetup() {
 
     const checkAuthorizationStatus = async () => {
       try {
-        const response = await fetch('https://testback.scorr-app.eu/authorization-status', {
+        const response = await fetch(authorizationStatusUrl, {
           credentials: 'include'
         });
         const data = await response.json();
@@ -52,7 +57,7 @@ export default function ProcessSetup() {
   
 
     const handleHubspotConnect = async () => {
-      const authUrl = 'https://testback.scorr-app.eu';
+      const authUrl = authorizationUrl;
     // Replace with your backend route for authentication
     localStorage.setItem('hubspotConnected', 'true');
   window.location.href = authUrl;

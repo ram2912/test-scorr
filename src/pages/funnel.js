@@ -96,13 +96,13 @@ const checkAuthorizationStatus = async () => {
     } else {
       console.log('Hubspot Connection',data.status); 
       
-      router.push('/login');// "unauthorized"
+      //router.push('/login');// "unauthorized"
       
     }
   } catch (error) {
     console.log('Error checking authorization status:', error);
     
-    router.push('/login');
+    //router.push('/login');
   }
 };
 
@@ -186,24 +186,30 @@ console.log(showNextStep);
 </div>
 <div style={{ flex: '8' , display: 'flex', flexDirection: 'column',}}>
 
-<div style={{ flex: '25%', position: 'relative', marginLeft:'5%'}}>
+<div style={{ flex: '15%', display:'flex', flexDirection:'column', position: 'relative', marginLeft:'5%', marginBottom:'20px'}}>
+  <div style={{ flex: '30%', display:'flex', position: 'relative', justifyContent:'center', margin:'auto'}}>
       
-
-        
-<h1 style={{ fontSize: '25px',color:'#999999', fontFamily: 'inter, sans-serif', fontWeight:'300', marginTop: '5rem' }}>
-        <span style={{ color: 'white',letterSpacing: '0.5px'  }}>{selectedFunnel}</span>
-      </h1>
-      <h2 style={{ fontSize: '10px', color:'#eeeeee', fontFamily: 'inter, sans-serif',fontWeight:'300', marginTop: '1rem' }}>
-        Lead Pipeline: <span style={{ fontSize: '15px',color: 'white',letterSpacing: '0.5px'  }}>{leadPipeline}</span>
-      </h2>
-      <h2 style={{ fontSize: '10px',color:'#eeeeee', fontFamily: 'inter, sans-serif',fontWeight:'300', marginTop: '0.7rem' }}>
-        BDR Pipeline: <span style={{ color: 'white',fontSize: '15px', letterSpacing: '0.5px'  }}>{bdrPipeline}</span>
-      </h2>
-      <h2 style={{ fontSize: '10px',color:'#eeeeee', fontFamily: 'inter, sans-serif', fontWeight:'300', marginTop: '0.7rem', marginBottom:'0.2rem' }}>
-        Sales Pipeline: <span style={{ color: 'white',fontSize: '15px',letterSpacing: '0.5px'  }}>{salesPipeline}</span>
+      </div>
+      <div style={{ flex: '70%', display:'flex', position: 'relative', justifyContent:'center', paddingRight:'5%'}}>
+<div style={{ flex: '1', display:'flex', position: 'relative',justifyContent:'center', margin:'auto',border:'1px solid grey',borderRadius:'8px',marginRight:'100px'}}>
+      <h2 style={{ fontSize: '10px',color:'#eeeeee', fontFamily: 'inter, sans-serif',fontWeight:'300', padding:'10px',paddingBottom: '30px' }}>
+        Lead Pipeline: <br /><span style={{ fontSize: '15px',color: 'white',letterSpacing: '0.5px'  }}>{leadPipeline}</span>
       </h2>
       </div>
-      <div style={{ flex: '55%',border: '1px solid #3B3B3B',borderRadius: '10px', position: 'relative', backgroundColor: '#010102', height: '100vh', paddingTop: '30px', overflow: 'hidden', boxShadow: '0 0 15px rgba(0, 0, 0, 0.3)', marginLeft: '5%', marginRight:'5%'}}>
+      <div style={{ flex: '1', display:'flex', position: 'relative',justifyContent:'center', margin:'auto',border:'1px solid grey',borderRadius:'8px',marginRight:'100px'}}>
+      <h2 style={{ fontSize: '10px',color:'#eeeeee', fontFamily: 'inter, sans-serif',fontWeight:'300', padding:'10px',paddingBottom: '30px' }}>
+        BDR Pipeline: <br /> <span style={{ color: 'white',fontSize: '15px', letterSpacing: '0.5px'  }}>{bdrPipeline}</span>
+      </h2>
+      </div>
+      <div style={{ flex: '1', display:'flex', position: 'relative',justifyContent:'center', margin:'auto', border:'1px solid grey', borderRadius:'8px'}}>
+      <h2 style={{ fontSize: '10px',color:'#eeeeee', fontFamily: 'inter, sans-serif', fontWeight:'300',padding:'10px',paddingBottom: '30px' }}>
+        Sales Pipeline: <br /> <span style={{ color: 'white',fontSize: '15px',letterSpacing: '0.5px'  }}>{salesPipeline}</span>
+      </h2>
+      </div>
+      </div>
+      </div>
+      
+      <div style={{ flex: '65%',border: '1px solid #3B3B3B',borderRadius: '10px', position: 'relative', backgroundColor: '#010102', height: '100vh', paddingTop: '30px', overflow: 'hidden', boxShadow: '0 0 15px rgba(0, 0, 0, 0.3)', marginLeft: '5%', marginRight:'5%'}}>
 
       <>
         <div style={{
@@ -211,7 +217,7 @@ console.log(showNextStep);
     margin: '0 auto',
     marginLeft: '5%',
     width: '90%',
-    height: '80%',
+    height: '100%',
   borderRadius: '5px',
   overflow: 'hidden',
   boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)',
@@ -349,30 +355,7 @@ console.log(showNextStep);
         </div>
       )}
             </div>
-            
-
-<div style={{ position: 'absolute', top: '1rem', right: '1rem', padding: '10px' }}>
-  <button style={{ backgroundColor: '#255690', color: 'white', fontFamily: 'sans-serif', padding: '10px', border: 'none', borderRadius: '5px', cursor: 'pointer', marginRight: '20px', transition: 'background-color 0.3s' }} class="button" onMouseOver={(e) => e.target.style.backgroundColor = '#1C416F'} onMouseOut={(e) => e.target.style.backgroundColor = '#255690'} onClick={() => setShowDeploymentPopup(true)}>
-    <FaCloudUploadAlt style={{ marginRight: '10px' }} />
-    Deploy
-  </button>
-  <button style={{ backgroundColor: '#255690', color: 'white', fontFamily: 'sans-serif', padding: '10px', border: 'none', borderRadius: '5px', cursor: 'pointer', marginLeft: '20px', transition: 'background-color 0.3s' }} class="button" onMouseOver={(e) => e.target.style.backgroundColor = '#1C416F'} onMouseOut={(e) => e.target.style.backgroundColor = '#255690'}>
-    <FaSave style={{ marginRight: '10px' }} />
-    Save project
-  </button>
-</div>
-          
-          <div style={{ position: 'absolute', top: '1rem', left: '1rem', padding: '10px' }}>
-  <Link href="/" passHref>
-    <span style={{ marginLeft: '17rem', marginTop: '2rem', color: '#fff', cursor: 'pointer', fontFamily: 'sans-serif'}}>
-      <FaArrowLeft size={16} style={{ marginRight: '8px' }} />
-      Back to home
-    </span>
-  </Link>
-</div>
-
-
-
+    
 
           {showPopup && (
   <>
