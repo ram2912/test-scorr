@@ -25,7 +25,7 @@ const prodConfig = {
   },
 };
 
-const env = 'production'; // 'development' or 'production'
+const env = 'development'; // 'development' or 'production'
 
 const config = {
   endpoints: {},
