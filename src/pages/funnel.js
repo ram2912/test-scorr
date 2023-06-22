@@ -96,13 +96,13 @@ const checkAuthorizationStatus = async () => {
     } else {
       console.log('Hubspot Connection',data.status); 
       
-      router.push('/login');// "unauthorized"
+      //router.push('/login');// "unauthorized"
       
     }
   } catch (error) {
     console.log('Error checking authorization status:', error);
     
-    router.push('/login');
+    //router.push('/login');
   }
 };
 
