@@ -81,7 +81,7 @@ export default function BlankScreen({ setChatInput }) {
           </h3>
         </div>
         <div
-          onClick={() => handleLinkClick("I want to prioritize deals in my sales pipelines")}
+          onClick={() => handleLinkClick("Deal scoring framework to prioritise deals")}
           onMouseEnter={() => handleLinkMouseEnter("pipelines")}
           onMouseLeave={handleLinkMouseLeave}
           style={{
