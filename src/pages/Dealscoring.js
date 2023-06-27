@@ -56,6 +56,7 @@ console.log(currentQuestion);
 
   // Add event listener to the message form
   messageForm.addEventListener('submit', event => {
+    setSuggestions(false);
     event.preventDefault();
     const message = messageInput.value.trim();
     if (message !== '') {
