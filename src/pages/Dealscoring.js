@@ -8,6 +8,7 @@ import { FaArrowLeft } from 'react-icons/fa';
 import { FaCloudUploadAlt, FaSave } from 'react-icons/fa';
 import DeploymentPopup from 'src/pages/Products/DeploymentPopup.js';
 import DealScoringSB from 'src/Components/DealscoringSB.js';
+import BlankScreen from '@/Components/blankscreen';
 
 
 const { Handledealscoring } = require("public/pipelinePromt.js");
@@ -29,6 +30,8 @@ export default function Dealscoring() {
     const [showNextStep, setShowNextStep] = useState(false);
     const [typing, setTyping] = useState(false);
     const [showDeploymentPopup, setShowDeploymentPopup] = useState(false);
+    const [suggestions, setSuggestions] = useState(true);
+    const [chatInput, setChatInput] = useState('');
 
 
    
@@ -81,6 +84,13 @@ console.log(showNextStep);
     setMessages(prevMessages => [...prevMessages, { message, sender }]);
   }
 
+  const handleBlankScreenLinkClick = (prompt) => {
+    setChatInput(prompt);
+  };
+
+
+  
+
   // Rest of your code...
 
 }, []);
@@ -101,9 +111,17 @@ console.log(showNextStep);
         
       
       </div>
-      <div style={{ flex: '65%',border: '1px solid #3B3B3B',borderRadius: '10px', position: 'relative', backgroundColor: '#010102', height: '100vh', paddingTop: '20px', overflow: 'hidden', boxShadow: '0 0 15px rgba(0, 0, 0, 0.3)', marginLeft: '5%', marginRight:'5%'}}>
+      
+      <div style={{ flex: '65%',borderRadius: '10px', position: 'relative', backgroundColor: 'transparent', height: '100vh', paddingTop: '20px', overflow: 'hidden',  marginLeft: '5%', marginRight:'5%'}}>
 
       <>
+      {suggestions && (
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '50%' }}>
+        <BlankScreen setChatInput={setChatInput} />
+        </div>
+      )}
+
+      {!suggestions && (
         <div style={{
        
     margin: '0 auto',
@@ -225,10 +243,13 @@ console.log(showNextStep);
 )}
             
         </div>
+      )}
         
 
          </>
+         
             </div>
+           
             <div style={{ flex: '20%', position: 'relative'}}>
 
           <div
@@ -305,6 +326,8 @@ console.log(showNextStep);
             name="message"
             placeholder="Tell me what you want to build..."
             autocomplete="off"
+            value={chatInput}
+            onChange={(e) => setChatInput(e.target.value)}
             style={{
               display: 'flex',
               color: '#fff',
