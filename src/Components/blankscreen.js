@@ -19,7 +19,7 @@ export default function BlankScreen({ setChatInput }) {
   };
 
   return (
-    <div style={{ width: "500px", height: "70%", backgroundColor: "#323232", borderRadius:'5px' }}>
+    <div style={{ width: "500px", height: "220px", backgroundColor: "#323232", borderRadius:'8px' }}>
       <div
         style={{
           display: "flex",
@@ -81,7 +81,7 @@ export default function BlankScreen({ setChatInput }) {
           </h3>
         </div>
         <div
-          onClick={() => handleLinkClick("Build a deal scoring framework for my sales team to prioritize deals")}
+          onClick={() => handleLinkClick("I want to prioritize deals in my sales pipelines")}
           onMouseEnter={() => handleLinkMouseEnter("pipelines")}
           onMouseLeave={handleLinkMouseLeave}
           style={{
