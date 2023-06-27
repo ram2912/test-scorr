@@ -78,7 +78,7 @@ console.log(showNextStep);
 
     // Call handleDealScoring after sending the message
     await Handledealscoring(message, setIsLoading, setShowDeals, receiveMessage,showNextStep,setShowNextStep,setShowPopup);
-    document.getElementById('message-input').value = '';
+    setChatInput('');
   }
 
   // Add bot message to the chat interface
