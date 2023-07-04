@@ -72,13 +72,13 @@ export default function Dashboard() {
                       color="inherit"
                     >
                       <Grid item>
-                      <Link href="/flow">
+                      
 
                         <AddCircleRoundedIcon fontSize="large" />
                         <Typography variant="h6" component="h2" color="inherit">
                           Create New Project
                         </Typography>
-                        </Link>
+                        
                       </Grid>
                     </Button>
                   </Grid>
@@ -100,10 +100,12 @@ export default function Dashboard() {
                       color="inherit"
                     >
                       <Grid item>
+                      <Link href="/flow">
                         <TableChartIcon fontSize="large" />
                         <Typography variant="h6" component="h2" color="inherit">
                           Sales Pipeline Management
                         </Typography>
+                        </Link>
                       </Grid>
                     </Button>
                   </Grid>

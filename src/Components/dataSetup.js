@@ -38,6 +38,21 @@ const buttonStyles = {
 };
 
 export default function DataSetup({ onHubspotClick }) {
+    const [csvFile, setCsvFile] = React.useState(null);
+
+    const handleFileChange = (event) => {
+        const file = event.target.files[0];
+        setCsvFile(file);
+      };
+    
+      const handleUploadCsv = () => {
+        // Handle the uploaded CSV file
+        if (csvFile) {
+          // Perform actions with the CSV file
+          console.log('Uploaded CSV file:', csvFile);
+        }
+        };
+
   const handleHubspotClick = () => {
     if (typeof onHubspotClick === 'function') {
       onHubspotClick();
@@ -59,7 +74,7 @@ export default function DataSetup({ onHubspotClick }) {
             <Grid container spacing={4}>
               
                 <Grid item xs={3} >
-                <Button  sx={buttonStyles}  onClick={() => {}}>
+                <Button  sx={buttonStyles}  onClick={handleUploadCsv}>
                     <Grid item>
                  
                   <TableChartIcon fontSize='large' />
@@ -67,6 +82,7 @@ export default function DataSetup({ onHubspotClick }) {
                     Upload CSV
                     </Typography>
                   </Grid>
+                  <input type="file" accept=".csv" hidden onChange={handleFileChange} />
                 </Button>
                 </Grid>
                 <Grid item xs={3}>
