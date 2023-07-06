@@ -10,6 +10,32 @@ import CustomizedInputBase from "./chatInput";
 import { Divider, Typography } from "antd";
 
 export default function ScoringTable1() {
+
+    const [csvUrl, setCsvUrl] = useState(null);
+
+
+
+
+    useEffect(() => {
+        fetchDeals();
+      }, []);
+    
+      const fetchDeals = async () => {
+        try {
+          const response = await fetch('https://testback.scorr-app.eu/extract/all-deals', {
+            credentials: 'include',
+          });
+          const data = await response.json(); // Parse the response body as JSON
+      
+       
+          setCsvUrl(data);
+          console.log('data saved')
+        } catch (error) {
+          console.error('Error fetching pipelines:', error);
+        }
+      };
+
+
   return (
     <Grid container direction="column" style={{ flex: "9", backgroundColor: 'transparent', position: "relative", boxSizing: "border-box" }}>
       <Grid item style={{ display: 'flex', position: "relative", marginLeft: '30px', marginRight: '30px', paddingTop: '5px' }}>
@@ -33,7 +59,7 @@ export default function ScoringTable1() {
         </Grid>
       </Grid>
       <Grid item style={{ borderTop: '0.5px solid grey', background: 'transparent' }}>
-        <TablePreview csvUrl="https://testback.scorr-app.eu/extract/all-deals" />
+        <TablePreview csvUrl={csvUrl} />
       </Grid>
     </Grid>
   )
