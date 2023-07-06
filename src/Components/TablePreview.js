@@ -33,8 +33,10 @@ export default function TablePreview() {
       if (data.length > 0) {
         // Set headers
         setHeaders(Object.keys(data[0].properties));
+        console.log('headers: ', headers);
         // Set data
         setData(data);
+        console.log('dataReal: ', data);
       }
     } catch (error) {
       console.error('Error fetching deals:', error);
