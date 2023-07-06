@@ -11,29 +11,7 @@ import { Divider, Typography } from "antd";
 
 export default function ScoringTable1() {
 
-    const [csvUrl, setCsvUrl] = useState(null);
-
-
-
-
-    useEffect(() => {
-        fetchDeals();
-      }, []);
     
-      const fetchDeals = async () => {
-        try {
-          const response = await fetch('https://testback.scorr-app.eu/extract/all-deals', {
-            credentials: 'include',
-          });
-          const data = await response.json(); // Parse the response body as JSON
-      
-       
-          setCsvUrl(data);
-          console.log('data saved')
-        } catch (error) {
-          console.error('Error fetching pipelines:', error);
-        }
-      };
 
 
   return (
