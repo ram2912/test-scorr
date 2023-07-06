@@ -59,7 +59,7 @@ export default function ScoringTable1() {
         </Grid>
       </Grid>
       <Grid item style={{ borderTop: '0.5px solid grey', background: 'transparent' }}>
-        <TablePreview csvUrl={csvUrl} />
+        <TablePreview  />
       </Grid>
     </Grid>
   )
