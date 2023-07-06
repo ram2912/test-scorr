@@ -1,5 +1,5 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import TablePreview from "./TablePreview";
 import { FaMagic } from 'react-icons/fa';
 import { FiGitMerge } from 'react-icons/fi'
