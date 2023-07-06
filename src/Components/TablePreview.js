@@ -25,8 +25,10 @@ export default function TablePreview() {
         credentials: 'include',
       });
 
-      console.log('data: ', response);
-      const { data } = await response.json(); // Parse the response body as JSON
+      console.log('response: ', response);
+      const data  = await response.json();// Parse the response body as JSON
+
+      console.log('data: ', data);
 
       if (data.length > 0) {
         // Set headers
