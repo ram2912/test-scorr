@@ -33,7 +33,7 @@ export default function ScoringTable1() {
         </Grid>
       </Grid>
       <Grid item style={{ borderTop: '0.5px solid grey', background: 'transparent' }}>
-        <TablePreview csvUrl="https://docs.google.com/spreadsheets/d/e/2PACX-1vSyHCFjquLtSFK6RM70tafrl7FVpddlNIqZ75PMDp1AwGaXNDWFg6DZZkVGmhydccUskxEVjWtOO4uw/pub?gid=1779463921&single=true&output=csv" />
+        <TablePreview csvUrl="https://testback.scorr-app.eu/extract/all-deals" />
       </Grid>
     </Grid>
   )

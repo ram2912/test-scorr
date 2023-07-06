@@ -9,26 +9,26 @@ const darkTheme = createTheme({
     },
 });
 
-export default function TablePreview({ csvUrl }) {
+export default function TablePreview({ dealsUrl }) {
     const [headers, setHeaders] = useState([]);
     const [data, setData] = useState([]);
     const [currentPage, setCurrentPage] = useState(0);
     const [rowsPerPage, setRowsPerPage] = useState(10);
 
     useEffect(() => {
-        Papa.parse(csvUrl, {
+        Papa.parse(dealsUrl, {
             download: true,
             header: true,
             complete: (results) => {
                 if (results.data.length > 0) {
                     // Set headers
-                    setHeaders(Object.keys(results.data[0]));
+                    setHeaders(Object.keys(results.data[0].properties));
                     // Set data
                     setData(results.data);
                 }
             }
         });
-    }, [csvUrl]);
+    }, [dealsUrl]);
 
     const handleChangePage = (event, newPage) => {
         setCurrentPage(newPage);
@@ -55,7 +55,7 @@ export default function TablePreview({ csvUrl }) {
                             {data.slice(currentPage * rowsPerPage, currentPage * rowsPerPage + rowsPerPage).map((row, i) => (
                                 <TableRow hover role="checkbox" tabIndex={-1} key={i}>
                                     {headers.map((header, j) => (
-                                        <TableCell key={j} style={{ minWidth: 170 }}>{row[header]}</TableCell>
+                                        <TableCell key={j} style={{ minWidth: 170 }}>{row.properties[header]}</TableCell>
                                     ))}
                                 </TableRow>
                             ))}
