@@ -24,6 +24,8 @@ export default function TablePreview() {
       const response = await fetch('https://testback.scorr-app.eu/extract/all-deals', {
         credentials: 'include',
       });
+
+      console.log('data: ', response);
       const { data } = await response.json(); // Parse the response body as JSON
 
       if (data.length > 0) {
