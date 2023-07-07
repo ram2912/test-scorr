@@ -9,7 +9,7 @@ const darkTheme = createTheme({
   },
 });
 
-export default function TablePreview() {
+export default function TablePreview({ key }) {
   const [headers, setHeaders] = useState([]);
   const [data, setData] = useState([]);
   const [currentPage, setCurrentPage] = useState(0);
@@ -17,11 +17,11 @@ export default function TablePreview() {
 
   useEffect(() => {
     fetchDeals();
-  }, []);
+  }, [key]);
 
   const fetchDeals = async () => {
     try {
-      const response = await fetch('https://testback.scorr-app.eu/extract/all-deals', {
+      const response = await fetch('https://testback.scorr-app.eu/extract/deals', {
         credentials: 'include',
       });
 

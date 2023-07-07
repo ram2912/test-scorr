@@ -10,9 +10,22 @@ import CustomizedInputBase from "./chatInput";
 import { Divider, Typography } from "antd";
 
 export default function ScoringTable1() {
+    const [deals, setDeals] = useState([]);
+    const [refreshKey, setRefreshKey] = useState(0);
 
-    
 
+  const handleCleanClick = async() => {
+    try {
+        const response = await fetch('https://testback.scorr-app.eu/extract/clean-data', {
+          credentials: 'include',
+        });
+
+        console.log('Data cleaned');
+        setRefreshKey(prevKey => prevKey + 1);
+      } catch (error) {
+        console.error('Error cleaning:', error);
+      }
+    };
 
   return (
     <Grid container direction="column" style={{ flex: "9", backgroundColor: 'transparent', position: "relative", boxSizing: "border-box" }}>
@@ -27,7 +40,7 @@ export default function ScoringTable1() {
       <Grid item container style={{ marginLeft: '30px', paddingBottom: '5px', marginRight: '30px' }}>
         <Grid item>
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', position: 'relative', paddingTop:'8px', paddingRight: '40px' }}>
-            <BasicButton text="Clean" />
+          <BasicButton text="Clean" onClick={handleCleanClick} />
           </div>
         </Grid>
         <Grid item>
@@ -37,7 +50,7 @@ export default function ScoringTable1() {
         </Grid>
       </Grid>
       <Grid item style={{ borderTop: '0.5px solid grey', background: 'transparent' }}>
-        <TablePreview  />
+        <TablePreview key={refreshKey}  />
       </Grid>
     </Grid>
   )
