@@ -4,6 +4,7 @@ import TablePreview from "./TablePreview";
 import { FaMagic } from 'react-icons/fa';
 import { FiGitMerge } from 'react-icons/fi'
 import BasicButton from "./button";
+import Button from '@mui/material/Button';
 import TextButtons from "./buttonSec";
 import Grid from '@mui/material/Grid';
 import CustomizedInputBase from "./chatInput";
@@ -40,7 +41,9 @@ export default function ScoringTable1() {
       <Grid item container style={{ marginLeft: '30px', paddingBottom: '5px', marginRight: '30px' }}>
         <Grid item>
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', position: 'relative', paddingTop:'8px', paddingRight: '40px' }}>
-          <BasicButton text="Clean" onClick={handleCleanClick} />
+          <Button variant="contained" onClick={handleCleanClick} >Clean Data 
+            <FaMagic style={{ marginLeft: '5px', marginBottom: '2px' }} />
+            </Button>
           </div>
         </Grid>
         <Grid item>
