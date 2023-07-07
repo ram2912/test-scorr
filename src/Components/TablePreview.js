@@ -21,25 +21,50 @@ export default function TablePreview({ key }) {
 
   const fetchDeals = async () => {
     try {
-        
-
-      const response = await fetch('https://testback.scorr-app.eu/extract/deals', {
+      let propertiesFetched = false;
+      let dealsFetched = false;
+  
+      // Fetch deal-properties if the response is empty
+      const response1 = await fetch('https://testback.scorr-app.eu/extract/deal-properties', {
         credentials: 'include',
       });
-      console.log('Deals stored');
-
-      const data = await response.json();
-
-      if (data.length > 0) {
-        setHeaders(Object.keys(data[0].properties));
-        setData(data);
+      const propertiesData = await response1.json();
+      if (propertiesData.length === 0) {
+        console.log('deal-properties fetched');
+        propertiesFetched = true;
       }
-
+  
+      // Fetch all-deals if the response is empty
+      const response2 = await fetch('https://testback.scorr-app.eu/extract/all-deals', {
+        credentials: 'include',
+      });
+      const dealsData = await response2.json();
+      if (dealsData.length === 0) {
+        console.log('all-deals fetched');
+        dealsFetched = true;
+      }
+  
+      // Fetch deals only if properties and deals were not fetched
+      if (!propertiesFetched && !dealsFetched) {
+        const response = await fetch('https://testback.scorr-app.eu/extract/deals', {
+          credentials: 'include',
+        });
+        console.log('Deals fetched');
+    
+        const data = await response.json();
+    
+        if (data.length > 0) {
+          setHeaders(Object.keys(data[0].properties));
+          setData(data);
+        }
+      }
+  
       setLoading(false);
     } catch (error) {
       console.error('Error fetching deals:', error);
     }
   };
+  
 
   const handleChangePage = (event, newPage) => {
     setCurrentPage(newPage);
