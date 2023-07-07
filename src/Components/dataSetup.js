@@ -55,6 +55,10 @@ export default function DataSetup({ onHubspotClick }) {
 
   const handleHubspotClick = async() => {
     try{
+        if (typeof onHubspotClick === 'function') {
+            onHubspotClick();
+          }
+          
        const response = await fetch('https://testback.scorr-app.eu/extract/deal-properties', {
             credentials: 'include',
             });
@@ -65,13 +69,11 @@ export default function DataSetup({ onHubspotClick }) {
             });
         console.log('deals fetched');
     
-    if (typeof onHubspotClick === 'function') {
-      onHubspotClick();
-    }
+   
     } catch (error) {
         console.error('Error fetching deals:', error);
         }
-        
+
   };
 
   return (
