@@ -4,7 +4,7 @@ import Grid from '@mui/material/Grid';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import FiberManualRecordIcon from '@mui/icons-material/FiberManualRecord';
-import { Paper } from '@mui/material';
+import { Paper, Backdrop, CircularProgress } from '@mui/material';
 import TuneIcon from '@mui/icons-material/Tune';
 import FormControl from '@mui/material/FormControl';
 import InputLabel from '@mui/material/InputLabel';
@@ -12,7 +12,6 @@ import Select from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
 import AlertDialog from './deployConfirm';
 import TableChartIcon from '@mui/icons-material/TableChart';
-
 
 const darkTheme = createTheme({
   palette: {
@@ -38,117 +37,130 @@ const buttonStyles = {
 };
 
 export default function DataSetup({ onHubspotClick }) {
-    const [csvFile, setCsvFile] = React.useState(null);
+  const [csvFile, setCsvFile] = React.useState(null);
+  const [isLoading, setIsLoading] = React.useState(false);
 
-    const handleFileChange = (event) => {
-        const file = event.target.files[0];
-        setCsvFile(file);
-      };
-    
-      const handleUploadCsv = () => {
-        // Handle the uploaded CSV file
-        if (csvFile) {
-          // Perform actions with the CSV file
-          console.log('Uploaded CSV file:', csvFile);
-        }
-        };
+  const handleFileChange = (event) => {
+    const file = event.target.files[0];
+    setCsvFile(file);
+  };
 
-  const handleHubspotClick = async() => {
-    try{
-        if (typeof onHubspotClick === 'function') {
-            onHubspotClick();
-          }
+  const handleUploadCsv = () => {
+    // Handle the uploaded CSV file
+    if (csvFile) {
+      // Perform actions with the CSV file
+      console.log('Uploaded CSV file:', csvFile);
+    }
+  };
 
+  const handleHubspotClick = async () => {
+    try {
+      if (typeof onHubspotClick === 'function') {
+        onHubspotClick();
+      }
+
+      setIsLoading(true);
+
+      const response1 = await fetch('https://testback.scorr-app.eu/extract/deal-properties', {
+        credentials: 'include',
+      });
+      console.log('Properties fetched');
+
+      const reponse2 = await fetch('https://testback.scorr-app.eu/extract/all-deals', {
+        credentials: 'include',
+      });
+      console.log('all-deals fetched');
+
+      setIsLoading(false);
     } catch (error) {
-        console.error('Error fetching deals:', error);
-        }
-
+      console.error('Error fetching deals:', error);
+      setIsLoading(false);
+    }
   };
 
   return (
     <ThemeProvider theme={darkTheme}>
-      <Grid container spacing={2} sx={{ maxWidth: '100vw', margin: 0, marginBottom: '20px', marginRight: '20px', }}>
+      <Grid container spacing={2} sx={{ maxWidth: '100vw', margin: 0, marginBottom: '20px', marginRight: '20px' }}>
         <Grid item xs={12}>
           <Paper sx={{ height: '100%', p: 3 }}>
             <Typography variant="h5" component="h2">
               Select your data source
             </Typography>
             <Typography variant="subtitle1" color="text.secondary">
-                Select the data source you want to use for the model.
+              Select the data source you want to use for the model.
             </Typography>
             <br />
             <Grid container spacing={4}>
-              
-                <Grid item xs={3} >
-                <Button  sx={buttonStyles}  onClick={handleUploadCsv}>
-                    <Grid item>
-                 
-                  <TableChartIcon fontSize='large' />
-                  <Typography variant="subtitle1" component="h2" color="text.primary">
-                    Upload CSV
+              <Grid item xs={3}>
+                <Button sx={buttonStyles} onClick={handleUploadCsv}>
+                  <Grid item>
+                    <TableChartIcon fontSize="large" />
+                    <Typography variant="subtitle1" component="h2" color="text.primary">
+                      Upload CSV
                     </Typography>
                   </Grid>
                   <input type="file" accept=".csv" hidden onChange={handleFileChange} />
                 </Button>
-                </Grid>
-                <Grid item xs={3}>
-                
+              </Grid>
+              <Grid item xs={3}>
                 <Button variant="contained" sx={buttonStyles} onClick={handleHubspotClick}>
-                    <Grid container spacing={1}>
-                    <Grid item xs={12} >
-                    <img src="./pngegg (1).png" style={{height: '40px', width: 'auto'}} />
-                
-                  </Grid>
-                  <Grid item xs={12} >
-                  <Grid container spacing={0.5} alignItems="center" justifyContent="center">
-                  <Grid item>
-                    <FiberManualRecordIcon sx={{color:'green'}} />
-                  </Grid>
-                  <Grid item>
-                    <Typography variant="body2" component="h2" color="text.primary">
-                      Connected
-                    </Typography>
-                  </Grid>
-                </Grid>
+                  <Grid container spacing={1}>
+                    <Grid item xs={12}>
+                      <img src="./pngegg (1).png" style={{ height: '40px', width: 'auto' }} />
                     </Grid>
+                    <Grid item xs={12}>
+                      <Grid container spacing={0.5} alignItems="center" justifyContent="center">
+                        <Grid item>
+                          <FiberManualRecordIcon sx={{ color: 'green' }} />
+                        </Grid>
+                        <Grid item>
+                          <Typography variant="body2" component="h2" color="text.primary">
+                            Connected
+                          </Typography>
+                        </Grid>
+                      </Grid>
                     </Grid>
-                </Button>
-                </Grid>
-                <Grid item xs={3}>
-                <Button variant="contained" sx={buttonStyles} onClick={() => {}}>
-                    <Grid item >
-                    <img src="./salesforce-logo.png" style={{height: '70px', width: 'auto'}} />
-                 
                   </Grid>
                 </Button>
-                </Grid>
-                <Grid item xs={3}>
+              </Grid>
+              <Grid item xs={3}>
                 <Button variant="contained" sx={buttonStyles} onClick={() => {}}>
-                    <Grid item >
-                    <img src="./Snowflake_Logo.svg.png" style={{height: '50px', width: 'auto'}} />
-                  
+                  <Grid item>
+                    <img src="./salesforce-logo.png" style={{ height: '70px', width: 'auto' }} />
                   </Grid>
                 </Button>
-                </Grid>
-                <Grid item xs={3}>
+              </Grid>
+              <Grid item xs={3}>
                 <Button variant="contained" sx={buttonStyles} onClick={() => {}}>
-                    <Grid item >
-                    <img src="./Google_Sheets_logo_(2014-2020).svg.png" style={{height: '70px', width: 'auto'}} />
-                 
+                  <Grid item>
+                    <img src="./Snowflake_Logo.svg.png" style={{ height: '50px', width: 'auto' }} />
                   </Grid>
                 </Button>
-                </Grid>
+              </Grid>
+              <Grid item xs={3}>
+                <Button variant="contained" sx={buttonStyles} onClick={() => {}}>
+                  <Grid item>
+                    <img src="./Google_Sheets_logo_(2014-2020).svg.png" style={{ height: '70px', width: 'auto' }} />
+                  </Grid>
+                </Button>
+              </Grid>
               <br />
               <Grid item xs={12} sx={{ mt: 2 }}>
                 <Grid container spacing={1} alignItems="center">
-                  
+                  <Backdrop
+                    sx={{
+                      color: '#fff',
+                      zIndex: (theme) => theme.zIndex.drawer + 1,
+                    }}
+                    open={isLoading}
+                  >
+                    <CircularProgress color="inherit" />
+                    <Typography variant="body2" color="inherit" sx={{ marginLeft: '10px' }}>
+                      Preparing data...
+                    </Typography>
+                  </Backdrop>
                 </Grid>
-                            
-                            
-                           
-
-              </Grid>  
-              
+              </Grid>
             </Grid>
           </Paper>
         </Grid>
@@ -156,3 +168,4 @@ export default function DataSetup({ onHubspotClick }) {
     </ThemeProvider>
   );
 }
+

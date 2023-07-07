@@ -21,49 +21,26 @@ export default function TablePreview({ key }) {
 
   const fetchDeals = async () => {
     try {
-      let propertiesData = [];
-      let dealsData = [];
-  
-      // Check if deal-properties response is empty
-      const response1 = await fetch('https://testback.scorr-app.eu/extract/deal-properties', {
-        credentials: 'include',
-      });
-      const propertiesResponse = await response1.json();
-      if (propertiesResponse.length === 0) {
-        console.log('deal-properties fetched');
-        propertiesData = propertiesResponse;
-      }
-  
-      // Check if all-deals response is empty
-      const response2 = await fetch('https://testback.scorr-app.eu/extract/all-deals', {
-        credentials: 'include',
-      });
-      const dealsResponse = await response2.json();
-      if (dealsResponse.length === 0) {
-        console.log('all-deals fetched');
-        dealsData = dealsResponse;
-      }
-  
-      // Fetch deals
+
+        
+        
       const response = await fetch('https://testback.scorr-app.eu/extract/deals', {
         credentials: 'include',
       });
-      console.log('Deals fetched');
-  
+      console.log('Deals stored');
+
       const data = await response.json();
-  
+
       if (data.length > 0) {
         setHeaders(Object.keys(data[0].properties));
         setData(data);
       }
-  
+
       setLoading(false);
     } catch (error) {
       console.error('Error fetching deals:', error);
     }
   };
-  
-  
 
   const handleChangePage = (event, newPage) => {
     setCurrentPage(newPage);
