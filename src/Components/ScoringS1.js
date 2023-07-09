@@ -11,6 +11,7 @@ import CustomizedInputBase from "./chatInput";
 import { Divider, Typography} from "antd";
 import { Snackbar } from "@mui/material";
 import Alert from "@mui/material/Alert";
+import AlertTitle from "@mui/material/AlertTitle";
 
 
 export default function ScoringTable1() {
