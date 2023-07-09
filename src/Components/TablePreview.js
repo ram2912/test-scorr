@@ -21,9 +21,6 @@ export default function TablePreview({ key }) {
 
   const fetchDeals = async () => {
     try {
-
-        
-        
       const response = await fetch('https://testback.scorr-app.eu/extract/deals', {
         credentials: 'include',
       });
@@ -74,7 +71,7 @@ export default function TablePreview({ key }) {
                 {data.slice(currentPage * rowsPerPage, currentPage * rowsPerPage + rowsPerPage).map((row, i) => (
                   <TableRow hover role="checkbox" tabIndex={-1} key={i}>
                     {headers.map((header, j) => (
-                      <TableCell key={j} style={{ minWidth: 170 }}>
+                      <TableCell key={j} style={{ minWidth: 170, maxHeight: 50, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
                         {row.properties[header]}
                       </TableCell>
                     ))}
@@ -97,4 +94,5 @@ export default function TablePreview({ key }) {
     </ThemeProvider>
   );
 }
+
 
