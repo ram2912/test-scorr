@@ -52,7 +52,7 @@ export default function ScoringTable1() {
         </div>
       </Grid>
       <Divider style={{ backgroundColor: "grey", marginRight: "30px" }} />
-      <Grid item container style={{ marginLeft: "30px", paddingBottom: "5px", marginRight: "30px" }} spacing={2} alignItems="center">
+      <Grid item container style={{ marginLeft: "30px", paddingBottom: "5px", marginRight: "30px" }}>
         <Grid item>
           <div style={{ display: "flex", alignItems: "center", justifyContent: "center", position: "relative", paddingTop: "8px", paddingRight: "40px" }}>
             <Button variant="contained" onClick={handleCleanClick}>
@@ -69,14 +69,12 @@ export default function ScoringTable1() {
       <Grid item style={{ borderTop: "0.5px solid grey", background: "transparent" }}>
         <TablePreview key={refreshKey} />
       </Grid>
-      <Grid item style={{ marginLeft: "30px", marginRight: "30px", marginTop: "10px" }}>
-        <Snackbar open={openAlert} autoHideDuration={3000} onClose={() => setOpenAlert(false)}>
-          <Alert onClose={() => setOpenAlert(false)} severity="success" sx={{ width: "100%" }}>
-          <AlertTitle>Success</AlertTitle>
-            {cleanedColumns} columns cleaned successfully!
-          </Alert>
-        </Snackbar>
-      </Grid>
+      <Snackbar open={openAlert} autoHideDuration={3000} onClose={() => setOpenAlert(false)}>
+        <Alert onClose={() => setOpenAlert(false)} severity="success" sx={{ width: "100%" }}>
+          <AlertTitle>Dataset cleaned</AlertTitle>
+          {cleanedColumns} columns cleaned successfully!
+        </Alert>
+      </Snackbar>
     </Grid>
   );
 }
