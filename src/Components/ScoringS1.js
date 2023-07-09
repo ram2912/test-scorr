@@ -8,7 +8,10 @@ import Button from "@mui/material/Button";
 import TextButtons from "./buttonSec";
 import Grid from "@mui/material/Grid";
 import CustomizedInputBase from "./chatInput";
-import { Divider, Typography, Snackbar, Alert } from "antd";
+import { Divider, Typography} from "antd";
+import { Snackbar } from "@mui/material";
+import Alert from "@mui/material/Alert";
+
 
 export default function ScoringTable1() {
   const [deals, setDeals] = useState([]);
@@ -68,6 +71,7 @@ export default function ScoringTable1() {
       <Grid item style={{ marginLeft: "30px", marginRight: "30px", marginTop: "10px" }}>
         <Snackbar open={openAlert} autoHideDuration={3000} onClose={() => setOpenAlert(false)}>
           <Alert onClose={() => setOpenAlert(false)} severity="success" sx={{ width: "100%" }}>
+          <AlertTitle>Success</AlertTitle>
             {cleanedColumns} columns cleaned successfully!
           </Alert>
         </Snackbar>
