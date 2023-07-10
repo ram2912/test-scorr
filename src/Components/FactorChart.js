@@ -27,16 +27,13 @@ const CustomTooltip = ({ active, payload, label }) => {
   return null;
 };
 
-export default function BarChartExample() {
+export default function BarChartExample({ factors }) {
   const theme = useTheme();
 
-  const data = [
-    { name: 'Email Sentiment', value: 5 },
-    { name: 'Close Date Push', value: 4 },
-    { name: 'Property fill', value: 3.5 },
-    { name: 'Response Time', value: 2 },
-    { name: 'Stakeholder Involved', value: 1.7 },
-  ];
+  const data = factors.map((factor) => ({
+    name: factor.Feature,
+    value: factor.Importance,
+  }));
 
   return (
     <Paper sx={{ backgroundColor: '#1c1c1c', p: 2, boxShadow: 'none' }}>

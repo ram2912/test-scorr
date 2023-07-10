@@ -24,6 +24,25 @@ const darkTheme = createTheme({
 });
 
 export default function TwoColumnScreen() {
+  const [factorImportances, setFactorImportances] = useState([]);
+
+  useEffect(() => {
+    fetchFactorImportances();
+  }, []);
+
+  const fetchFactorImportances = async () => {
+    try {
+      const response = await fetch('https://testback.scorr-app.eu/extract/model-result', {
+        credentials: 'include',
+      });
+      
+      const data = await response.json();
+      setFactorImportances(data);
+    } catch (error) {
+      console.error('Error fetching factor importances:', error);
+    }
+  };
+
   return (
     <ThemeProvider theme={darkTheme}>
       <Grid container spacing={2} sx={{ maxWidth: '100vw', margin: 0, justifyContent: 'center', marginBottom: '20px', marginRight: '20px' }}>
@@ -65,7 +84,7 @@ export default function TwoColumnScreen() {
               </Grid>
               <Grid item xs={12}>
                 <Paper sx={{ height: '100%', backgroundColor: '#1C1C1C'}}>
-                  <BarChartExample />
+                  <BarChartExample factors={factorImportances} />
                 </Paper>
               </Grid>
             </Grid>
