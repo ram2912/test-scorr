@@ -18,7 +18,7 @@ const CustomTooltip = ({ active, payload, label }) => {
         }}
       >
         <Typography variant="subtitle1" color="inherit">
-          {`${label} : ${payload[0].value.toFixed(1)}%`}
+          {`${label} : ${payload[0].value.toFixed(3)}%`}
         </Typography>
       </Paper>
     );
@@ -40,12 +40,12 @@ export default function BarChartExample({ factors }) {
 
   const topFeaturesData = topFeatures.map((feature) => ({
     Feature: feature.Feature,
-    Importance: feature.Importance,
+    Importance: feature.Importance.toFixed(3),
   }));
 
   const factorImportanceData = factorImportance.map((factor) => ({
     Factor: factor.Factor,
-    Importance: factor.Importance,
+    Importance: (factor.Importance * 100).toFixed(3),
   }));
 
   return (
@@ -61,17 +61,17 @@ export default function BarChartExample({ factors }) {
       </ResponsiveContainer>
 
       <Typography variant="h6" component="h2" color="text.primary" sx={{ mt: 4 }}>
-        Feature Importance
+        Factor Importance
       </Typography>
       <Typography variant="subtitle1" color="text.secondary">
-        Features ranked by importance
+        Factors ranked by importance
       </Typography>
 
       <ol>
         {topFeaturesData.map((feature) => (
           <li key={feature.Feature}>
             <Typography variant="subtitle1" color="text.primary">
-              {`${feature.Feature}: ${feature.Importance.toFixed(1)}%`}
+              {`${feature.Feature}: ${feature.Importance}`}
             </Typography>
           </li>
         ))}
@@ -79,6 +79,3 @@ export default function BarChartExample({ factors }) {
     </Paper>
   );
 }
-
-
-
