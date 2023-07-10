@@ -27,7 +27,7 @@ const CustomTooltip = ({ active, payload, label }) => {
   return null;
 };
 
-const BarChartExample = ({ factors }) => {
+export default function  BarChartExample ({ factors }) {
   const theme = useTheme();
 
   if (!factors || !factors['Top Features without Values'] || !factors['Factor Importance (Percentage)']) {
