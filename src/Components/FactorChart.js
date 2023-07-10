@@ -6,6 +6,8 @@ const CustomTooltip = ({ active, payload, label }) => {
   const theme = useTheme();
 
   if (active && payload && payload.length) {
+    const value = payload[0]?.payload?.Importance;
+
     return (
       <Paper
         sx={{
@@ -18,7 +20,7 @@ const CustomTooltip = ({ active, payload, label }) => {
         }}
       >
         <Typography variant="subtitle1" color="inherit">
-          {`${label} : ${payload[0].value.toFixed(3)}%`}
+          {`${label} : ${value.toFixed(3)}%`}
         </Typography>
       </Paper>
     );
