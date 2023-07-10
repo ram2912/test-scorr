@@ -45,10 +45,13 @@ export default function BarChartExample({ factors }) {
   const topFeatures = factors['Top Features without Values'];
   const factorImportance = factors['Factor Importance (Percentage)'];
 
-  const topFeaturesData = topFeatures.map((feature) => ({
-    Feature: feature.Feature,
-    Importance: feature.Importance.toFixed(3),
-  }));
+  const topFeaturesData = topFeatures.map((feature) => {
+    const featureName = feature.Feature.split("_")[0];
+    const featureValue = feature.Feature.split("_")[1];
+    
+    return `${featureName} : ${featureValue}`;
+    
+  });
 
   const factorImportanceData = factorImportance.map((factor) => ({
     Factor: factor.Factor,
@@ -75,14 +78,14 @@ export default function BarChartExample({ factors }) {
       </Typography>
 
       <ol>
-        {topFeaturesData.map((feature) => (
-          <li key={feature.Feature}>
-            <Typography variant="subtitle1" color="text.primary">
-              {`${feature.Feature}: ${feature.Importance}`}
-            </Typography>
-          </li>
-        ))}
-      </ol>
+  {topFeaturesData.map((feature, index) => (
+    <li key={index}>
+      <Typography variant="subtitle1" color="text.primary">
+        {feature}
+      </Typography>
+    </li>
+  ))}
+</ol>
     </Paper>
   );
 }
