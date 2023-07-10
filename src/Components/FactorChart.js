@@ -27,26 +27,53 @@ const CustomTooltip = ({ active, payload, label }) => {
   return null;
 };
 
-export default function BarChartExample({ factors }) {
+const BarChartExample = ({ factors }) => {
   const theme = useTheme();
 
-  const data = factors.map((factor) => ({
-    name: factor.Feature,
-    value: factor.Importance,
+  if (!factors || !factors['Top Features without Values'] || !factors['Factor Importance (Percentage)']) {
+    // Handle the case where factors data is missing or incomplete
+    return <div>No data available</div>;
+  }
+
+  const topFeatures = factors['Top Features without Values'];
+  const factorImportance = factors['Factor Importance (Percentage)'];
+
+  const topFeaturesData = topFeatures.map((feature) => ({
+    Feature: feature.Feature,
+    Importance: feature.Importance,
+  }));
+
+  const factorImportanceData = factorImportance.map((factor) => ({
+    Factor: factor.Factor,
+    Importance: factor.Importance,
   }));
 
   return (
     <Paper sx={{ backgroundColor: '#1c1c1c', p: 2, boxShadow: 'none' }}>
       <ResponsiveContainer width="100%" height={300}>
-        <BarChart data={data} layout="vertical" fill={theme.palette.primary.main} width={500}>
+        <BarChart data={topFeaturesData} layout="vertical" fill={theme.palette.primary.main} width={500}>
           <CartesianGrid stroke="transparent" />
           <XAxis type="number" hide />
-          <YAxis dataKey="name" type="category" tickLine={false} axisLine={false} tick={{ fill: theme.palette.text.secondary, fontFamily: 'roboto' }} width={120} />
+          <YAxis dataKey="Feature" type="category" tickLine={false} axisLine={false} tick={{ fill: theme.palette.text.secondary, fontFamily: 'roboto' }} width={120} />
           <Tooltip content={<CustomTooltip />} cursor={{ fill: '#3c3c3c' }} />
-          <Bar dataKey="value" fill="#90caf9" barSize={30} label={{ position: 'right', fill: 'grey', fontFamily: 'roboto' }} />
+          <Bar dataKey="Importance" fill="#90caf9" barSize={30} label={{ position: 'right', fill: 'grey', fontFamily: 'roboto' }} />
         </BarChart>
       </ResponsiveContainer>
+
+      <Typography variant="h6" component="h2" color="text.primary" sx={{ mt: 4 }}>
+        Factor Importance
+      </Typography>
+      <Typography variant="subtitle1" color="text.secondary">
+        Factors ranked by importance
+      </Typography>
+
+      <ol>
+        {factorImportanceData.map((factor) => (
+          <li key={factor.Factor}>{`${factor.Factor}: ${factor.Importance}`}</li>
+        ))}
+      </ol>
     </Paper>
   );
-}
+};
+
 
