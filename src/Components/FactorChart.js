@@ -8,6 +8,10 @@ const CustomTooltip = ({ active, payload, label }) => {
   if (active && payload && payload.length) {
     const value = payload[0]?.payload?.Importance;
 
+    if (typeof value !== 'number') {
+      return null; // Skip rendering if the value is not a valid number
+    }
+
     return (
       <Paper
         sx={{
@@ -28,6 +32,7 @@ const CustomTooltip = ({ active, payload, label }) => {
 
   return null;
 };
+
 
 export default function BarChartExample({ factors }) {
   const theme = useTheme();
