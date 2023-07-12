@@ -38,13 +38,40 @@ const darkTheme = createTheme({
 });
 
 export default function SignInSide() {
-  const handleSubmit = (event) => {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get('email'),
-      password: data.get('password'),
-    });
+    
+    try {
+      const response = await fetch('https://testback.scorr-app.eu/users/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          username: email,
+          password: password,
+        }),
+      });
+
+      if (response.status === 200) {
+        // Login success
+        const data = await response.json();
+        console.log('Logged in:', data);
+        // Redirect to the authenticated page or perform further actions
+        window.location.href = '/';
+      } else {
+        // Login failed
+        const errorData = await response.json();
+        console.log('Login failed:', errorData.error);
+        // Display an error message or handle the error
+      }
+    } catch (error) {
+      console.error('Error during login:', error);
+      // Display an error message or handle the error
+    }
   };
 
   return (
