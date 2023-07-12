@@ -1,165 +1,331 @@
-import Head from 'next/head'
-import Image from 'next/image'
-import { Inter } from 'next/font/google'
-import styles from '@/styles/Home.module.css'
+import React, { useEffect } from 'react';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+import Grid from '@mui/material/Grid';
+import Button from '@mui/material/Button';
+import Typography from '@mui/material/Typography';
+import ResponsiveAppBar from 'src/Components/appbar.js';
+import AddCircleRoundedIcon from '@mui/icons-material/AddCircleRounded';
+import YoutubeSearchedForIcon from '@mui/icons-material/YoutubeSearchedFor';
+import TableChartIcon from '@mui/icons-material/TableChart';
+import ElectricBoltIcon from '@mui/icons-material/ElectricBolt';
+import FiberManualRecordIcon from '@mui/icons-material/FiberManualRecord';
 import Link from 'next/link';
-import SetupSB from 'src/Components/setupSB.js';
-import HomeSB from '@/Components/homeSB';
-import { useState, useEffect } from 'react';
-import { useRouter } from 'next/router';
-import config from '../../public/config';
-import { FaCog, FaPlus } from 'react-icons/fa';
-import { FaUser } from 'react-icons/fa';
-import { FaPause } from 'react-icons/fa';
 
 
-const authorizationStatusUrl = config.endpoints.authorizationStatusUrl;
-
-const inter = Inter({ subsets: ['latin'] })
-
-const ActiveToolButton = ({ children }) => {
-  const [isHovered, setIsHovered] = useState(false);
-
-  const handleMouseEnter = () => {
-    setIsHovered(true);
-  };
-
-  const handleMouseLeave = () => {
-    setIsHovered(false);
-  };
-
-  return (
-    <button
-      style={{
-        display: 'flex',
-        flexDirection: 'column',
-        position: 'relative',
-        textAlign: 'left',
-        paddingBottom: '30px',
-        border: `0.5px solid ${isHovered ? '#bcbcbc' : '#5b5b5b'}`,
-        borderRadius: '5px',
-        backgroundColor: 'transparent',
-        cursor: 'pointer',
-        marginBottom: '20px',
-        transition: 'transform 0.2s, border-color, box-shadow 0.2s',
-        transform: isHovered ? 'translateY(-5px)' : 'none',
-      }}
-      onMouseEnter={handleMouseEnter}
-      onMouseLeave={handleMouseLeave}
-    >
-      {children}
-    </button>
-  );
-};
+const darkTheme = createTheme({
+  palette: {
+    mode: 'dark',
+    primary: {
+      main: '#1976d2',
+    },
+  },
+});
 
 export default function Home() {
-  const [isHovered, setIsHovered] = useState(false);
-  const router = useRouter();
-  const checkAuthorizationStatus = async () => {
-    try {
-      const response = await fetch(authorizationStatusUrl, {
-        credentials: 'include'
-      });
-      const data = await response.json();
+  const [environment, setEnvironment] = React.useState('development');
 
-      if (response.ok) {
-        console.log('Hubspot Connection', data.status);
-
-      } else {
-        console.log('Hubspot Connection', data.status);
-
-        //router.push('/login');// "unauthorized"
-
-      }
-    } catch (error) {
-      console.log('Error checking authorization status:', error);
-
-      //router.push('/login');
-    }
-  };
-
-  const handleMouseEnter = () => {
-    setIsHovered(true);
-  };
-
-  const handleMouseLeave = () => {
-    setIsHovered(false);
+  const handleEnvironment = (event) => {
+    setEnvironment(event.target.value);
   };
 
   useEffect(() => {
-    checkAuthorizationStatus();
+    checkAuth();
   }, []);
 
-  return (
-    <>
-      <div style={{ display: 'flex' }}>
-        <div style={{ position: 'relative' }}>
-          <HomeSB style={{ position: 'absolute', top: 0, left: 0, width: '250px' }} onPop={() => setShowPopup(true)} />
-        </div>
-        <div style={{ flex: '8', display: 'flex', flexDirection: 'column', position: 'relative', borderRadius: '8px' }}>
-          <div style={{ flex: '15%', display: 'flex', textAlign: 'left', borderBottom: '0.5px solid #9A9A9A', background: '#363636' }}>
-            <div style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'flex-start', paddingTop: '30px', paddingBottom: '30px' }}>
-              <h2 style={{ fontFamily: 'inter, sans-serif', fontWeight: '300', color: 'white', paddingLeft: '60px', fontSize: '30px' }}>My Organisation</h2>
-            </div>
-            <div style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'flex-end', paddingTop: '30px', paddingBottom: '30px' }}>
-              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-end', paddingRight: '60px' }}>
-                <Link href="Dealscoring"><button style={{ fontFamily: 'inter, sans-serif', fontWeight: '300', backgroundColor: '#3d85c6', border: 'none', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'white', paddingTop: '8px', paddingBottom: '8px', paddingLeft: '20px', paddingRight: '20px', borderRadius: '3px', fontSize: '15px', cursor: 'pointer' }} onMouseOver={(e) => {
+  const checkAuth = async () => {
+    const response = await fetch('/users/protected' , {
+      credentials: 'include'
+    });
     
-    e.target.style.backgroundColor = '#3677b2';
-  
-}} onMouseOut={(e) => {
-  e.target.style.backgroundColor = '#3d85c6';
-  }}><FaPlus style={{ marginRight: '20px', backgroundColor:'transparent' }} />Build New Tool</button></Link>
-              </div>
-            </div>
-          </div>
-          <div style={{ flex: '85%', display: 'flex', flexDirection: 'column', textAlign: 'left', paddingTop: '30px', paddingLeft: '60px', paddingRight: '60px', fontSize: '20px' }}>
-            <h2 style={{ fontFamily: 'inter, sans-serif', fontWeight: '300', color: 'white', marginBottom: '30px', fontSize: '25px' }}>Active Tools</h2>
-            <ActiveToolButton>
-              <div style={{ display: 'flex', width: '100%' }}>
-                <div style={{ flex: 1, display: 'flex', alignItems: 'center', textAlign: 'left', justifyContent: 'flex-start', paddingRight: '60px' }}>
-                  <h2 style={{ fontFamily: 'inter, sans-serif', textAlign: 'left', justifyContent: 'flex-start', fontWeight: '300', backgroundColor: 'transparent', border: 'none', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'white', paddingTop: '12px', paddingBottom: '8px', paddingLeft: '20px', paddingRight: '20px', borderRadius: '3px', fontSize: '18px' }}>Pipeline Management UK</h2>
-                </div>
-              </div>
-              <div style={{ display: 'flex', alignItems: 'center', width: '100%' }}>
-                <h3 style={{ fontFamily: 'inter, sans-serif', fontWeight: '300', backgroundColor: 'transparent', border: 'none', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#bcbcbc', paddingTop: '4px', paddingBottom: '8px', paddingLeft: '20px', paddingRight: '20px', borderRadius: '3px', fontSize: '12px' }}><FaUser style={{ marginRight: '6px', color: '#bcbcbc', fontSize: '9px' }} />Shriram Pawar</h3>
-                <div style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'flex-end', paddingRight: '60px' }}>
-                  <h2 style={{ fontFamily: 'inter, sans-serif', textAlign: 'left', justifyContent: 'flex-end', backgroundColor: 'transparent', border: 'none', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'green', borderRadius: '3px', fontSize: '18px' }}><FaPause style={{ marginRight: '15px', color: '#bcbcbc' }} /></h2>
-                  <h2 style={{ fontFamily: 'inter, sans-serif', fontWeight: '300', textAlign: 'left', justifyContent: 'flex-end', backgroundColor: 'green', border: 'none', borderRadius: '5px', paddingLeft: '15px', paddingRight: '15px', paddingTop: '5px', paddingBottom: '5px', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'white', borderRadius: '3px', fontSize: '18px' }}>Active</h2>
-                </div>
-              </div>
-            </ActiveToolButton>
-            <ActiveToolButton>
-              <div style={{ display: 'flex', width: '100%' }}>
-                <div style={{ flex: 1, display: 'flex', alignItems: 'center', textAlign: 'left', justifyContent: 'flex-start', paddingRight: '60px' }}>
-                  <h2 style={{ fontFamily: 'inter, sans-serif', textAlign: 'left', justifyContent: 'flex-start', fontWeight: '300', backgroundColor: 'transparent', border: 'none', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'white', paddingTop: '12px', paddingBottom: '8px', paddingLeft: '20px', paddingRight: '20px', borderRadius: '3px', fontSize: '18px' }}>Revenue Forecasting DACH</h2>
-                </div>
-              </div>
-              <div style={{ display: 'flex', alignItems: 'center', width: '100%' }}>
-                <h3 style={{ fontFamily: 'inter, sans-serif', fontWeight: '300', backgroundColor: 'transparent', border: 'none', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#bcbcbc', paddingTop: '4px', paddingBottom: '8px', paddingLeft: '20px', paddingRight: '20px', borderRadius: '3px', fontSize: '12px' }}><FaUser style={{ marginRight: '6px', color: '#bcbcbc', fontSize: '9px' }} />Roman Murov</h3>
-                <div style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'flex-end', paddingRight: '60px' }}>
-                  <h2 style={{ fontFamily: 'inter, sans-serif', textAlign: 'left', justifyContent: 'flex-end', backgroundColor: 'transparent', border: 'none', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'green', borderRadius: '3px', fontSize: '18px' }}><FaPause style={{ marginRight: '15px', color: '#bcbcbc' }} /></h2>
-                  <h2 style={{ fontFamily: 'inter, sans-serif', fontWeight: '300', textAlign: 'left', justifyContent: 'flex-end', backgroundColor: 'green', border: 'none', borderRadius: '5px', paddingLeft: '15px', paddingRight: '15px', paddingTop: '5px', paddingBottom: '5px', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'white', borderRadius: '3px', fontSize: '18px' }}>Active</h2>
-                </div>
-              </div>
-            </ActiveToolButton>
-            <ActiveToolButton>
-              <div style={{ display: 'flex', width: '100%' }}>
-                <div style={{ flex: 1, display: 'flex', alignItems: 'center', textAlign: 'left', justifyContent: 'flex-start', paddingRight: '60px' }}>
-                  <h2 style={{ fontFamily: 'inter, sans-serif', textAlign: 'left', justifyContent: 'flex-start', fontWeight: '300', backgroundColor: 'transparent', border: 'none', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'white', paddingTop: '12px', paddingBottom: '8px', paddingLeft: '20px', paddingRight: '20px', borderRadius: '3px', fontSize: '18px' }}>Funnel CVR Analytics UK</h2>
-                </div>
-              </div>
-              <div style={{ display: 'flex', alignItems: 'center', width: '100%' }}>
-                <h3 style={{ fontFamily: 'inter, sans-serif', fontWeight: '300', backgroundColor: 'transparent', border: 'none', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#bcbcbc', paddingTop: '4px', paddingBottom: '8px', paddingLeft: '20px', paddingRight: '20px', borderRadius: '3px', fontSize: '12px' }}><FaUser style={{ marginRight: '6px', color: '#bcbcbc', fontSize: '9px' }} />Shriram Pawar</h3>
-                <div style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'flex-end', paddingRight: '60px' }}>
-                  <h2 style={{ fontFamily: 'inter, sans-serif', textAlign: 'left', justifyContent: 'flex-end', backgroundColor: 'transparent', border: 'none', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'green', borderRadius: '3px', fontSize: '18px' }}><FaPause style={{ marginRight: '15px', color: '#bcbcbc' }} /></h2>
-                  <h2 style={{ fontFamily: 'inter, sans-serif', fontWeight: '300', textAlign: 'left', justifyContent: 'flex-end', backgroundColor: 'green', border: 'none', borderRadius: '5px', paddingLeft: '15px', paddingRight: '15px', paddingTop: '5px', paddingBottom: '5px', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'white', borderRadius: '3px', fontSize: '18px' }}>Active</h2>
-                </div>
-              </div>
-            </ActiveToolButton>
-          </div>
-        </div>
-      </div>
-    </>
-  )
+
+    if (response.status === 401) {
+      window.location.href = '/login';
+    }
+    else if (response.status === 200) {
+      console.log('Authorized');
+    }
+  };
+
+
+
+  return (
+    <ThemeProvider theme={darkTheme}>
+      <Grid
+        container
+        spacing={2}
+        sx={{ maxWidth: '100vw', margin: 0, justifyContent: 'center', marginBottom: '20px', marginRight: '20px' }}
+      >
+        <ResponsiveAppBar />
+        <Grid container justifyContent="center" alignItems="center">
+          <Grid item xs={9} alignItems="center" justifyContent="center">
+            <Grid item xs={12} sx={{ p: 2, borderBottom: '1px solid grey' }}>
+              
+                
+                  <Button size="large" sx={{ marginRight: '50px', color: '#FFFFFF' }}  onClick={() => setEnvironment('development')}>
+                    Development
+                  </Button>
+                  <Button size="large" sx={{ color: '#FFFFFF' }} onClick={() => setEnvironment('production')}>
+                    Production
+                  </Button>
+              
+            </Grid>
+            {environment === 'development' && (
+              <Grid item xs={12} sx={{ p: 2 }}>
+                <Grid container spacing={4}>
+                  <Grid item xs={4}>
+                    <Button
+                    
+                      sx={{
+                        height: '100%',
+                        backgroundColor: '#1C1C1C',
+                        color: '#FFFFFF',
+                        textTransform: 'none',
+                        width: '100%',
+                        border: '2px dashed rgba(255, 255, 255, 0.3)',
+                        p: 3,
+                        '&:hover': {
+                          backgroundColor: 'rgba(255, 255, 255, 0.08)',
+                          borderColor: '#0288d1',
+                        },
+                      }}
+                      onClick={() => {}}
+                      color="inherit"
+                    >
+                      <Grid item>
+                      
+
+                        <AddCircleRoundedIcon fontSize="large" />
+                        <Typography variant="h6" component="h2" color="inherit">
+                          Create New Project
+                        </Typography>
+                        
+                      </Grid>
+                    </Button>
+                  </Grid>
+                  <Grid item xs={4}>
+                    <Button
+                      sx={{
+                        height: '100%',
+                        backgroundColor: 'rgba(255, 255, 255, 0.16)',
+                        color: '#FFFFFF',
+                        textTransform: 'none',
+                        width: '100%',
+                        border: '1px solid rgba(255, 255, 255, 0.3)',
+                        p: 5,
+                        '&:hover': {
+                          backgroundColor: 'rgba(255, 255, 255, 0.08)',
+                        },
+                      }}
+                      onClick={() => {}}
+                      color="inherit"
+                    >
+                      <Grid item>
+                      <Link href="/flow">
+                        <TableChartIcon fontSize="large" />
+                        <Typography variant="h6" component="h2" color="inherit">
+                          Sales Pipeline Management
+                        </Typography>
+                        </Link>
+                      </Grid>
+                    </Button>
+                  </Grid>
+                  <Grid item xs={4}>
+                    <Button
+                      sx={{
+                        height: '100%',
+                        backgroundColor: 'rgba(255, 255, 255, 0.16)',
+                        color: '#FFFFFF',
+                        textTransform: 'none',
+                        width: '100%',
+                        border: '1px solid rgba(255, 255, 255, 0.3)',
+                        p: 3,
+                        '&:hover': {
+                          backgroundColor: 'rgba(255, 255, 255, 0.08)',
+                        },
+                      }}
+                      onClick={() => {}}
+                      color="inherit"
+                    >
+                      <Grid item>
+                        <YoutubeSearchedForIcon fontSize="large" />
+                        <Typography variant="h6" component="h2" color="inherit">
+                          Customer Churn Prediction
+                        </Typography>
+                      </Grid>
+                    </Button>
+                  </Grid>
+                  <Grid item xs={4}>
+                    <Button
+                      sx={{
+                        height: '100%',
+                        backgroundColor: 'rgba(255, 255, 255, 0.16)',
+                        color: '#FFFFFF',
+                        textTransform: 'none',
+                        width: '100%',
+                        border: '1px solid rgba(255, 255, 255, 0.3)',
+                        p: 3,
+                        '&:hover': {
+                          backgroundColor: 'rgba(255, 255, 255, 0.08)',
+                        },
+                      }}
+                      onClick={() => {}}
+                      color="inherit"
+                    >
+                      <Grid item>
+                        <YoutubeSearchedForIcon fontSize="large" />
+                        <Typography variant="h6" component="h2" color="inherit">
+                          Revenue Forecasting
+                        </Typography>
+                      </Grid>
+                    </Button>
+                  </Grid>
+                  <Grid item xs={4}>
+                    <Button
+                      sx={{
+                        height: '100%',
+                        backgroundColor: 'rgba(255, 255, 255, 0.16)',
+                        color: '#FFFFFF',
+                        textTransform: 'none',
+                        width: '100%',
+                        border: '1px solid rgba(255, 255, 255, 0.3)',
+                        p: 2,
+                        '&:hover': {
+                          backgroundColor: 'rgba(255, 255, 255, 0.08)',
+                        },
+                      }}
+                      onClick={() => {}}
+                      color="inherit"
+                    >
+                      <Grid item>
+                        <YoutubeSearchedForIcon fontSize="large" />
+                        <Typography variant="h6" component="h2" color="inherit">
+                          Sentiment Analysis
+                        </Typography>
+                      </Grid>
+                    </Button>
+                  </Grid>
+                  <Grid item xs={4}>
+                    <Button
+                      sx={{
+                        height: '100%',
+                        backgroundColor: 'rgba(255, 255, 255, 0.16)',
+                        color: '#FFFFFF',
+                        textTransform: 'none',
+                        width: '100%',
+                        border: '1px solid rgba(255, 255, 255, 0.3)',
+                        p: 3,
+                        '&:hover': {
+                          backgroundColor: 'rgba(255, 255, 255, 0.08)',
+                        },
+                      }}
+                      onClick={() => {}}
+                      color="inherit"
+                    >
+                      <Grid item>
+                        <YoutubeSearchedForIcon fontSize="large" />
+                        <Typography variant="h6" component="h2" color="inherit">
+                          Sales Rep Performance Prediction
+                        </Typography>
+                      </Grid>
+                    </Button>
+                  </Grid>
+                </Grid>
+              </Grid>
+            )}
+            {environment === 'production' && (
+                <Grid item xs={12} sx={{ p: 2 }}>
+                <Grid container spacing={4}>
+                <Grid item xs={4}>
+                <Button
+                      sx={{
+                        height: '100%',
+                        backgroundColor: 'rgba(255, 255, 255, 0.16)',
+                        color: '#FFFFFF',
+                        textTransform: 'none',
+                        width: '100%',
+                        border: '1px solid rgba(255, 255, 255, 0.3)',
+                        p: 5,
+                        '&:hover': {
+                          backgroundColor: 'rgba(255, 255, 255, 0.08)',
+                        },
+                      }}
+                      onClick={() => {}}
+                      color="inherit"
+                    >
+                      <Grid item>
+                        <TableChartIcon fontSize="large" />
+                        <Grid container spacing={1}>
+                        <Grid item>
+                    <FiberManualRecordIcon sx={{color:'green'}} />
+                  </Grid>
+                        <Grid item>
+                        <Typography variant="h5" component="h2" color="inherit">
+                          My Project
+                        </Typography>
+                        </Grid>
+                        
+                        </Grid>
+                        <Grid container >
+                        <Grid item xs={12}>
+                            <Typography variant="subtitle1" component="h2" color="inherit" sx={{marginTop:'20px', marginBottom:'-30px'}}>
+                            Last Updated: Today
+                            </Typography>
+                        </Grid>
+                        </Grid>
+                      </Grid>
+                    
+                    </Button>
+                  </Grid>
+                  <Grid item xs={4}>
+                <Button
+                      sx={{
+                        height: '100%',
+                        backgroundColor: 'rgba(255, 255, 255, 0.16)',
+                        color: '#FFFFFF',
+                        textTransform: 'none',
+                        width: '100%',
+                        border: '1px solid rgba(255, 255, 255, 0.3)',
+                        p: 5,
+                        '&:hover': {
+                          backgroundColor: 'rgba(255, 255, 255, 0.08)',
+                        },
+                      }}
+                      onClick={() => {}}
+                      color="inherit"
+                    >
+                      <Grid item>
+                        <Link href="/deepDive">
+                        <TableChartIcon fontSize="large" />
+                        <Grid container spacing={1}>
+                        <Grid item>
+                    <FiberManualRecordIcon sx={{color:'green'}} />
+                  </Grid>
+                        <Grid item>
+                        <Typography variant="h6" component="h2" color="inherit">
+                          Pipeline Management 
+                        </Typography>
+                        </Grid>
+                        
+                        </Grid>
+                        <Grid container >
+                        <Grid item xs={12}>
+                            <Typography variant="subtitle1" component="h2" color="inherit" sx={{marginTop:'20px', marginBottom:'-30px'}}>
+                            Last Updated: 1 day ago
+                            </Typography>
+                        </Grid>
+                        </Grid>
+                        </Link>
+                      </Grid>
+                    
+                    </Button>
+                  </Grid>
+                    </Grid>
+                    </Grid>
+            )}
+                
+          </Grid>
+        </Grid>
+      </Grid>
+    </ThemeProvider>
+  );
 }

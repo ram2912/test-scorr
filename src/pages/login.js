@@ -1,41 +1,136 @@
-import React from "react";
-import styles from "@/styles/Home.module.css";
-import config from "../../public/config";
+import * as React from 'react';
+import Avatar from '@mui/material/Avatar';
+import Button from '@mui/material/Button';
+import CssBaseline from '@mui/material/CssBaseline';
+import TextField from '@mui/material/TextField';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import Checkbox from '@mui/material/Checkbox';
+import Link from '@mui/material/Link';
+import Paper from '@mui/material/Paper';
+import Box from '@mui/material/Box';
+import Grid from '@mui/material/Grid';
+import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
+import Typography from '@mui/material/Typography';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
 
-const authUrl = config.endpoints.authorizationUrl;
+function Copyright(props) {
+  return (
+    <Typography variant="body2" color="text.secondary" align="center" {...props}>
+      {'Copyright © '}
+      <Link color="inherit" href="https://scorr.eu/">
+        Your Website
+      </Link>{' '}
+      {new Date().getFullYear()}
+      {'.'}
+    </Typography>
+  );
+}
 
-export default function Login() {
+// TODO remove, this demo shouldn't need to reset the theme.
 
-    
+const darkTheme = createTheme({
+  palette: {
+    mode: 'dark',
+    primary: {
+      main: '#1976d2',
+    },
+  },
+});
 
-    const handleHubspotConnect = async (e) => {
-        e.preventDefault();
-        
-      // Replace with your backend route for authentication
-      localStorage.setItem('hubspotConnected', 'true');
-    window.location.href = authUrl;
-      };
+export default function SignInSide() {
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    const data = new FormData(event.currentTarget);
+    console.log({
+      email: data.get('email'),
+      password: data.get('password'),
+    });
+  };
 
   return (
-    <div style={{ display: "flex", flexDirection: "column" }}>
-      <div style={{ flex: "3", position: "relative" }}>
-        <div style={{ display: "flex", alignItems: "center", justifyContent: "center", position: "relative", paddingTop: "90px", paddingBottom:'30px' }}>
-          <img src="./White logo - no background.png" alt="Logo" style={{ width: "20%", height: "auto", zIndex: 1 }} />
-        </div>
-      </div>
-      <div style={{ flex: "7", display: "flex", position: "relative", borderRadius: "8px", justifyContent: "center", alignContent: "center" , flexDirection:'row', }}>
-        <div style={{ display: 'flex', flexDirection:'column', width: "300px", textAlign: "center", border:'1px solid #9A9A9A', background: '#363636', padding: '10px', borderRadius:'8px', marginTop:'20px' }}>
-          <h2 style= {{ fontFamily:'inter, sans-serif', color:'white'}}>Login</h2>
-          <form style={{ display: 'flex', flexDirection:'column',}}>
-            <input style={{backgroundColor:'black', border: 'none',padding:'5px', border:'0.5px solid #9A9A9A', borderRadius:'5px',marginTop:'20px', marginBottom:'20px', color:'white'}} type="text" placeholder="Email" />
-            <input style={{backgroundColor:'black', border: 'none',padding:'5px', border:'0.5px solid #9A9A9A', borderRadius:'5px', marginBottom:'20px'}} type="password" placeholder="Password" />
-            <button style={{ backgroundColor: 'grey', border:'none', display:'flex', margin:'auto', padding:'5px', width: '30%', marginBottom:'30px', textAlign:'center',justifyContent: "center", alignContent: "center", color:'white'}}type="submit">Login</button>
-            <div style={{ display:'flex', margin:'auto', padding:'5px', width:'250px', marginBottom:'30px', textAlign:'center',justifyContent: "center", alignContent: "center", borderTop:'1px solid white'}}></div>
-            <button onClick={handleHubspotConnect} style={{ display:'flex',cursor: 'pointer',margin:'auto', padding:'7px', width: '60%', marginBottom:'30px', textAlign:'center',justifyContent: "center", alignContent: "center", backgroundColor: '#e06666', border:'none', borderRadius:'5px', color:'white'}}type="submit" ><img src="./PngItem_1628892.png"  style={{ width: "15%", marginRight: '10px',height: "auto", paddingRight:'10px', zIndex: 1, borderRight:'1px solid white' }}/>Login with Hubspot</button>
-
-          </form>
-        </div>
-      </div>
-    </div>
+    <ThemeProvider theme={darkTheme}>
+      <Grid container component="main" sx={{ height: '100vh' }}>
+        <CssBaseline />
+        <Grid
+          item
+          xs={false}
+          sm={4}
+          md={7}
+          sx={{
+            backgroundImage: 'url(https://source.unsplash.com/random?wallpapers)',
+            backgroundRepeat: 'no-repeat',
+            backgroundColor: (t) =>
+              t.palette.mode === 'light' ? t.palette.grey[50] : t.palette.grey[900],
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+          }}
+        />
+        <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
+          <Box
+            sx={{
+              my: 8,
+              mx: 4,
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+            }}
+          >
+            
+            <img src="./White logo - no background copy.png" style={{height: '50px', width: 'auto'}} />
+            
+            <Typography component="h1" variant="h5" sx={{marginTop:'20px'}}>
+              Sign in
+            </Typography>
+            <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 1 }}>
+              <TextField
+                margin="normal"
+                required
+                fullWidth
+                id="email"
+                label="Email Address"
+                name="email"
+                autoComplete="email"
+                autoFocus
+              />
+              <TextField
+                margin="normal"
+                required
+                fullWidth
+                name="password"
+                label="Password"
+                type="password"
+                id="password"
+                autoComplete="current-password"
+              />
+              <FormControlLabel
+                control={<Checkbox value="remember" color="primary" />}
+                label="Remember me"
+              />
+              <Button
+                type="submit"
+                fullWidth
+                variant="contained"
+                sx={{ mt: 3, mb: 2 }}
+              >
+                Sign In
+              </Button>
+              <Grid container>
+                <Grid item xs>
+                  <Link href="#" variant="body2">
+                    Forgot password?
+                  </Link>
+                </Grid>
+                <Grid item>
+                  <Link href="/sign-up" variant="body2">
+                    {"Don't have an account? Sign Up"}
+                  </Link>
+                </Grid>
+              </Grid>
+              <Copyright sx={{ mt: 5 }} />
+            </Box>
+          </Box>
+        </Grid>
+      </Grid>
+    </ThemeProvider>
   );
 }
