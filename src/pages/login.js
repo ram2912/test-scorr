@@ -57,17 +57,16 @@ export default function SignInSide() {
         }),
       });
 
-      if (response.status === 200) {
-        // Login success
-        const data = await response.json();
-        console.log('Logged in:', data);
-        // Redirect to the authenticated page or perform further actions
-        window.location.href = '/';
+      const data = await response.json();
+
+      if (response.ok) {
+        const token = data.token;
+        console.log('Token:', token);
+    
+        // Check if the token is set in the browser's cookie
+        console.log('Token Cookie:', document.cookie);
       } else {
-        // Login failed
-        const errorData = await response.json();
-        console.log('Login failed:', errorData.error);
-        // Display an error message or handle the error
+        console.error('Login failed:', data.error);
       }
     } catch (error) {
       console.error('Error during login:', error);
