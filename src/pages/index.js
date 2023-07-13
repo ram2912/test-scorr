@@ -42,7 +42,7 @@ export default function Home() {
     
 
     if (response.status === 401) {
-      //window.location.href = '/login';
+      window.location.href = '/login';
       console.log('Unauthorized');
     }
     else if (response.status === 200) {
