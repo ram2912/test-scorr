@@ -34,7 +34,10 @@ export default function Home() {
 
   const checkAuth = async () => {
     const response = await fetch('https://testback.scorr-app.eu/protected' , {
-      credentials: 'include'
+      credentials: 'include',
+      headers: {
+        'Authorization': `Bearer ${document.cookie.split('; ').find(cookie => cookie.startsWith('token')).split('=')[1]}`
+      }
     });
     
 
