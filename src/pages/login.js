@@ -62,9 +62,11 @@ export default function SignInSide() {
       if (response.ok) {
         const token = data.token;
         console.log('Token:', token);
+        document.cookie = `token=${token}; Path=/; Secure; SameSite=Strict`;
     
         // Check if the token is set in the browser's cookie
         console.log('Token Cookie:', document.cookie);
+        window.location.href = '/';
       } else {
         console.error('Login failed:', data.error);
       }
