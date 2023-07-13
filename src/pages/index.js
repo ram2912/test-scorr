@@ -33,7 +33,7 @@ export default function Home() {
   }, []);
 
   const checkAuth = async () => {
-    const response = await fetch('https://testback.scorr-app.eu/users/protected' , {
+    const response = await fetch('https://testback.scorr-app.eu/protected' , {
       credentials: 'include'
     });
     
